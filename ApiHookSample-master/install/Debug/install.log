@@ -1,0 +1,7 @@
+﻿  stdafx.cpp
+  install.cpp
+f:\idmdown\apihooksample-master\install\install.cpp(74): error C2664: “HANDLE CreateRemoteThread(HANDLE,LPSECURITY_ATTRIBUTES,SIZE_T,LPTHREAD_START_ROUTINE,LPVOID,DWORD,LPDWORD)”: 无法将参数 4 从“FARPROC”转换为“LPTHREAD_START_ROUTINE”
+  f:\idmdown\apihooksample-master\install\install.cpp(74): note: 该转换要求 reinterpret_cast、C 样式转换或函数类型转换
+f:\idmdown\apihooksample-master\install\install.cpp(60): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(568): note: 参见“stricmp”的声明
+  正在生成代码...

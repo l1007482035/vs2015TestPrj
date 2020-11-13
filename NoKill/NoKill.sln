@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InspectDLL", "InspectDLL\InspectDLL.vcxproj", "{D27146D9-7148-4C0D-A659-857744D8BC83}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InjectDLL - Service", "InjectDLL - Service\InjectDLL - Service.vcxproj", "{259D1A70-8717-402D-BEA2-5DFDA5A8E1B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D27146D9-7148-4C0D-A659-857744D8BC83}.Release|x64.ActiveCfg = Release|x64
+		{D27146D9-7148-4C0D-A659-857744D8BC83}.Release|x64.Build.0 = Release|x64
+		{D27146D9-7148-4C0D-A659-857744D8BC83}.Release|x64.Deploy.0 = Release|x64
+		{259D1A70-8717-402D-BEA2-5DFDA5A8E1B2}.Release|x64.ActiveCfg = Release|x64
+		{259D1A70-8717-402D-BEA2-5DFDA5A8E1B2}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

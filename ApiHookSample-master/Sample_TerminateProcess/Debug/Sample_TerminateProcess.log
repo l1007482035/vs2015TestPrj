@@ -1,0 +1,4 @@
+﻿  Sample_TerminateProcess.cpp
+f:\idmdown\apihooksample-master\sample_terminateprocess\sample_terminateprocess.cpp(93): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 2 拥有了类型“HANDLE”
+  Sample_TerminateProcess.vcxproj -> F:\idmdown\ApiHookSample-master\Debug\Sample_TerminateProcess.exe
+  Sample_TerminateProcess.vcxproj -> F:\idmdown\ApiHookSample-master\Debug\Sample_TerminateProcess.pdb (Full PDB)
