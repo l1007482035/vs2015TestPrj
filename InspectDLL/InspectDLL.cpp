@@ -21,7 +21,10 @@ std::shared_ptr<spdlog::logger> logPtr = nullptr;
 CHookApi hook1;
 CHookApi hook2;
 
-BOOL WINAPI NewTerminateProcess(
+
+
+
+BOOL WINAPI MyTerminateProcess(
 	HANDLE hProcess,
 	UINT   uExitCode)
 {
@@ -29,6 +32,45 @@ BOOL WINAPI NewTerminateProcess(
 	MessageBox(NULL, "拒绝访问", "提示", MB_OK);
 	return TRUE;
 }
+
+
+HANDLE WINAPI MyOpenProcess(
+	DWORD dwDesiredAccess,
+	BOOL  bInheritHandle,
+	DWORD dwProcessId)
+{
+
+	
+	return NULL;
+}
+
+
+
+
+
+
+HANDLE WINAPI PFN_MyOpenProcess(
+	DWORD dwDesiredAccess,
+	BOOL  bInheritHandle,
+	DWORD dwProcessId)
+{
+	//printf("MyOpenProcess,dwProcessId=%d\n", dwProcessId);
+	logPtr->info("MyOpenProcess,dwProcessId");
+	HANDLE ret = NULL;
+
+	ret = OpenProcess(dwDesiredAccess, bInheritHandle, dwProcessId);
+
+
+
+	// 	if (dwProcessId == GetCurrentProcessId())
+	// 	{
+	// 		printf("禁止终结notepad.exe进程\n");
+	// 	}
+
+	return ret;
+}
+
+
 
 BOOL APIENTRY DllMain(HANDLE handle, DWORD dwReason, LPVOID reserved) {
 
@@ -44,12 +86,15 @@ BOOL APIENTRY DllMain(HANDLE handle, DWORD dwReason, LPVOID reserved) {
 	case DLL_PROCESS_ATTACH: {
 
 		logPtr->info("DLL_PROCESS_ATTACH");
-		hook2.Hook("kernel32.dll", "TerminateProcess", NewTerminateProcess);
+		hook2.Hook("kernel32.dll", "TerminateProcess", MyTerminateProcess);
+		//HookOpenProcess();
+		logPtr->info("DLL_PROCESS_ATTACH,end");
 
 		break;
 	}
 	case DLL_PROCESS_DETACH: {
 		logPtr->info("DLL_PROCESS_DETACH");
+		//UnHookOpenProcess();
 		hook2.UnHook();
 		break;
 	}

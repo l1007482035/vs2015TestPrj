@@ -159,9 +159,14 @@ void UnHookOpenProcess()
 
 int main()
 {
+#if 0
+	printf("dword=%d,dword64=%d\n",sizeof(DWORD),sizeof(DWORD64));
+#else
 	HookOpenProcess();
 	TerminalProcess("notepad.exe");
 	UnHookOpenProcess();
+#endif
+	
 
 
 

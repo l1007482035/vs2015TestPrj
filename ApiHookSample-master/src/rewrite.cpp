@@ -7,14 +7,14 @@ void* RewriteFunctionImp(const char* szRewriteModuleName, const char* szRewriteF
 {
 	for (int i = 0; i < 2; i++) {
 		// ベースアドレス
-		DWORD dwBase = 0;
+		DWORD64 dwBase = 0;
 		if (i == 0) {
 			if (szRewriteModuleName) {
-				dwBase = (DWORD)(intptr_t)::GetModuleHandleA(szRewriteModuleName);
+				dwBase = (DWORD64)(intptr_t)::GetModuleHandleA(szRewriteModuleName);
 			}
 		}
 		else if (i == 1) {
-			dwBase = (DWORD)(intptr_t)GetModuleHandle(NULL);
+			dwBase = (DWORD64)(intptr_t)GetModuleHandle(NULL);
 		}
 		if (!dwBase)continue;
 
@@ -39,17 +39,17 @@ void* RewriteFunctionImp(const char* szRewriteModuleName, const char* szRewriteF
 					if (stricmp((const char*)pImportName->Name, szRewriteFunctionName) != 0)continue;
 
 					// 保護状態変更
-					DWORD dwOldProtect;
-					if (!VirtualProtect(&pFirstThunk->u1.Function, sizeof(pFirstThunk->u1.Function), PAGE_READWRITE, &dwOldProtect))
+					DWORD64 dwOldProtect;
+					if (!VirtualProtect(&pFirstThunk->u1.Function, sizeof(pFirstThunk->u1.Function), PAGE_READWRITE, (PDWORD)&dwOldProtect))
 						return NULL; // エラー
 
 					// 書き換え
 					void* pOrgFunc = (void*)(intptr_t)pFirstThunk->u1.Function; // 元のアドレスを保存しておく
 					WriteProcessMemory(GetCurrentProcess(), &pFirstThunk->u1.Function, &pRewriteFunctionPointer, sizeof(pFirstThunk->u1.Function), NULL);
-					pFirstThunk->u1.Function = (DWORD)(intptr_t)pRewriteFunctionPointer;
+					pFirstThunk->u1.Function = (DWORD64)(intptr_t)pRewriteFunctionPointer;
 
 					// 保護状態戻し
-					VirtualProtect(&pFirstThunk->u1.Function, sizeof(pFirstThunk->u1.Function), dwOldProtect, &dwOldProtect);
+					VirtualProtect(&pFirstThunk->u1.Function, sizeof(pFirstThunk->u1.Function), dwOldProtect, (PDWORD)&dwOldProtect);
 					return pOrgFunc; // 元のアドレスを返す
 				}
 			}

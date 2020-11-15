@@ -1,4 +1,13 @@
-﻿  Sample_TerminateProcess.cpp
-f:\idmdown\apihooksample-master\sample_terminateprocess\sample_terminateprocess.cpp(93): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 2 拥有了类型“HANDLE”
-  Sample_TerminateProcess.vcxproj -> F:\idmdown\ApiHookSample-master\Debug\Sample_TerminateProcess.exe
-  Sample_TerminateProcess.vcxproj -> F:\idmdown\ApiHookSample-master\Debug\Sample_TerminateProcess.pdb (Full PDB)
+﻿  stdafx.cpp
+  Sample_TerminateProcess.cpp
+d:\myproject\vs2015testprj\apihooksample-master\sample_terminateprocess\sample_terminateprocess.cpp(78): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 3 拥有了类型“char *”
+d:\myproject\vs2015testprj\apihooksample-master\sample_terminateprocess\sample_terminateprocess.cpp(93): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 2 拥有了类型“HANDLE”
+  rewrite.cpp
+c:\program files (x86)\windows kits\8.1\include\um\imagehlp.h(1873): warning C4091: “typedef ”: 没有声明变量时忽略“”的左侧
+c:\program files (x86)\windows kits\8.1\include\um\imagehlp.h(3519): warning C4091: “typedef ”: 没有声明变量时忽略“”的左侧
+d:\myproject\vs2015testprj\apihooksample-master\src\rewrite.cpp(39): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(568): note: 参见“stricmp”的声明
+  正在生成代码...
+  LINK : 没有找到 D:\MyProject\vs2015TestPrj\ApiHookSample-master\Debug\Sample_TerminateProcess.exe 或上一个增量链接没有生成它；正在执行完全链接
+  Sample_TerminateProcess.vcxproj -> D:\MyProject\vs2015TestPrj\ApiHookSample-master\Debug\Sample_TerminateProcess.exe
+  Sample_TerminateProcess.vcxproj -> D:\MyProject\vs2015TestPrj\ApiHookSample-master\Debug\Sample_TerminateProcess.pdb (Full PDB)
