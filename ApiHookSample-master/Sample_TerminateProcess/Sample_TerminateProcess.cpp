@@ -75,7 +75,7 @@ BOOL TerminalProcess(char* sProc)
 			{
 
 				dwPid = ProcessEntry.th32ProcessID;
-				printf("strExePath=%s,sProc=%s,pIdx=%x,dwPid=%d\n", strExePath, sProc, pIdx, dwPid);
+				//printf("strExePath=%s,sProc=%s,pIdx=%x,dwPid=%d\n", strExePath, sProc, pIdx, dwPid);
 				break;
 			}
 			ProcessEntry.dwSize = sizeof(PROCESSENTRY32);
@@ -91,10 +91,10 @@ BOOL TerminalProcess(char* sProc)
 	ModifyPrivilege(SE_DEBUG_NAME, TRUE);
 	HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, dwPid);
 	printf("OpenProcess,dwPid=%d£¬hProcess=%x\n", dwPid, hProcess);
-	if (hProcess == NULL)
-		return 0;
-	dwPid = TerminateProcess(hProcess, 0);
-	CloseHandle(hProcess);
+	// 	if (hProcess == NULL)
+	// 		return 0;
+	// 	dwPid = TerminateProcess(hProcess, 0);
+	// 	CloseHandle(hProcess);
 	return dwPid;
 }
 
@@ -119,7 +119,7 @@ HANDLE WINAPI PFN_MyOpenProcess(
 	BOOL  bInheritHandle,
 	DWORD dwProcessId)
 {
-	printf("MyOpenProcess,dwProcessId=%d\n", dwProcessId);
+	//printf("MyOpenProcess,dwProcessId=%d\n", dwProcessId);
 	HANDLE ret = NULL;
 	UnHookOpenProcess();
 	ret = OpenProcess(dwDesiredAccess, bInheritHandle, dwProcessId);
@@ -137,12 +137,17 @@ HANDLE WINAPI PFN_MyOpenProcess(
 
 void HookOpenProcess()
 {
+
+	printf("HookOpenProcess,1,pfn_OriOpenProcess=%p\n", pfn_OriOpenProcess);
 	pfn_OriOpenProcess = (PFN_OriOpenProcess)RewriteFunction("KERNEL32.dll", "OpenProcess", PFN_MyOpenProcess);
+	printf("HookOpenProcess,2,pfn_OriOpenProcess=%p,new=%p\n", pfn_OriOpenProcess, PFN_MyOpenProcess);
+
 }
 
 void UnHookOpenProcess()
 {
 	RewriteFunction("KERNEL32.dll", "OpenProcess", pfn_OriOpenProcess);
+	printf("===UnHook,pfn_OriOpenProcess=%p\n", pfn_OriOpenProcess);
 }
 
 
@@ -160,13 +165,13 @@ void UnHookOpenProcess()
 int main()
 {
 #if 0
-	printf("dword=%d,dword64=%d\n",sizeof(DWORD),sizeof(DWORD64));
+	printf("dword=%d,dword64=%d\n", sizeof(DWORD), sizeof(DWORD64));
 #else
 	HookOpenProcess();
 	TerminalProcess("notepad.exe");
-	UnHookOpenProcess();
+	//UnHookOpenProcess();
 #endif
-	
+
 
 
 

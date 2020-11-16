@@ -8,16 +8,16 @@ public:
 	CHookApi(void);
 	~CHookApi(void);
 
-	
 
-	void Hook(std::string sModule,std::string sFunc,void *pNewFuncAddr);
+
+	void Hook(std::string sModule, std::string sFunc, void *pNewFuncAddr);
 	void UnHook();
 
 	void ReHook();
 
 protected:
 
-	void ReWriteFunc(_In_ void* pNewAddr,_Out_ void *pOldAddr);
+	void* ReWriteFunc(void* pNewAddr);
 protected:
 
 	void *m_pOldFuncAddr;
