@@ -21,7 +21,7 @@ void CHookApi::Hook(std::string sModule, std::string sFunc, void *pNewFuncAddr)
 	m_sModuleName = sModule;
 	m_sFunName = sFunc;
 	m_pNewFuncAddr = pNewFuncAddr;
-	logPtr->info("Hook,m_pNewFuncAddr={:p}", m_pNewFuncAddr);
+	//logPtr->info("Hook,m_pNewFuncAddr={:p}", m_pNewFuncAddr);
 	if (m_pNewFuncAddr)
 	{
 		m_pOldFuncAddr = ReWriteFunc(m_pNewFuncAddr);
@@ -31,7 +31,7 @@ void CHookApi::Hook(std::string sModule, std::string sFunc, void *pNewFuncAddr)
 
 void CHookApi::UnHook()
 {
-	logPtr->info("UnHook,m_pOldFuncAddr={:p}", m_pOldFuncAddr);
+	//logPtr->info("UnHook,m_pOldFuncAddr={:p}", m_pOldFuncAddr);
 	if (m_pOldFuncAddr)
 	{
 		ReWriteFunc(m_pOldFuncAddr);

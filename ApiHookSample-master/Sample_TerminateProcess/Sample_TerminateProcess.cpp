@@ -140,7 +140,7 @@ void HookOpenProcess()
 
 	printf("HookOpenProcess,1,pfn_OriOpenProcess=%p\n", pfn_OriOpenProcess);
 	pfn_OriOpenProcess = (PFN_OriOpenProcess)RewriteFunction("KERNEL32.dll", "OpenProcess", PFN_MyOpenProcess);
-	printf("HookOpenProcess,2,pfn_OriOpenProcess=%p,new=%p\n", pfn_OriOpenProcess, PFN_MyOpenProcess);
+	printf("HookOpenProcess,pfn_OriOpenProcess=%p,new=%p\n", pfn_OriOpenProcess, PFN_MyOpenProcess);
 
 }
 
