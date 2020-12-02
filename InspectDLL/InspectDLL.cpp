@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include <fstream>
 #include <string.h>
 #include <TlHelp32.h>
@@ -82,7 +82,7 @@ HANDLE WINAPI MyOpenProcess(
 	HANDLE ret = NULL;
 	//UnHookOpenProcess();
 	hook1.UnHook();
-	//logPtr->info("====MyOpenProcess,1");
+	logPtr->info("====MyOpenProcess,1");
 	ret = OpenProcess(dwDesiredAccess, bInheritHandle, dwProcessId);
 	//logPtr->info("====MyOpenProcess,2");
 	//HookOpenProcess();
@@ -91,7 +91,7 @@ HANDLE WINAPI MyOpenProcess(
 
 	// 	if (dwProcessId == GetCurrentProcessId())
 	// 	{
-	// 		printf("½ûÖ¹ÖÕ½ánotepad.exe½ø³Ì\n");
+	// 		printf("ç¦æ­¢ç»ˆç»“notepad.exeè¿›ç¨‹\n");
 	// 	}
 
 	return ret;

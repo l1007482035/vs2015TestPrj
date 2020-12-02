@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testwin32dll", "testwin32dl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "judgeOS64", "judgeOS64\judgeOS64.vcxproj", "{5FA91E43-BE65-4A8E-90B1-F04B013B0DE2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runproasadmin", "runproasadmin\runproasadmin.vcxproj", "{F69B6B80-D1B9-40A6-9D65-95AB7D7ECF0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -88,6 +90,14 @@ Global
 		{5FA91E43-BE65-4A8E-90B1-F04B013B0DE2}.Release|Win32.Build.0 = Release|Win32
 		{5FA91E43-BE65-4A8E-90B1-F04B013B0DE2}.Release|x64.ActiveCfg = Release|x64
 		{5FA91E43-BE65-4A8E-90B1-F04B013B0DE2}.Release|x64.Build.0 = Release|x64
+		{F69B6B80-D1B9-40A6-9D65-95AB7D7ECF0E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F69B6B80-D1B9-40A6-9D65-95AB7D7ECF0E}.Debug|Win32.Build.0 = Debug|Win32
+		{F69B6B80-D1B9-40A6-9D65-95AB7D7ECF0E}.Debug|x64.ActiveCfg = Debug|x64
+		{F69B6B80-D1B9-40A6-9D65-95AB7D7ECF0E}.Debug|x64.Build.0 = Debug|x64
+		{F69B6B80-D1B9-40A6-9D65-95AB7D7ECF0E}.Release|Win32.ActiveCfg = Release|Win32
+		{F69B6B80-D1B9-40A6-9D65-95AB7D7ECF0E}.Release|Win32.Build.0 = Release|Win32
+		{F69B6B80-D1B9-40A6-9D65-95AB7D7ECF0E}.Release|x64.ActiveCfg = Release|x64
+		{F69B6B80-D1B9-40A6-9D65-95AB7D7ECF0E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

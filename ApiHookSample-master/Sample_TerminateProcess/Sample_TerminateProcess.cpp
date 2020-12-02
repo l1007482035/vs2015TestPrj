@@ -1,4 +1,4 @@
-#include <stdio.h>
+Ôªø#include <stdio.h>
 #include <Windows.h>
 #include <tlhelp32.h>
 #include "../src/rewrite.h"
@@ -57,7 +57,7 @@ BOOL TerminalProcess(char* sProc)
 {
 	DWORD dwPid = 0;
 
-	//≤È’“
+	//Êü•Êâæ
 	HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 	if (hSnapshot != INVALID_HANDLE_VALUE)
 	{
@@ -86,11 +86,11 @@ BOOL TerminalProcess(char* sProc)
 	if (dwPid == 0)
 		return 0;
 
-	//÷’Ω·
-	//Ã·…˝»®œﬁ
+	//ÁªàÁªì
+	//ÊèêÂçáÊùÉÈôê
 	ModifyPrivilege(SE_DEBUG_NAME, TRUE);
 	HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, dwPid);
-	printf("OpenProcess,dwPid=%d£¨hProcess=%x\n", dwPid, hProcess);
+	printf("OpenProcess,dwPid=%dÔºåhProcess=%x\n", dwPid, hProcess);
 	// 	if (hProcess == NULL)
 	// 		return 0;
 	// 	dwPid = TerminateProcess(hProcess, 0);
@@ -119,7 +119,7 @@ HANDLE WINAPI PFN_MyOpenProcess(
 	BOOL  bInheritHandle,
 	DWORD dwProcessId)
 {
-	//printf("MyOpenProcess,dwProcessId=%d\n", dwProcessId);
+	printf("MyOpenProcess,dwProcessId=%d\n", dwProcessId);
 	HANDLE ret = NULL;
 	UnHookOpenProcess();
 	ret = OpenProcess(dwDesiredAccess, bInheritHandle, dwProcessId);
@@ -128,7 +128,7 @@ HANDLE WINAPI PFN_MyOpenProcess(
 
 	// 	if (dwProcessId == GetCurrentProcessId())
 	// 	{
-	// 		printf("Ω˚÷π÷’Ω·notepad.exeΩ¯≥Ã\n");
+	// 		printf("Á¶ÅÊ≠¢ÁªàÁªìnotepad.exeËøõÁ®ã\n");
 	// 	}
 
 	return ret;
@@ -180,6 +180,6 @@ int main()
 
 	}
 
-	//// ë¯§π
+	//// Êàª„Åô
 	return 0;
 }

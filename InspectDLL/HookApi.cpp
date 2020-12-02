@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "HookApi.h"
 
 #include <imagehlp.h>
@@ -51,51 +51,51 @@ void* CHookApi::ReWriteFunc(void* pNewAddr)
 {
 
 	for (int i = 0; i < 2; i++) {
-		// ¥Ù©`¥¹¥¢¥É¥ì¥¹
-		DWORD64 dwBase = 0;
+		// ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+		DWORD dwBase = 0;
 		if (i == 0) {
-			if (!m_sModuleName.empty()) {
-				dwBase = (DWORD64)(intptr_t)::GetModuleHandleA(m_sModuleName.c_str());
+			if (1) {
+				dwBase = (DWORD)(intptr_t)::GetModuleHandleA("kernel32.dll");
 			}
 		}
 		else if (i == 1) {
-			dwBase = (DWORD64)(intptr_t)GetModuleHandle(NULL);
+			dwBase = (DWORD)(intptr_t)GetModuleHandle(NULL);
 		}
 		if (!dwBase)continue;
 
-		// ¥¤¥á©`¥¸ÁĞ’¤
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸åˆ—æŒ™
 		ULONG ulSize;
 		PIMAGE_IMPORT_DESCRIPTOR pImgDesc = (PIMAGE_IMPORT_DESCRIPTOR)ImageDirectoryEntryToData((HMODULE)(intptr_t)dwBase, TRUE, IMAGE_DIRECTORY_ENTRY_IMPORT, &ulSize);
 		for (; pImgDesc->Name; pImgDesc++) {
 			const char* szModuleName = (char*)(intptr_t)(dwBase + pImgDesc->Name);
-			// THUNKÇéˆó
+			// THUNKæƒ…å ±
 			PIMAGE_THUNK_DATA pFirstThunk = (PIMAGE_THUNK_DATA)(intptr_t)(dwBase + pImgDesc->FirstThunk);
 			PIMAGE_THUNK_DATA pOrgFirstThunk = (PIMAGE_THUNK_DATA)(intptr_t)(dwBase + pImgDesc->OriginalFirstThunk);
-			// évÊıÁĞ’¤
+			// é–¢æ•°åˆ—æŒ™
 			for (; pFirstThunk->u1.Function; pFirstThunk++, pOrgFirstThunk++) {
 				if (IMAGE_SNAP_BY_ORDINAL(pOrgFirstThunk->u1.Ordinal))continue;
 				PIMAGE_IMPORT_BY_NAME pImportName = (PIMAGE_IMPORT_BY_NAME)(intptr_t)(dwBase + (DWORD)pOrgFirstThunk->u1.AddressOfData);
-				if (m_sFunName.empty()) {
-					// ±íÊ¾¤Î¤ß
+				if (0) {
+					// è¡¨ç¤ºã®ã¿
 					printf("Module:%s Hint:%d, Name:%s\n", szModuleName, pImportName->Hint, pImportName->Name);
 				}
 				else {
-					// •ø¤­“Q¤¨ÅĞ¶¨
-					if (stricmp((const char*)pImportName->Name, m_sFunName.c_str()) != 0)continue;
+					// æ›¸ãæ›ãˆåˆ¤å®š
+					if (stricmp((const char*)pImportName->Name, "OpenProcess") != 0)continue;
 
-					// ±£×o×´‘B‰ä¸ü
-					DWORD64 dwOldProtect;
-					if (!VirtualProtect(&pFirstThunk->u1.Function, sizeof(pFirstThunk->u1.Function), PAGE_READWRITE, (PDWORD)&dwOldProtect))
-						return NULL; // ¥¨¥é©`
+					// ä¿è­·çŠ¶æ…‹å¤‰æ›´
+					DWORD dwOldProtect;
+					if (!VirtualProtect(&pFirstThunk->u1.Function, sizeof(pFirstThunk->u1.Function), PAGE_READWRITE, &dwOldProtect))
+						return NULL; // ã‚¨ãƒ©ãƒ¼
 
-									 // •ø¤­“Q¤¨
-					void* pOrgFunc = (void*)(intptr_t)pFirstThunk->u1.Function; // Ôª¤Î¥¢¥É¥ì¥¹¤ò±£´æ¤·¤Æ¤ª¤¯
+									 // æ›¸ãæ›ãˆ
+					void* pOrgFunc = (void*)(intptr_t)pFirstThunk->u1.Function; // å…ƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã—ã¦ãŠã
 					WriteProcessMemory(GetCurrentProcess(), &pFirstThunk->u1.Function, &pNewAddr, sizeof(pFirstThunk->u1.Function), NULL);
-					pFirstThunk->u1.Function = (DWORD64)(intptr_t)pNewAddr;
+					pFirstThunk->u1.Function = (DWORD)(intptr_t)pNewAddr;
 
-					// ±£×o×´‘B‘ø¤·
-					VirtualProtect(&pFirstThunk->u1.Function, sizeof(pFirstThunk->u1.Function), dwOldProtect, (PDWORD)&dwOldProtect);
-					return pOrgFunc; // Ôª¤Î¥¢¥É¥ì¥¹¤ò·µ¤¹
+					// ä¿è­·çŠ¶æ…‹æˆ»ã—
+					VirtualProtect(&pFirstThunk->u1.Function, sizeof(pFirstThunk->u1.Function), dwOldProtect, &dwOldProtect);
+					return pOrgFunc; // å…ƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 				}
 			}
 		}

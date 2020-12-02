@@ -6,3 +6,4 @@ vs2015TestPrj.VC.VC.opendb
 .vs/
 ApiHookSample-master/ApiHookSample.VC.VC.opendb
 ApiHookSample-master/ApiHookSample.VC.db
+*.suo
