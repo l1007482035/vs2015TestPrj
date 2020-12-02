@@ -258,9 +258,22 @@ int main()
 		else
 		{
 			// TODO: 在此处为应用程序的行为编写代码。
-			HANDLE hProc = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, 4000);//PROCESS_TERMINATE
-			printf("======hProc=%x\n", hProc);
-			CloseHandle(hProc);
+			
+			SHELLEXECUTEINFO shex;
+
+			memset(&shex, 0, sizeof(shex));
+
+			shex.cbSize = sizeof(SHELLEXECUTEINFO);
+			shex.fMask = 0;
+			shex.hwnd = NULL;
+			shex.lpVerb = _T("runas");
+			shex.lpFile = "D:\\MyProject\\vs2015TestPrj\\Release\\testpro.exe";
+			shex.lpParameters = "";
+			shex.lpDirectory = NULL;
+			shex.nShow = SW_NORMAL;
+
+			return ::ShellExecuteEx(&shex);
+
 			PROCESS_INFORMATION pi;
 			//createProcessWithAdmin(, &pi);
 			//RunProcessByGUISessionId("C:\\xlog\\GatewayProtect.exe", "", 0xFFFFFFFF, INFINITE, SW_SHOW);
