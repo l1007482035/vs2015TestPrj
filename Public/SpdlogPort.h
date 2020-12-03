@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "./include/spdlog/spdlog/spdlog.h"
 #include "./include/spdlog/spdlog/sinks/stdout_color_sinks.h"

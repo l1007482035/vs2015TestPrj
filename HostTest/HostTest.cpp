@@ -1,4 +1,4 @@
-// HostTest.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úµã¡£
+ï»¿// HostTest.cpp : å®šä¹‰æ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 
 #include "stdafx.h"
@@ -9,38 +9,95 @@
 #endif
 
 
-// Î¨Ò»µÄÓ¦ÓÃ³ÌĞò¶ÔÏó
+// å”¯ä¸€çš„åº”ç”¨ç¨‹åºå¯¹è±¡
 
 CWinApp theApp;
 
+
+#pragma data_seg("Host_data") 
+long g_lInstance = 0;
+#pragma data_seg() 
+#pragma comment(linker,"/Section:Host_data,rws")
+
+
 using namespace std;
+
+CSvcHost::CSvcHost(TCHAR* szName) : CService(szName)
+{
+}
+
+CSvcHost::~CSvcHost(void)
+{
+}
+
+void CSvcHost::OnStart()
+{
+	LogCmmLib->info("Start");
+	::Begin();
+	Initial();
+	LogCmmLib->info("Start,2");
+}
+void CSvcHost::OnStop()
+{
+	LogCmmLib->info("CSvcHost::OnStop");
+	::Stop();
+	theLog.Write("CSvcHost::OnStop,2");
+	CService::OnStop();
+	LogCmmLib->info("CSvcHost::OnStop,3");
+}
+void CSvcHost::OnShutdown()
+{
+	LogCmmLib->info("OnShutdown");
+	::Stop();
+	CService::OnShutdown();
+}
+
+BOOL CSvcHost::OnServiceInstalled(SC_HANDLE svc)
+{
+	LogCmmLib->info("OnServiceInstalled.");
+	SetFailedAction(svc);
+	SetDelayedAutoStart(svc);
+	return TRUE;
+}
+
+BOOL CSvcHost::OnServiceUninstalled(SC_HANDLE svc)
+{
+	LogCmmLib->info("OnServiceUninstalled.");
+	SetFailedAction(svc, SC_ACTION_NONE);
+	return TRUE;
+}
+
+CSvcHost theService("TestHost");
 
 int main()
 {
-    int nRetCode = 0;
+	int nRetCode = 0;
 
-    HMODULE hModule = ::GetModuleHandle(nullptr);
+	HMODULE hModule = ::GetModuleHandle(nullptr);
 
-    if (hModule != nullptr)
-    {
-        // ³õÊ¼»¯ MFC ²¢ÔÚÊ§°ÜÊ±ÏÔÊ¾´íÎó
-        if (!AfxWinInit(hModule, nullptr, ::GetCommandLine(), 0))
-        {
-            // TODO: ¸ü¸Ä´íÎó´úÂëÒÔ·ûºÏÄúµÄĞèÒª
-            wprintf(L"´íÎó: MFC ³õÊ¼»¯Ê§°Ü\n");
-            nRetCode = 1;
-        }
-        else
-        {
-            // TODO: ÔÚ´Ë´¦ÎªÓ¦ÓÃ³ÌĞòµÄĞĞÎª±àĞ´´úÂë¡£
-        }
-    }
-    else
-    {
-        // TODO: ¸ü¸Ä´íÎó´úÂëÒÔ·ûºÏÄúµÄĞèÒª
-        wprintf(L"´íÎó: GetModuleHandle Ê§°Ü\n");
-        nRetCode = 1;
-    }
+	if (hModule != nullptr)
+	{
+		// åˆå§‹åŒ– MFC å¹¶åœ¨å¤±è´¥æ—¶æ˜¾ç¤ºé”™è¯¯
+		if (!AfxWinInit(hModule, nullptr, ::GetCommandLine(), 0))
+		{
+			// TODO: æ›´æ”¹é”™è¯¯ä»£ç ä»¥ç¬¦åˆæ‚¨çš„éœ€è¦
+			wprintf(L"é”™è¯¯: MFC åˆå§‹åŒ–å¤±è´¥\n");
+			nRetCode = 1;
+		}
+		else
+		{
+			// TODO: åœ¨æ­¤å¤„ä¸ºåº”ç”¨ç¨‹åºçš„è¡Œä¸ºç¼–å†™ä»£ç ã€‚
 
-    return nRetCode;
+
+
+		}
+	}
+	else
+	{
+		// TODO: æ›´æ”¹é”™è¯¯ä»£ç ä»¥ç¬¦åˆæ‚¨çš„éœ€è¦
+		wprintf(L"é”™è¯¯: GetModuleHandle å¤±è´¥\n");
+		nRetCode = 1;
+	}
+
+	return nRetCode;
 }

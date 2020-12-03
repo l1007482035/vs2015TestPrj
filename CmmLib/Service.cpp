@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "Service.h"
 
 static CService* pService = NULL;
@@ -9,7 +9,7 @@ BOOL      CService::bXpOrLater = IsWinXpOrLater();
 
 CService::CService(TCHAR* szServiceName, BOOL bAcceptStop /* = TRUE */)
 {
-	_tcsncpy(m_szServiceName, szServiceName,  MAX_PATH);
+	_tcsncpy(m_szServiceName, szServiceName, MAX_PATH);
 	// set up the initial service status 
 	m_hServiceStatus = NULL;
 	m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
@@ -30,30 +30,29 @@ CService::~CService(void)
 }
 int CService::main(int argc, TCHAR *argv[], TCHAR *envp[])
 {
-	for (int n = 0; n < argc ; n ++)
+	for (int n = 0; n < argc; n++)
 	{
-		//LogCmmLib->info(L"{}",argv[n]);
-		LogCmmLib->info(L"{}",L"ÄãºÃ");
+		LogCmmLib->info(L"{}", argv[n]);
 	}
-	
-	if( argc > 1 && (_tcsicmp(argv[1], _T("-install")) == 0))
+
+	if (argc > 1 && (_tcsicmp(argv[1], _T("-install")) == 0))
 	{
 		Install();
-		//Start(); //·ÅÔÚOnServiceInstalledÖÐÆô¶¯
+		//Start(); //æ”¾åœ¨OnServiceInstalledä¸­å¯åŠ¨
 		return 0;
 	}
-	else if( argc > 1 && (_tcsicmp(argv[1], _T("-installOnly")) == 0))
+	else if (argc > 1 && (_tcsicmp(argv[1], _T("-installOnly")) == 0))
 	{
 		Install();
 		return 0;
 	}
-	else if( argc > 1 && (_tcsicmp(argv[1], _T("-UnInstall")) == 0))
+	else if (argc > 1 && (_tcsicmp(argv[1], _T("-UnInstall")) == 0))
 	{
-		//LogCmmLib->info("UnInstall");
+		LogCmmLib->info("UnInstall");
 		UnInstall();
 		return 0;
 	}
-	else if( argc > 1 && (_tcsicmp(argv[1], _T("-stop")) == 0))
+	else if (argc > 1 && (_tcsicmp(argv[1], _T("-stop")) == 0))
 	{
 		Stop();
 		return 0;
@@ -62,13 +61,13 @@ int CService::main(int argc, TCHAR *argv[], TCHAR *envp[])
 	{
 		return 0;
 	}
-	SERVICE_TABLE_ENTRY DispatchTable[]=
+	SERVICE_TABLE_ENTRY DispatchTable[] =
 	{
 		{m_szServiceName, _ServiceMain}, {NULL, NULL}
 	};
-	if ( !StartServiceCtrlDispatcher (DispatchTable))
+	if (!StartServiceCtrlDispatcher(DispatchTable))
 	{
-		SvcDebugOut (_T("[SRPSM_Service] StartServiceCtrlDispatcher error = %d\n"), GetLastError());
+		SvcDebugOut(_T("[SRPSM_Service] StartServiceCtrlDispatcher error = %d\n"), GetLastError());
 	}
 	return 0;
 }
@@ -77,13 +76,13 @@ BOOL  CService::ProcessCommandLine(int argc, TCHAR* argv[], TCHAR* envp[])
 	return FALSE;
 }
 void CService::SvcDebugOut(LPCTSTR String, DWORD Status)
-{ 
-	TCHAR  Buffer[1024] = {0};
+{
+	TCHAR  Buffer[1024] = { 0 };
 
 	if (_tcslen(String) < 1000)
 	{
 		_stprintf(Buffer, String, Status);
-		//LogCmmLib->info(L"{}", Buffer);
+		LogCmmLib->info(L"{}", Buffer);
 	}
 #ifndef _DEBUG
 	return;
@@ -93,17 +92,17 @@ void CService::SvcDebugOut(LPCTSTR String, DWORD Status)
 
 void CService::ServiceMain(DWORD argc, LPTSTR* argv)
 {
-	DWORD status; 
-	DWORD specificError; 
+	DWORD status;
+	DWORD specificError;
 	m_dwThreadID = GetCurrentThreadId();
 
 	bXpOrLater = IsWinXpOrLater();
 
-	//LogCmmLib->info("MyServiceStart ·þÎñÆô¶¯ {}",bXpOrLater);	
-	if(bXpOrLater)
-		m_hServiceStatus = RegisterServiceCtrlHandlerEx(m_szServiceName, _HandlerEx,NULL); 
+	LogCmmLib->info("MyServiceStart æœåŠ¡å¯åŠ¨ {}", bXpOrLater);
+	if (bXpOrLater)
+		m_hServiceStatus = RegisterServiceCtrlHandlerEx(m_szServiceName, _HandlerEx, NULL);
 	else
-		m_hServiceStatus = RegisterServiceCtrlHandler(m_szServiceName, _Handler); 
+		m_hServiceStatus = RegisterServiceCtrlHandler(m_szServiceName, _Handler);
 
 	if (pService != NULL)
 	{
@@ -112,48 +111,48 @@ void CService::ServiceMain(DWORD argc, LPTSTR* argv)
 
 	if (m_hServiceStatus == (SERVICE_STATUS_HANDLE)0)
 	{
-		SvcDebugOut(_T(" [SRPSM_Service] RegisterServiceCtrlHandler failed %d\n"), GetLastError()); 
-		return; 
+		SvcDebugOut(_T(" [SRPSM_Service] RegisterServiceCtrlHandler failed %d\n"), GetLastError());
+		return;
 	}
 
-	status = _ServiceInitialization(argc, argv, &specificError);	
+	status = _ServiceInitialization(argc, argv, &specificError);
 	if (status != NO_ERROR)
 	{
-		SetServiceStatus (SERVICE_STOPPED); 
-		return; 
-	} 
+		SetServiceStatus(SERVICE_STOPPED);
+		return;
+	}
 
 	//DWORD dwControlsAccepted = SERVICE_ACCEPT_STOP;
-	if(bXpOrLater)
-		m_status.dwControlsAccepted |= 	SERVICE_ACCEPT_SESSIONCHANGE;
+	if (bXpOrLater)
+		m_status.dwControlsAccepted |= SERVICE_ACCEPT_SESSIONCHANGE;
 	else
 		m_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;
 
-		//dwControlsAccepted = dwControlsAccepted | SERVICE_ACCEPT_SESSIONCHANGE;
-	
-	m_status.dwServiceType        = SERVICE_WIN32_OWN_PROCESS|SERVICE_INTERACTIVE_PROCESS;
+	//dwControlsAccepted = dwControlsAccepted | SERVICE_ACCEPT_SESSIONCHANGE;
+
+	m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS;
 	//m_status.dwControlsAccepted   = dwControlsAccepted;
-	m_status.dwWin32ExitCode	  = NO_ERROR;
-	m_status.dwCheckPoint         = 0; 
-	m_status.dwWaitHint           = 0;  
-	if (!SetServiceStatus (SERVICE_RUNNING)) 
-	{ 
-		status = GetLastError(); 
-		SvcDebugOut(_T(" [SRPSM_Service] SetServiceStatus error %ld\n"),status); 
+	m_status.dwWin32ExitCode = NO_ERROR;
+	m_status.dwCheckPoint = 0;
+	m_status.dwWaitHint = 0;
+	if (!SetServiceStatus(SERVICE_RUNNING))
+	{
+		status = GetLastError();
+		SvcDebugOut(_T(" [SRPSM_Service] SetServiceStatus error %ld\n"), status);
 	}
 
 
 	BOOL bRet;
 	MSG msg;
-	while((bRet = GetMessage(&msg, NULL, 0, 0 )) != 0)
+	while ((bRet = GetMessage(&msg, NULL, 0, 0)) != 0)
 	{
-		if (bRet==0)
+		if (bRet == 0)
 			break;
-		if(msg.message == WM_QUIT || msg.message == WM_CLOSE) 
+		if (msg.message == WM_QUIT || msg.message == WM_CLOSE)
 		{
 			break;
 		}
-		if (bRet>0)
+		if (bRet > 0)
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -163,7 +162,7 @@ void CService::ServiceMain(DWORD argc, LPTSTR* argv)
 			}
 		}
 	}
-	SetServiceStatus (SERVICE_STOPPED); 
+	SetServiceStatus(SERVICE_STOPPED);
 	return;
 }
 
@@ -227,41 +226,41 @@ BOOL CService::Install()
 {
 	if (IsInstalled())
 	{
-		//LogCmmLib->info(L"{} has installed",m_szServiceName);
+		LogCmmLib->info(L"{} has installed", m_szServiceName);
 		return TRUE;
 	}
 	BOOL bRet = FALSE;
-	TCHAR szPath[MAX_PATH  + 1] = {0};
-	::GetModuleFileName(NULL, szPath, MAX_PATH+1);
+	TCHAR szPath[MAX_PATH + 1] = { 0 };
+	::GetModuleFileName(NULL, szPath, MAX_PATH + 1);
 
-	SC_HANDLE scm = OpenSCManager(NULL,NULL,SC_MANAGER_CREATE_SERVICE);
-	if(scm != NULL)
+	SC_HANDLE scm = OpenSCManager(NULL, NULL, SC_MANAGER_CREATE_SERVICE);
+	if (scm != NULL)
 	{
-		SC_HANDLE svc  = OpenService(scm, m_szServiceName, SERVICE_CHANGE_CONFIG);
-		if(svc)
+		SC_HANDLE svc = OpenService(scm, m_szServiceName, SERVICE_CHANGE_CONFIG);
+		if (svc)
 		{
 			//2009.12.1
-			//Ö»ÓÐmarscltsvcÊ§°ÜºóÖØÆô
+			//åªæœ‰marscltsvcå¤±è´¥åŽé‡å¯
 			//SetFailedAction(svc);
 			OnServiceInstalled(svc);
 			CloseServiceHandle(scm);
 			return TRUE;
 		}
 		DWORD dwAccess = SERVICE_ALL_ACCESS;
-		if(bXpOrLater)
-			dwAccess =  SERVICE_ALL_ACCESS|SERVICE_ACCEPT_SESSIONCHANGE;
+		if (bXpOrLater)
+			dwAccess = SERVICE_ALL_ACCESS | SERVICE_ACCEPT_SESSIONCHANGE;
 		svc = CreateService(scm, m_szServiceName, m_szServiceName, dwAccess,
-			SERVICE_WIN32_OWN_PROCESS /*| SERVICE_INTERACTIVE_PROCESS*/,	//´´½¨·Ç½»»¥Ê½·þÎñ£¬·ñÔò£¬¿ÉÄÜ»á³öÏÖÒ»Ð©·³ÈËµÄÏµÍ³ÌáÊ¾
-			SERVICE_AUTO_START,	SERVICE_ERROR_IGNORE, szPath,	NULL, NULL, NULL, NULL, NULL);
-		if(svc != NULL)
+			SERVICE_WIN32_OWN_PROCESS /*| SERVICE_INTERACTIVE_PROCESS*/,	//åˆ›å»ºéžäº¤äº’å¼æœåŠ¡ï¼Œå¦åˆ™ï¼Œå¯èƒ½ä¼šå‡ºçŽ°ä¸€äº›çƒ¦äººçš„ç³»ç»Ÿæç¤º
+			SERVICE_AUTO_START, SERVICE_ERROR_IGNORE, szPath, NULL, NULL, NULL, NULL, NULL);
+		if (svc != NULL)
 		{
 			//2009.12.1
-			//Ö»ÓÐmarscltsvcÊ§°ÜºóÖØÆô
+			//åªæœ‰marscltsvcå¤±è´¥åŽé‡å¯
 		//	SetFailedAction(svc);
 			OnServiceInstalled(svc);
 			CloseServiceHandle(svc);
 			bRet = TRUE;
-		}		
+		}
 		CloseServiceHandle(scm);
 	}
 	return bRet;
@@ -269,13 +268,13 @@ BOOL CService::Install()
 BOOL CService::Start()
 {
 	BOOL bRet = FALSE;
-	SC_HANDLE scm = OpenSCManager(NULL,NULL,SC_MANAGER_CREATE_SERVICE);
-	if(scm != NULL)
+	SC_HANDLE scm = OpenSCManager(NULL, NULL, SC_MANAGER_CREATE_SERVICE);
+	if (scm != NULL)
 	{
-		SC_HANDLE svc  = OpenService(scm, m_szServiceName, SERVICE_START);
-		if(svc)
+		SC_HANDLE svc = OpenService(scm, m_szServiceName, SERVICE_START);
+		if (svc)
 		{
-			bRet = StartService(svc, 0, NULL);	
+			bRet = StartService(svc, 0, NULL);
 			CloseServiceHandle(svc);	//add by zfq,2013.06.08
 			CloseServiceHandle(scm);
 		}
@@ -290,19 +289,19 @@ BOOL CService::Stop()
 {
 	BOOL bRet = FALSE;
 	SERVICE_STATUS ssa;
-	SC_HANDLE scm = OpenSCManager(NULL,NULL,SC_MANAGER_CONNECT);
+	SC_HANDLE scm = OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
 	if (scm != NULL)
 	{
 		SC_HANDLE svc = OpenService(scm, m_szServiceName, SERVICE_ALL_ACCESS);
 		if (svc != NULL)
 		{
-			QueryServiceStatus(svc,&ssa);
-			if (ssa.dwCurrentState == SERVICE_RUNNING) //Í£Ö¹´ËService.
+			QueryServiceStatus(svc, &ssa);
+			if (ssa.dwCurrentState == SERVICE_RUNNING) //åœæ­¢æ­¤Service.
 			{
 				bRet = ControlService(svc, SERVICE_CONTROL_STOP, &ssa);
 			}
 			CloseServiceHandle(svc);
-		}                           
+		}
 		CloseServiceHandle(scm);
 	}
 	return bRet;
@@ -310,34 +309,34 @@ BOOL CService::Stop()
 
 BOOL CService::UnInstall()
 {
-	//LogCmmLib->info("come in UnInstall");
+	LogCmmLib->info("come in UnInstall");
 	//if (!IsInstalled())
 	//	return TRUE;
 	BOOL bRet = FALSE;
 	SERVICE_STATUS ssa;
-	SC_HANDLE scm = OpenSCManager(NULL,NULL,SC_MANAGER_CONNECT);
+	SC_HANDLE scm = OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
 	if (scm != NULL)
 	{
-		//LogCmmLib->info("come in UnInstall aa");
+		LogCmmLib->info("come in UnInstall aa");
 		SC_HANDLE svc = OpenService(scm, m_szServiceName, SERVICE_ALL_ACCESS);
 		if (svc != NULL)
 		{
-			//LogCmmLib->info("come in UnInstall bb");
+			LogCmmLib->info("come in UnInstall bb");
 			OnServiceUninstalled(svc);
 
-			QueryServiceStatus(svc,&ssa);
-			
-			if (ssa.dwCurrentState == SERVICE_RUNNING) //É¾³ýÇ°£¬ÏÈÍ£Ö¹´ËService.
+			QueryServiceStatus(svc, &ssa);
+
+			if (ssa.dwCurrentState == SERVICE_RUNNING) //åˆ é™¤å‰ï¼Œå…ˆåœæ­¢æ­¤Service.
 			{
 				bRet = ControlService(svc, SERVICE_CONTROL_STOP, &ssa);
 				::Sleep(20);
 			}
-			
+
 			BOOL b = DeleteService(svc);
-			//LogCmmLib->info("come in UnInstall cc {}",b);
+			LogCmmLib->info("come in UnInstall cc {}", b);
 			CloseServiceHandle(svc);
-		}                           
-		//ÒÔ±ãÁ¢¼´´ÓÊý¾Ý¿âÖÐÒÆ×ß´ËÌõÄ¿¡£
+		}
+		//ä»¥ä¾¿ç«‹å³ä»Žæ•°æ®åº“ä¸­ç§»èµ°æ­¤æ¡ç›®ã€‚
 		CloseServiceHandle(scm);
 	}
 	return bRet;
@@ -353,7 +352,7 @@ void CService::LogEventEx(int id, LPCTSTR pszMessage, WORD type)
 		if (hEventSource != NULL)
 		{
 			/* Write to event log. */
-			ReportEvent(hEventSource, 
+			ReportEvent(hEventSource,
 				type,
 				(WORD)0,
 				id,
@@ -375,17 +374,17 @@ BOOL CService::SetServiceStatus(DWORD dwState)
 }
 
 DWORD WINAPI CService::HandlerEx(DWORD dwControl,     // requested control code
-								 DWORD dwEventType,   // event type
-								 LPVOID lpEventData,  // event data
-								 LPVOID lpContext     // user-defined context data
-								 )
+	DWORD dwEventType,   // event type
+	LPVOID lpEventData,  // event data
+	LPVOID lpContext     // user-defined context data
+)
 {
 	if (pService == NULL)
 		return 0;
-	switch(dwControl) 
-	{ 
+	switch (dwControl)
+	{
 	case SERVICE_CONTROL_SESSIONCHANGE:
-		pService->OnSessionChange(dwEventType,lpEventData);
+		pService->OnSessionChange(dwEventType, lpEventData);
 		break;
 	case SERVICE_CONTROL_PAUSE:
 		pService->OnPause();
@@ -399,18 +398,18 @@ DWORD WINAPI CService::HandlerEx(DWORD dwControl,     // requested control code
 	default:
 		pService->OnUnknownRequestEx(dwControl, dwEventType, lpEventData, lpContext);
 	}
-	return 0;  
+	return 0;
 }
-void WINAPI CService::_ServiceMain (DWORD argc, LPTSTR *argv)
+void WINAPI CService::_ServiceMain(DWORD argc, LPTSTR *argv)
 {
 	if (pService != NULL)
 		pService->ServiceMain(argc, argv);
 }
-DWORD WINAPI CService::_HandlerEx(		DWORD dwControl,     // requested control code
-								  DWORD dwEventType,   // event type
-								  LPVOID lpEventData,  // event data
-								  LPVOID lpContext     // user-defined context data
-								  )
+DWORD WINAPI CService::_HandlerEx(DWORD dwControl,     // requested control code
+	DWORD dwEventType,   // event type
+	LPVOID lpEventData,  // event data
+	LPVOID lpContext     // user-defined context data
+)
 {
 	if (pService != NULL)
 		return pService->HandlerEx(dwControl, dwEventType, lpEventData, lpContext);
@@ -421,13 +420,13 @@ VOID WINAPI CService::_Handler(DWORD Opcode)
 	if (pService != NULL)
 		pService->Handler(Opcode);
 }
-DWORD CService::_ServiceInitialization(DWORD   argc, LPTSTR  *argv, DWORD *specificError) 
-{ 
+DWORD CService::_ServiceInitialization(DWORD   argc, LPTSTR  *argv, DWORD *specificError)
+{
 
-	argv; 
-	argc; 
-	specificError; 
-	return(0); 
+	argv;
+	argc;
+	specificError;
+	return(0);
 }
 
 
@@ -436,9 +435,9 @@ BOOL CService::IsWinXpOrLater()
 	OSVERSIONINFO osv;
 	osv.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 	BOOL bSuc = GetVersionEx(&osv);
-	if( osv.dwPlatformId == VER_PLATFORM_WIN32_NT)
+	if (osv.dwPlatformId == VER_PLATFORM_WIN32_NT)
 	{
-		//LogCmmLib->info("osv.dwMajorVersion {}",osv.dwMajorVersion);
+		LogCmmLib->info("osv.dwMajorVersion {}", osv.dwMajorVersion);
 
 		if (osv.dwMajorVersion == 5 && osv.dwMinorVersion >= 1)
 			return TRUE;
@@ -455,32 +454,32 @@ BOOL CService::IsWinXpOrLater()
 	return FALSE;
 }
 
-BOOL CService::SetFailedAction(SC_HANDLE svc,SC_ACTION_TYPE eType)
+BOOL CService::SetFailedAction(SC_HANDLE svc, SC_ACTION_TYPE eType)
 {
-	SERVICE_FAILURE_ACTIONS sdBuf={0};
-	BOOL bSuccess=TRUE;
+	SERVICE_FAILURE_ACTIONS sdBuf = { 0 };
+	BOOL bSuccess = TRUE;
 
-	sdBuf.lpRebootMsg=NULL;
-	sdBuf.dwResetPeriod=3600*24;
+	sdBuf.lpRebootMsg = NULL;
+	sdBuf.dwResetPeriod = 3600 * 24;
 
 	SC_ACTION action[3];
 
-	action[0].Delay=5*1000;
-	action[0].Type=SC_ACTION_RESTART;
+	action[0].Delay = 5 * 1000;
+	action[0].Type = SC_ACTION_RESTART;
 
-	action[1].Delay=5*1000;
-	action[1].Type=SC_ACTION_RESTART;
-	action[2].Delay=5*1000;
-	action[2].Type=SC_ACTION_RESTART;
+	action[1].Delay = 5 * 1000;
+	action[1].Type = SC_ACTION_RESTART;
+	action[2].Delay = 5 * 1000;
+	action[2].Type = SC_ACTION_RESTART;
 
-	sdBuf.cActions=3;
-	sdBuf.lpsaActions=action;
-	sdBuf.lpCommand=NULL;
+	sdBuf.cActions = 3;
+	sdBuf.lpsaActions = action;
+	sdBuf.lpCommand = NULL;
 
-	if( !ChangeServiceConfig2(
-		svc,                 
-		SERVICE_CONFIG_FAILURE_ACTIONS, 
-		&sdBuf) )                   
+	if (!ChangeServiceConfig2(
+		svc,
+		SERVICE_CONFIG_FAILURE_ACTIONS,
+		&sdBuf))
 	{
 		LogCmmLib->info("ChangeServiceConfig2 failed");
 		bSuccess = FALSE;

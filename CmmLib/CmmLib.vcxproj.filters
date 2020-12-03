@@ -27,6 +27,9 @@
     <ClCompile Include="Service.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="SpdLog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CmmLib.h">
@@ -42,6 +45,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Service.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SpdLog.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
