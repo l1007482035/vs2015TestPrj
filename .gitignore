@@ -7,3 +7,9 @@ vs2015TestPrj.VC.VC.opendb
 ApiHookSample-master/ApiHookSample.VC.VC.opendb
 ApiHookSample-master/ApiHookSample.VC.db
 *.suo
+freetype-2.10.4/vc2015/testfreetype2/Debug/
+freetype-2.10.4/testfreetype/Debug/
+freetype-2.10.4/vc2015/CMakeFiles/
+freetype-2.10.4/vc2015/Win32/
+freetype-2.10.4/vc2015/freetype.dir/
+freetype-2.10.4/vc2015/freetype.VC.db
