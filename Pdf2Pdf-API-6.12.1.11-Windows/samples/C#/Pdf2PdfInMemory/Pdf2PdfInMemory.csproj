@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Globals">
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup>
+      <TargetFramework>net46</TargetFramework><OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Company>PDF Tools AG</Company>
+    <Product>Pdf2PdfInMemory</Product>
+    <Copyright>Copyright © PDF Tools AG 2020</Copyright>
+    <AssemblyVersion>6.12.0.0</AssemblyVersion>
+    <FileVersion>6.12.1.11</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <NativeLibsx86 Include="$(MSBuildThisFileDirectory)..\..\..\bin\Win32\*.*" />
+    <NativeLibsx64 Include="$(MSBuildThisFileDirectory)..\..\..\bin\x64\*.*" />
+    <None Include="@(NativeLibsx86)">
+      <Link>win-x86\%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="@(NativeLibsx64)">
+      <Link>win-x64\%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Pdf2PdfNET">
+      <HintPath>..\..\..\bin\Pdf2PdfNET.dll</HintPath>
+    </Reference>
+    <Reference Include="libpdfNET">
+      <HintPath>..\..\..\bin\libpdfNET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

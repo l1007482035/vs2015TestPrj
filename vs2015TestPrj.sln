@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCom", "TestCom\TestCom.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adobeCom2", "adobeCom2\adobeCom2.vcxproj", "{E9060235-9491-486D-8A29-BC4364F487C5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtTest", "QtTest\QtTest.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReplaceStr", "ReplaceStr\ReplaceStr.vcxproj", "{CDFD1924-1931-4450-90F8-72A5694440A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +185,24 @@ Global
 		{E9060235-9491-486D-8A29-BC4364F487C5}.Release|Win32.Build.0 = Release|Win32
 		{E9060235-9491-486D-8A29-BC4364F487C5}.Release|x64.ActiveCfg = Release|x64
 		{E9060235-9491-486D-8A29-BC4364F487C5}.Release|x64.Build.0 = Release|x64
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|Win32.Build.0 = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x64.ActiveCfg = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|Any CPU.ActiveCfg = Release|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|Win32.ActiveCfg = Release|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|Win32.Build.0 = Release|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.ActiveCfg = Release|Win32
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Debug|Win32.Build.0 = Debug|Win32
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Debug|x64.ActiveCfg = Debug|x64
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Debug|x64.Build.0 = Debug|x64
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Release|Any CPU.ActiveCfg = Release|Win32
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Release|Win32.ActiveCfg = Release|Win32
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Release|Win32.Build.0 = Release|Win32
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Release|x64.ActiveCfg = Release|x64
+		{CDFD1924-1931-4450-90F8-72A5694440A4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
