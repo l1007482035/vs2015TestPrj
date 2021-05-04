@@ -31,6 +31,10 @@ void PrintUsage()
 
 bool JudgeParam(int argc, char* argv[])
 {
+	for (int i = 0; i < argc; i++)
+	{
+		printf("JudgeParam,argv[%d]=%s\n", i, argv[i]);
+	}
 	if (argc != 5)
 	{
 		printf("!!JudgeParam,1,argc=%d\n", argc);

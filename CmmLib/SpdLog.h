@@ -1,10 +1,9 @@
 ﻿#pragma once
 
-//#define LTrace(msg,...)  SimLog::Instance().GetLogger()->trace(SUFFIX(msg),__VA_ARGS__)
-
-class CSpdLog
+class __declspec(dllexport) CSpdLog
 {
 public:
 	CSpdLog();
 	~CSpdLog();
+	static CSpdLog& GetInstance();
 };
