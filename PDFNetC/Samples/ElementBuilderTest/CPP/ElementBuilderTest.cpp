@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
 
 		Element element;
 		GState gstate;
-
+		Page page;
+#if 0  //不画图片
 		// Start a new page ------------------------------------
 		Page page = doc.PageCreate(Rect(0, 0, 612, 794));
 
@@ -126,6 +127,8 @@ int main(int argc, char *argv[])
 		writer.End();  // save changes to the current page
 		doc.PagePushBack(page);
 
+#endif
+
 
 		// Start a new page ------------------------------------
 		page = doc.PageCreate(Rect(0, 0, 612, 794));
@@ -134,17 +137,40 @@ int main(int argc, char *argv[])
 		eb.Reset();			// Reset the GState to default
 
 		// Begin writing a block of text
-		element = eb.CreateTextBegin(Font::Create(doc, Font::e_times_roman), 12);
+		UString empty_temp;
+		Font fnt = Font::Create(doc, "Helvetica", empty_temp);
+
+		Font font2 = Font::CreateCIDTrueTypeFont(doc, (input_path + "AdobeSongStd-Light.otf").c_str());
+
+		//element = eb.CreateTextBegin(Font::Create(doc, Font::e_times_roman), 12);
+		//element = eb.CreateTextBegin(Font::Create(doc, Font::e_times_roman), 12);
+		element = eb.CreateTextBegin(font2, 12);
 		writer.WriteElement(element);
 
-		element = eb.CreateTextRun("Hello World!");
+		//element = eb.CreateTextRun("Hello World!");
+		Unicode chinese_simplified[] = {
+			0x4e16, 0x754c, 0x60a8, 0x597d
+		};
+
+		wchar_t ss[] = {L"你好世界hello"};
+		int nSize = wcslen(ss);
+		Unicode* pchinese_simplified2 = new Unicode[nSize+1];
+		memset(pchinese_simplified2,0,nSize + 1);
+		memcpy(pchinese_simplified2,ss,nSize*sizeof(wchar_t));
+	
+		//element = eb.CreateUnicodeTextRun(chinese_simplified, sizeof(chinese_simplified) / sizeof(Unicode));
+		//element = eb.CreateTextRun("Hello World");
+
+		element = eb.CreateUnicodeTextRun(pchinese_simplified2, nSize);
+
 		element.SetTextMatrix(10, 0, 0, 10, 0, 600);
 		element.GetGState().SetLeading(15);		 // Set the spacing between lines
 		writer.WriteElement(element);
 
 		writer.WriteElement(eb.CreateTextNewLine());  // New line
 
-		element = eb.CreateTextRun("Hello World!");
+		//element = eb.CreateTextRun("Hello World!");
+		element = eb.CreateUnicodeTextRun(pchinese_simplified2, nSize);
 		gstate = element.GetGState(); 
 		gstate.SetTextRenderMode(GState::e_stroke_text);
 		gstate.SetCharSpacing(-1.25);
@@ -153,7 +179,8 @@ int main(int argc, char *argv[])
 
 		writer.WriteElement(eb.CreateTextNewLine());  // New line
 
-		element = eb.CreateTextRun("Hello World!");
+		//element = eb.CreateTextRun("Hello World!");
+		element = eb.CreateUnicodeTextRun(pchinese_simplified2, nSize);
 		gstate = element.GetGState(); 
 		gstate.SetCharSpacing(0);
 		gstate.SetWordSpacing(0);
@@ -169,7 +196,8 @@ int main(int argc, char *argv[])
 		writer.WriteElement(eb.CreateTextNewLine());  // New line
 
 		// Set text as a clipping path to the image.
-		element = eb.CreateTextRun("Hello World!");
+		//element = eb.CreateTextRun("Hello World!");
+		element = eb.CreateUnicodeTextRun(pchinese_simplified2, nSize);
 		gstate = element.GetGState(); 
 		gstate.SetTextRenderMode(GState::e_clip_text);
 		writer.WriteElement(element);
@@ -178,10 +206,11 @@ int main(int argc, char *argv[])
 		writer.WriteElement(eb.CreateTextEnd());		
 
 		// Draw an image that will be clipped by the above text
-		writer.WriteElement(eb.CreateImage(img, 10, 100, 1300, 720));
+		//writer.WriteElement(eb.CreateImage(img, 10, 100, 1300, 720));
 
 		writer.End();  // save changes to the current page
 		doc.PagePushBack(page);
+
 
 		// Start a new page ------------------------------------
 		//
@@ -201,7 +230,8 @@ int main(int argc, char *argv[])
 		eb.Reset();		// Reset the GState to default
 
 		// Embed an external font in the document.
-		Font font = Font::CreateTrueTypeFont(doc, (input_path + "font.ttf").c_str());
+		//Font font = Font::CreateTrueTypeFont(doc, (input_path + "AdobeSongStd-Light.otf").c_str());//font.ttf AdobeSongStd-Light.otf
+		Font font = Font::CreateCIDTrueTypeFont(doc, (input_path + "AdobeSongStd-Light.otf").c_str());
 
 		while ((element = reader.Next())==true) 	// Read page contents
 		{
@@ -217,6 +247,7 @@ int main(int argc, char *argv[])
 		writer.End();  // save changes to the current page
 
 		doc.PagePushBack(page);
+#if 0
 
 
 		// Start a new page ------------------------------------
@@ -479,6 +510,7 @@ int main(int argc, char *argv[])
 
 		writer.End();  // save changes to the current page
 		doc.PagePushBack(page);
+#endif
 
 		// End page ------------------------------------
 

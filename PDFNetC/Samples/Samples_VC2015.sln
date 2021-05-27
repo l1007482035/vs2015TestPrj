@@ -101,6 +101,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OCRTestVC2015", "OCRTest\CP
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "replacepdffont", "replacepdffont\replacepdffont.vcxproj", "{2C99DE54-9B5F-4278-9BCE-FE3427DA17F1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestUnicode", "TestUnicode\TestUnicode.vcxproj", "{0923A096-880B-4BA6-82AA-57CDDCF08EB9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestEditPdf", "TestEditPdf\TestEditPdf.vcxproj", "{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -501,6 +505,22 @@ Global
 		{2C99DE54-9B5F-4278-9BCE-FE3427DA17F1}.Release|Win32.Build.0 = Release|Win32
 		{2C99DE54-9B5F-4278-9BCE-FE3427DA17F1}.Release|x64.ActiveCfg = Release|x64
 		{2C99DE54-9B5F-4278-9BCE-FE3427DA17F1}.Release|x64.Build.0 = Release|x64
+		{0923A096-880B-4BA6-82AA-57CDDCF08EB9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0923A096-880B-4BA6-82AA-57CDDCF08EB9}.Debug|Win32.Build.0 = Debug|Win32
+		{0923A096-880B-4BA6-82AA-57CDDCF08EB9}.Debug|x64.ActiveCfg = Debug|x64
+		{0923A096-880B-4BA6-82AA-57CDDCF08EB9}.Debug|x64.Build.0 = Debug|x64
+		{0923A096-880B-4BA6-82AA-57CDDCF08EB9}.Release|Win32.ActiveCfg = Release|Win32
+		{0923A096-880B-4BA6-82AA-57CDDCF08EB9}.Release|Win32.Build.0 = Release|Win32
+		{0923A096-880B-4BA6-82AA-57CDDCF08EB9}.Release|x64.ActiveCfg = Release|x64
+		{0923A096-880B-4BA6-82AA-57CDDCF08EB9}.Release|x64.Build.0 = Release|x64
+		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Debug|Win32.Build.0 = Debug|Win32
+		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Debug|x64.ActiveCfg = Debug|x64
+		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Debug|x64.Build.0 = Debug|x64
+		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Release|Win32.ActiveCfg = Release|Win32
+		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Release|Win32.Build.0 = Release|Win32
+		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Release|x64.ActiveCfg = Release|x64
+		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,6 +12,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <algorithm>
 using namespace pdftron;
 using namespace std;
 using namespace SDF;
@@ -128,6 +129,41 @@ Obj RemapFontEncoding(Font fontOld)
 	printf("========RemapFontEncoding,4\n");
 }
 
+wstring ConvertToUnicodeStr(string sStrOri)
+{
+	transform(sStrOri.begin(), sStrOri.end(), sStrOri.begin(), ::tolower);
+	unsigned char ucUnicode[2] = { 0 };	//可以保存一个Unicode字符和一个结束符
+	int nCurrent = 0;
+	int nUnicodeLen = sStrOri.length();
+	wstring sRet;
+
+	while (nCurrent < nUnicodeLen)
+	{
+
+		//在以上两种路径中，可能出现解析出问题的情况，json对【\】会转义成【\\】,所以跳过【\\】
+		//if (szUnicode.GetAt(nCurrent) == '\\' && szUnicode.GetAt(nCurrent + 1) == '\\')
+		if (sStrOri.at(nCurrent) == '\\' && sStrOri.at(nCurrent + 1) == 'u')
+		{
+			ucUnicode[0] = strtol(sStrOri.substr(nCurrent + 4, 2).c_str(), NULL, 16);
+			ucUnicode[1] = strtol(sStrOri.substr(nCurrent + 2, 2).c_str(), NULL, 16);
+
+			nCurrent += 6;
+			wchar_t tmp[2] = { 0 };
+			memcpy(tmp, ucUnicode, sizeof(wchar_t));
+			sRet.append(tmp);
+		}
+		else
+		{
+			char c = sStrOri.at(nCurrent);
+			nCurrent += 1;
+			wchar_t tmp[2] = { 0 };
+			memcpy(tmp, &c, 1);
+			sRet.append(tmp);
+		}
+	}
+	return sRet;
+}
+
 static void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visited)
 {
 	Element element;
@@ -219,9 +255,18 @@ static void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSe
 			//
 #if 1
 			UString sStr = element.GetTextString();
+			
 			const UChar* pData = element.GetTextData();
 			UInt32 nDataSize = element.GetTextDataSize();
+
+// 			for (int i = 0;i < nDataSize;i++)
+// 			{
+// 				printf("============pName=%s,pData[%d]=0x%x\n", pName,i, pData[i]);
+// 			}
+
 			int nLen = sStr.GetLength();
+			wprintf(L"============,sStr=%s\n", ConvertToUnicodeStr(sStr.ConvertToAscii()).c_str());
+
 			if (!bIsEmebedded)
 			{
 				printf("非内嵌字体,pName=%s,type=%d,nDataSize=%d,nLen=%d\n", pName, type, nDataSize, nLen);
@@ -235,36 +280,18 @@ static void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSe
 				}
 
 				gs.SetFont(font2, font_size);
-
-//  				UString sUidAfter = UString((const char*)pData,-1,UString::e_utf16be_enc);
-// 		
-// 				UChar *pBuf = new UChar[nDataSize];
-// 				memset(pBuf,0,nDataSize);
-
-				const Unicode *pDataAfter = sUidAfter.GetBuffer();
-// 				for (int i = 0;i < sUidAfter.GetLength();i++)
-// 				{
-// 					printf("=========pDataAfter[%d]=0x%x",i,sUidAfter.GetAt(i));
-// 				}
-
-				//pBuf[0] = 0X52;
-				//pBuf[1] = 0X1B;
-
-// 				memcpy(pBuf, pDataAfter,nDataSize);
-// 				for (int i = 0;i < nDataSize;i++)
-// 				{
-// 					printf("======pBuf[%d]=%x\n",i,pBuf[i]);
-// 				}
-			
+				UString ssss = sStr.Assign2((const char*)pData,nDataSize, UString::e_utf16be_enc);
 
 
-				//element.SetTextData(pBuf, 2);
+				wstring sRet = ConvertToUnicodeStr(ssss.ConvertToAscii());
+				const wchar_t *pStr = sRet.c_str();
 
-				delete pBuf;
-				pBuf = NULL;
+
+				element.SetTextData((UChar*)sRet.c_str(), wcslen(pStr) * sizeof(wchar_t));
+		
 
 				
-				printf("============非内嵌字体,sStr=%s\n", sStr.ConvertToAscii().c_str());
+				
 			
 
 				
@@ -345,6 +372,8 @@ static void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSe
 
 #include <map>
 
+
+
 int main(int argc, char *argv[])
 {
 	setlocale(LC_CTYPE, "");
@@ -371,9 +400,9 @@ int main(int argc, char *argv[])
 		doc.InitSecurityHandler();
 
 		//font2 = Font::CreateCIDTrueTypeFont(doc, (input_path + "fangzheng_GBK.TTF").c_str());//AdobeHeitiStd-Regular.otf
-		//font2 = Font::CreateCIDTrueTypeFont(doc, input_path + UString("AdobeSongStd-Light.otf"),true,true, Font::e_IdentityH);//AdobeHeitiStd-Regular.otf
+		font2 = Font::CreateCIDTrueTypeFont(doc, input_path + UString("AdobeSongStd-Light.otf"),true,true, Font::e_Indices);//AdobeHeitiStd-Regular.otf
 		UString empty_temp;
-		font2 = Font::Create(doc, "Helvetica", empty_temp);
+		
 
 		printf("font type=%d\n",font2.GetType());
 
