@@ -64,9 +64,9 @@ int _tmain(int argc, TCHAR* argv[])
 
 	// Initialize library
 	Pdf2PdfInitialize();
-	Pdf2PdfSetLicenseKeyA("1-L4AA0-PGXFC-E8FXW-43T17-KLB49-ETH7V-A8LP2");
+	Pdf2PdfSetLicenseKeyA("1-U4AE6-XUSBA-CSCWP-5KFHX-RU71D-8R379-K941G");
 	//Pdf2PdfAddFontDirectory("D:\\MyProject\\vs2015TestPrj\\Pdf2Pdf-API-6.12.1.11-Windows\\samples\\C\\pdf2pdfconvert\\Win32\\Release\\fonts");
-	Pdf2PdfAddFontDirectory("C:\\test\\fonts");
+	Pdf2PdfAddFontDirectory("E:\\MyProject\\vs2015TestPrj\\Pdf2Pdf-API-6.12.1.11-Windows\\samples\\C\\pdf2pdfconvert\\Win32\\Release\\fonts");
 
 	// Check license
 	if (!Pdf2PdfGetLicenseIsValid())
@@ -89,6 +89,8 @@ int _tmain(int argc, TCHAR* argv[])
 	Pdf2PdfSetConversionErrorMask(pConverter, (int)ePDFConversionErrorVisualDiff + (int)ePDFConversionErrorActionRemoved +
 		(int)ePDFConversionErrorCorrupt + (int)ePDFConversionErrorDocSigned + (int)ePDFConversionErrorEFRemoved +
 		(int)ePDFConversionErrorFontSubst + (int)ePDFConversionErrorStructureRemoved);
+
+	Pdf2PdfSetEmbedAllFonts(pConverter, 1);
 
 	// Get logfile name
 	_tcscpy(szCopyFile, szOutputPath);
