@@ -105,6 +105,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestUnicode", "TestUnicode\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestEditPdf", "TestEditPdf\TestEditPdf.vcxproj", "{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestFont", "TestFont\TestFont.vcxproj", "{CF0A6DF6-6DBC-45EF-ACB4-793B0437D19C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -521,6 +523,14 @@ Global
 		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Release|Win32.Build.0 = Release|Win32
 		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Release|x64.ActiveCfg = Release|x64
 		{1C5F9ACB-551F-44D0-A8CE-171226F5C35F}.Release|x64.Build.0 = Release|x64
+		{CF0A6DF6-6DBC-45EF-ACB4-793B0437D19C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CF0A6DF6-6DBC-45EF-ACB4-793B0437D19C}.Debug|Win32.Build.0 = Debug|Win32
+		{CF0A6DF6-6DBC-45EF-ACB4-793B0437D19C}.Debug|x64.ActiveCfg = Debug|x64
+		{CF0A6DF6-6DBC-45EF-ACB4-793B0437D19C}.Debug|x64.Build.0 = Debug|x64
+		{CF0A6DF6-6DBC-45EF-ACB4-793B0437D19C}.Release|Win32.ActiveCfg = Release|Win32
+		{CF0A6DF6-6DBC-45EF-ACB4-793B0437D19C}.Release|Win32.Build.0 = Release|Win32
+		{CF0A6DF6-6DBC-45EF-ACB4-793B0437D19C}.Release|x64.ActiveCfg = Release|x64
+		{CF0A6DF6-6DBC-45EF-ACB4-793B0437D19C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

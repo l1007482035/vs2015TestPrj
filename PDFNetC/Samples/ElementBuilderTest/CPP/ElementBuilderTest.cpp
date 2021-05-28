@@ -139,8 +139,8 @@ int main(int argc, char *argv[])
 		// Begin writing a block of text
 		UString empty_temp;
 		Font fnt = Font::Create(doc, "Helvetica", empty_temp);
-
-		Font font2 = Font::CreateCIDTrueTypeFont(doc, (input_path + "AdobeSongStd-Light.otf").c_str());
+		//Font font2 = Font::CreateCIDTrueTypeFont(doc, (input_path + "AdobeSongStd-Light.otf").c_str(), false); /
+		Font font2 = Font::CreateCIDTrueTypeFont(doc, (input_path + "AdobeHeitiStd-Regular.otf").c_str(),false);
 
 		//element = eb.CreateTextBegin(Font::Create(doc, Font::e_times_roman), 12);
 		//element = eb.CreateTextBegin(Font::Create(doc, Font::e_times_roman), 12);
@@ -224,9 +224,12 @@ int main(int argc, char *argv[])
 		// a new page but will modify the font associated with text.
 		reader.Begin(doc.GetPage(doc.GetPageCount()));
 
-		page = doc.PageCreate(Rect(0, 0, 1300, 794));
+		//page = doc.PageCreate(Rect(0, 0, 1300, 794));
+		//writer.Begin(page);	// begin writing to this page
 
-		writer.Begin(page);	// begin writing to this page
+		writer.Begin(page, ElementWriter::e_replacement, false, true, page.GetResourceDict());
+
+		
 		eb.Reset();		// Reset the GState to default
 
 		// Embed an external font in the document.
@@ -237,7 +240,7 @@ int main(int argc, char *argv[])
 		{
 			if (element.GetType() == Element::e_text) 
 			{
-				element.GetGState().SetFont(font, 12);
+				//element.GetGState().SetFont(font, 12);
 			}
 
 			writer.WriteElement(element);

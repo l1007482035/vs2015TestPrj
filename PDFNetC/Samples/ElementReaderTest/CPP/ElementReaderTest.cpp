@@ -71,7 +71,7 @@ wstring ConvertToUnicodeStr(string sStrOri)
 
 		//在以上两种路径中，可能出现解析出问题的情况，json对【\】会转义成【\\】,所以跳过【\\】
 		//if (szUnicode.GetAt(nCurrent) == '\\' && szUnicode.GetAt(nCurrent + 1) == '\\')
-		if (sStrOri.at(nCurrent) == '\\' && sStrOri.at(nCurrent + 1) == 'u')
+		if (sStrOri.at(nCurrent) == '\\' && (nCurrent + 1 < nUnicodeLen) && sStrOri.at(nCurrent + 1) == 'u')
 		{
 			ucUnicode[0] = strtol(sStrOri.substr(nCurrent + 4, 2).c_str(), NULL, 16);
 			ucUnicode[1] = strtol(sStrOri.substr(nCurrent + 2, 2).c_str(), NULL, 16);
@@ -98,7 +98,10 @@ void ProcessElements(ElementReader& reader)
 {
 	for (Element element=reader.Next(); element; element = reader.Next()) 	// Read page contents
 	{
-		switch (element.GetType())
+		int nType = element.GetType();
+		printf("============nType=%d\n", nType);
+#if 1
+		switch (nType)
 		{
 			case Element::e_path:				 // Process path data...
 			{
@@ -135,7 +138,9 @@ void ProcessElements(ElementReader& reader)
 			}
 			break; 
 		}
+#endif
 	}
+
 }
 
 
