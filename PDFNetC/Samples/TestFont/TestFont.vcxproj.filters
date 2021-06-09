@@ -30,12 +30,18 @@
     <ClInclude Include="TestFont.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PdfNetCHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="TestFont.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PdfNetCHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

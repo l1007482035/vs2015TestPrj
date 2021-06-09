@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
 		UString empty_temp;
 		Font fnt = Font::Create(doc, "Helvetica", empty_temp);
 		//Font font2 = Font::CreateCIDTrueTypeFont(doc, (input_path + "AdobeSongStd-Light.otf").c_str(), false); /
-		Font font2 = Font::CreateCIDTrueTypeFont(doc, (input_path + "AdobeHeitiStd-Regular.otf").c_str(),false);
+		Font font2 = Font::CreateCIDTrueTypeFont(doc, (input_path + "STLITI.TTF").c_str(),false);
 
 		//element = eb.CreateTextBegin(Font::Create(doc, Font::e_times_roman), 12);
 		//element = eb.CreateTextBegin(Font::Create(doc, Font::e_times_roman), 12);

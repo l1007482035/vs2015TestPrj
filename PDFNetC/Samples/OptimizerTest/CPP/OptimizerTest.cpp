@@ -47,8 +47,8 @@ using namespace PDF;
 int main(int argc, char * argv[])
 {
 	int ret = 0;
-	std::string input_path = "../../TestFiles/";
-	std::string output_path = "../../TestFiles/Output/";
+	std::string input_path = "./";
+	std::string output_path = "./";
 	std::string input_filename = "newsletter";	
 
 	// The first step in every application using PDFNet is to initialize the 
@@ -222,6 +222,41 @@ int main(int argc, char * argv[])
 		// opts.SetThumbnailRenderingThreshold(0); 
 	
 		doc.SaveViewerOptimized(output_path + input_filename + "_SaveViewerOptimized.pdf", opts);
+	}
+	catch (Common::Exception& e)
+	{
+		std::cout << e << endl;
+		ret = 1;
+	}
+	catch (...)
+	{
+		cout << "Unknown Exception" << endl;
+		ret = 1;
+	}
+
+	//==============test============
+	try
+	{
+		//input_filename = "ori_edit.pdf"
+		PDFDoc doc(input_path + "ori.pdf");
+		doc.InitSecurityHandler();
+
+		Optimizer::TextSettings text_settings;
+
+		text_settings.SubsetFonts(true);
+		text_settings.EmbedFonts(true);
+		
+
+
+		Optimizer::OptimizerSettings opt_settings;
+		opt_settings.SetTextSettings(text_settings);
+		void EmbedFonts(bool embed);
+		
+
+		// use the same settings for both color and grayscale images
+		Optimizer::Optimize(doc, opt_settings);
+
+		doc.Save(output_path + "ori_edit_2.pdf", SDFDoc::e_linearized, NULL);
 	}
 	catch (Common::Exception& e)
 	{

@@ -280,23 +280,8 @@ static void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSe
 				}
 
 				gs.SetFont(font2, font_size);
-				UString ssss = sStr.Assign2((const char*)pData,nDataSize, UString::e_utf16be_enc);
-
-
-				wstring sRet = ConvertToUnicodeStr(ssss.ConvertToAscii());
-				const wchar_t *pStr = sRet.c_str();
-
-
-				element.SetTextData((UChar*)sRet.c_str(), wcslen(pStr) * sizeof(wchar_t));
-		
-
-				
-				
 			
 
-				
-
-				//
 
 				
 					//const char **pEncode = font.GetEncoding();

@@ -30,12 +30,24 @@
     <ClInclude Include="TestEditPdf.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PdfTronHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PdfTronPrivate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="TestEditPdf.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PdfTronHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PdfTronPrivate.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

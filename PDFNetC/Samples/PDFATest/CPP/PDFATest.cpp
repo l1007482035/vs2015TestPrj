@@ -61,20 +61,24 @@ void PrintResults(PDFACompliance& pdf_a, UString filename)
 bool objIsEmbeddedFont(Obj indirectObj) {
 	printf("=========xxxx\n");
   if (indirectObj.IsFree()) {
+	  printf("=========xxxx,1\n");
     return false;
   }
-
+  printf("=========xxxx,2\n");
   if (!indirectObj.IsDict() && !indirectObj.IsStream()) {
+	  printf("=========xxxx,3\n");
     return false;
   }
-
+  printf("=========xxxx,4\n");
+  
   Obj typeObj = indirectObj.FindObj("Type");
-  printf("=========objIsEmbeddedFont,name=%s\n",typeObj.IsName());
+  printf("=========objIsEmbeddedFont,name=%s\n",typeObj.GetName());
   if (!typeObj || !typeObj.IsName()) {
     return false;
   }
 
   string typeName = typeObj.GetName();
+  printf("=========objIsEmbeddedFont,typeName=%s\n", typeName.c_str());
   if (typeName.compare("Font") != 0) {
     return false;
   }
@@ -187,9 +191,10 @@ int main(int argc, char *argv[])
 
 		// Re-validate the document after the conversion...
 		PDFACompliance comp(false, output_path + filename, 0, PDFACompliance::e_Level2B, 0, 0, 10);
-		PrintResults(comp, "111.pdf");
+		PrintResults(comp, "qqq.pdf");
 		PDFDoc doc(input_path + filename);
 		SDFDoc &sdfdoc = doc.GetSDFDoc();
+		printf("==============6,refsize=%d\n", sdfdoc.XRefSize());
 		for (int i = 1; i < sdfdoc.XRefSize(); ++i) 
 		{
 			Obj indirectObj = sdfdoc.GetObj(i);

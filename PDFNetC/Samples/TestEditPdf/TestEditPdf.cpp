@@ -13,6 +13,8 @@
 
 #include <Filters/MappedFile.h>
 #include <Filters/FilterReader.h>
+#include <PDF/Optimizer.h>
+#include <PDF/PDFA/PDFACompliance.h>
 
 #include <SDF/SDFDoc.h>
 #include <iostream>
@@ -20,12 +22,14 @@
 #include <set>
 #include <map>
 #include <fstream>
+#include "PdfTronHelper.h"
 
 using namespace std;
 using namespace pdftron;
 using namespace SDF;
 using namespace PDF;
 using namespace Filters;
+using namespace pdftron::PDF::PDFA;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -49,8 +53,59 @@ std::vector<std::string> split(std::string s, std::string delimiter);
 void LoadGlyphlist();
 string GetGlyphname(Unicode sUniWithU);
 Obj RemapFontEncoding(Font& fontOld);
+//char* g_pFontName = "方正黑体_GBK";
+char* g_pFontName = "方正黑体_GBK";
+//char* g_pFontName = "方正书宋_GBK";
+bool IsNeedReplaceFont(Font font)
+{
+	return true;
+	bool bRet = false;
+	if (strcmp(font.GetName(), "方正黑体_GBK") == 0 || strcmp(font.GetName(), "方正书宋_GBK") == 0
+		|| strcmp(font.GetName(), "方正黑体简体") == 0 || strcmp(font.GetName(), "方正书宋简体") == 0
+		|| strcmp(font.GetName(), "EU-BZ") == 0 || strcmp(font.GetName(), "EU-HZ") == 0
+		|| strcmp(font.GetName(), "方正楷体_GBK") == 0 || strcmp(font.GetName(), "方正楷体简体") == 0)
+	{
+		bRet = true;
+	}
+	return bRet;
+}
 
-int main()
+bool IsPdfA(PDFACompliance& pdf_a, UString filename)
+{
+	printf("=============PrintResults,1\n");
+	int err_cnt = static_cast<int>(pdf_a.GetErrorCount());
+	if (err_cnt == 0)
+	{
+		cout << filename << ": OK.\n";
+	}
+	else
+	{
+		cout << filename << " is NOT a valid PDFA.\n";
+		for (int i = 0; i < err_cnt; ++i)
+		{
+			PDFACompliance::ErrorCode c = pdf_a.GetError(i);
+			cout << " - e_PDFA " << c << ": " << PDFACompliance::GetPDFAErrorMessage(c) << ".\n";
+			if (true)
+			{
+				int num_refs = static_cast<int>(pdf_a.GetRefObjCount(c));
+				if (num_refs > 0)
+				{
+					cout << "   Objects: ";
+					for (int j = 0; j < num_refs; ++j)
+					{
+						cout << pdf_a.GetRefObj(c, j);
+						if (j < num_refs - 1)
+							cout << ", ";
+					}
+					cout << endl;
+				}
+			}
+		}
+		cout << endl;
+	}
+}
+
+int main(int arc,char** argv)
 {
 	setlocale(LC_ALL, "chs");
 
@@ -70,9 +125,30 @@ int main()
         }
         else
         {
+
+#if 1
+			CPdfTronHelper::InitLib();
+			CPdfTronHelper helper;
+			
+			//if (helper.Open("E:\\MyProject\\vs2015TestPrj\\PDFNetC\\Samples\\Release\\fff.pdf"))
+			if (helper.Open(argv[1]))
+			{
+				printf("======open suc\n");
+				//string sOutPdf = "E:\\MyProject\\vs2015TestPrj\\PDFNetC\\Samples\\Release\\ori_edit.pdf";
+				string sOutPdf = argv[2];
+				BOOL bRet = helper.Pdf2EmbeddedFontPdf(sOutPdf);
+				printf("========bRet=%d\n", bRet);
+			}
+			CPdfTronHelper::ReleaseLib();
+			return 0;
+
+#endif
+
             // TODO: 在此处为应用程序的行为编写代码。
 			int ret = 0;
 			PDFNet::Initialize();
+
+			//PDFNet::AddFontSubst(PDFNet::e_GB1, "E:/MyProject/vs2015TestPrj/PDFNetC/Samples/Release/AdobeHeitiStd-Regular.otf");
 
 			try
 			{
@@ -80,19 +156,47 @@ int main()
 				// Relative path to the folder containing test files.
 				string input_path = "./";
 				string output_path = "./";
-				string input_filename = "ori.pdf";
-				string output_filename = "ori_edit.pdf";
+// 				string input_filename = "ori.pdf";
+// 				string output_filename = "ori_edit.pdf";
 				ElementWriter writer;	// ElementWriter is used to write Elements to the page	
+				string input_filename = argv[1];
+				string output_filename = argv[2];
 				ElementReader reader;
-				XObjSet visited;
+				XObjSet visited;				
 		
 				Page page;
 
 				doc = PDFDoc(input_path + input_filename);
 				doc.InitSecurityHandler();
 
-				//fontNew = Font::CreateCIDTrueTypeFont(doc, (input_path + "AdobeSongStd-Light.otf").c_str());
-				fontNew = Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str());
+				PDFACompliance::Conformance dd = PDFACompliance::GetDeclaredConformance(doc);
+
+				if (dd != PDFACompliance::e_NoConformance)
+				{
+					printf("input_filename[%s] is pdfa", input_filename.c_str());
+					PDFNet::Terminate();
+					return 0;
+				}
+
+
+
+#if 1
+
+				//fontNew = Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str(), true,false);
+				//fontNew = Font::CreateTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str(),true,false);//不乱码但布局有问题
+				//fontNew = Font::CreateTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str(), true, true);//看不见文字
+				//fontNew = Font::CreateTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str(), true, false);
+				//fontNew = Font::CreateType1Font(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str(), true);//不能正常生成pdf
+				//Font fontnew = Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str(), true, false);
+				//Font fontnew = Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str(), true, false);
+				//Font fontnew = Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeHeitiStd-Regular.otf").c_str(), true,false);
+				Font fontSong; //= Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "simsun.ttc").c_str(), true, false);
+				Font fontHei;//= Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "simhei.ttf").c_str(), true, false);
+				//Font fontKai = Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "simkai.ttf").c_str(), true, false);
+				//Font fontKai = Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "STLITI.TTF").c_str(), true, false);
+				Font fontKai;//= Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), "C:/Users/lzj/AppData/Local/Microsoft/Windows/Fonts/fangzheng_GBK.TTF", true, false);
+
+				
 
 				int nIdx = 0;
 				for (PageIterator itr = doc.GetPageIterator(); itr.HasNext(); itr.Next())
@@ -109,7 +213,92 @@ int main()
 					reader.End();
 				}
 
+#if 1
+				SDFDoc& cos_doc = doc.GetSDFDoc();
+				int num_objs = cos_doc.XRefSize();
+				printf("==============num_objs=%d\n", num_objs);
+				for (int i = 1; i < num_objs; ++i)
+				{
+					Obj obj0 = cos_doc.GetObj(i);
+					if (obj0 != NULL && !obj0.IsFree() && (obj0.IsDict() || obj0.IsStream()))
+					{
+						//ProcessDict(obj0);
+
+						DictIterator itr = obj0.Find("Type");
+						if (!itr.HasNext() ||
+							!itr.Value().IsName() ||
+							strcmp(itr.Value().GetName(), "Font")) continue;
+
+						//printf("==========1\n");
+						Font fontold = Font(obj0);
+						printf("==========2,fontname=%s,isEmbedded=%d,type=%d\n", fontold.GetName(), fontold.IsEmbedded(), fontold.GetType());
+						if (!fontold.IsEmbedded())
+						{
+							if (IsNeedReplaceFont(fontold) && fontold.GetType() == Font::e_Type0)
+							{
+								//printf("==========3,fontname=%s\n", fontold.GetName());
+
+
+								//Font fontnew = Font::CreateTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str(), true, false);
+								//Font fontnew = Font::Create(doc.GetSDFDoc(), "华文仿宋", UString(string("GBK"),UString::e_utf16be_enc));//UTF-8  错误
+								//Font fontnew = Font::Create(doc.GetSDFDoc(),Font::e_helvetica_bold,true);
+								//Font fontnew = Font::CreateCIDTrueTypeFont(doc.GetSDFDoc(), (input_path + "AdobeSongStd-Light.otf").c_str(), true, false,Font::e_Indices);//生成不了文字
+								//Font fontnew = Font::Create(,);
+								Font fontnew;
+								if (strstr(fontold.GetName(),"黑") > 0)
+								{
+									fontnew = fontHei;
+								}
+								else if (strstr(fontold.GetName(), "宋") > 0)
+								{
+									fontnew = fontSong;
+								}
+								else if (strstr(fontold.GetName(), "楷") > 0)
+								{
+									fontnew = fontKai;
+								}
+								else
+								{
+									printf("==========1\n");
+									fontnew = fontKai;
+								}
+								//printf("==============1\n");
+								Obj new_font_obj = fontnew.GetSDFObj();
+								Obj objTmp = doc.GetSDFDoc().ImportObj(new_font_obj, true);
+								//printf("==============2\n");
+								cos_doc.Swap(objTmp.GetObjNum(), obj0.GetObjNum()); 
+
+							}
+						}
+
+
+					}
+
+
+
+
+				}
+
+				
+
+#endif
+
 				//doc.Save(output_path + output_filename, SDFDoc::e_remove_unused | SDFDoc::e_hex_strings, 0);
+
+#endif
+#if 0
+				Optimizer::TextSettings text_settings;
+				text_settings.SubsetFonts(true);
+				text_settings.EmbedFonts(true);
+
+				Optimizer::OptimizerSettings opt_settings;
+				opt_settings.SetTextSettings(text_settings);
+
+
+				// use the same settings for both color and grayscale images
+				Optimizer::Optimize(doc, opt_settings);
+#endif
+
 				doc.Save(output_path + output_filename, SDFDoc::e_remove_unused, 0);
 				doc.Close();
 				cout << "Done. Result saved in " << output_filename << "..." << endl;
@@ -146,77 +335,63 @@ void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visi
 	for (Element element = reader.Next(); element; element = reader.Next()) 	// Read page contents
 	{
 		int nType = element.GetType();
+		printf("===========nType=%d\n", nType);
+		//Gdiplus::Bitmap* pBit = element.GetBitmap();
+		//printf("===========pBit=%x\n", pBit);
+		
 		switch (nType)
 		{
 		case Element::e_text: 				// Process text strings...
 		{
 #if 1
 			const UString sText = element.GetTextString();
+			int nLen = sText.GetLength();
+			wstring sRet = ConvertToUnicodeStr(sText.ConvertToAscii());	
 			const UChar* pData = element.GetTextData();
-			int nDataSize = element.GetImageDataSize();
 			GState gs = element.GetGState();
 			Font fontOld = gs.GetFont();
 			const char*pFontName = fontOld.GetName();
 			bool isEmbedded = fontOld.IsEmbedded();
 			int nFontSize = gs.GetFontSize();
 			int nFontType = fontOld.GetType();
-// 			if (nFontType != Font::e_Type0)
-// 			{
-// 				char** pEnocde = fontOld.GetEncoding();
-// 				if (pEnocde)
-// 				{
-// 					for (int i = 0;)
-// 					{
-// 					}
-// 				}
-// 			}
-			printf("===========pFontName=%s,isEmbedded=%d\n", pFontName, isEmbedded);
+			//printf("===========pFontName=%s,isEmbedded=%d,nFontType=%d\n", pFontName, isEmbedded, nFontType);
+			//wprintf(L"====sRet=%s\n", sRet.c_str());
 
 			if (!isEmbedded)
 			{
-// 				for (int i = 0;i < 256;i++)
-// 				{
-// 					UString usUcode = fontOld.MapToUnicode(i);
-// 
-// 					printf("===================usUcode=%s\n", usUcode.ConvertToAscii().c_str());
-// 				}
-
-				//gs.SetFont(fontNew, nFontSize);
-#if 1
-				Obj new_font_obj = fontNew.GetSDFObj();
-				new_font_obj.Put("Encoding", RemapFontEncoding(fontOld));
-
-				printf("=============RemapFontEncoding end");
-				Obj widths = fontOld.GetSDFObj().FindObj("Widths");
-				if (widths != NULL) {
-					new_font_obj.Put("Widths", widths);
+				//printf("==================fontold=%x\n", &fontOld);
+				if (IsNeedReplaceFont(fontOld) && fontOld.GetType() == Font::e_Type0)
+				{
+					//sText.conv
+				
+					//gs.SetFont(fontNew, nFontSize);
+					const Unicode* pBuf = sText.GetBuffer();
+					int nUniLen = sText.GetLength();
+					int nSize = sizeof(Unicode)*nUniLen;
+					UChar *pDst = new UChar[nSize];
+					for (int i = 0;i < nUniLen;i++)
+					{
+						int nIdx = i * 2;
+						if (nIdx < nSize-1)
+						{
+							pDst[nIdx] = HIBYTE(pBuf[i]);
+							pDst[nIdx+1] = LOBYTE(pBuf[i]);
+						}
+						
+					}
+					
+					element.SetTextData(pDst, nSize);
+					element.UpdateTextMetrics();
+					delete[] pDst;
+					pDst = NULL;
 				}
-
-				doc.GetSDFDoc().Swap(fontNew.GetSDFObj().GetObjNum(),
-					fontOld.GetSDFObj().GetObjNum());
-#endif
-				
-
-// 				const Unicode* pBuf = sText.GetBuffer();
-// 				int nLen = sText.GetLength();
-// 				element.SetTextData((UChar*)pBuf, nLen*sizeof(Unicode));
-				
-
-
+	
 			}
 			else
 			{
 				
 			}
-			//gs.SetFont(fontNew, 12);
-
-			// 				for (int i = 0;i < nDataSize;i++)
-			// 				{
-			// 					wprintf(L"====pData[%d]=0x%x\n", i,pData[i]);
-			// 				}
-
-			wstring sRet = ConvertToUnicodeStr(sText.ConvertToAscii());
-			wprintf(L"====sRet=%s\n", sRet.c_str());
+			
 #endif
 			writer.WriteElement(element);
 			break;
@@ -227,6 +402,10 @@ void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visi
 			writer.WriteElement(element); // write Form XObject reference to current stream
 
 			Obj form_obj = element.GetXObject();
+
+			int nType = form_obj.GetType();
+			//printf("======Element::e_form,nType=%d\n",nType);
+
 			if (visited.find(form_obj.GetObjNum()) == visited.end()) // if this XObject has not been processed
 			{
 				// recursively process the Form XObject
@@ -396,7 +575,7 @@ Obj RemapFontEncoding(Font& fontOld)
 		{
 			char cAscii = sUnicode.at(0);
 			string glyph_name = GetGlyphname(cAscii);
-			printf("========RemapFontEncoding,3.2,cAscii=0x%x,glyph_name=%s\n", cAscii,glyph_name.c_str());
+			printf("========RemapFontEncoding,3.2,cAscii=%c,cAscii=0x%x,glyph_name=%s\n", cAscii,cAscii,glyph_name.c_str());
 			diffs.PushBackNumber(cAscii);
 			diffs.PushBackName(glyph_name.c_str());
 			printf("========RemapFontEncoding,3.3\n");

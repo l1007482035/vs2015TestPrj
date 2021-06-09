@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 		writer.Begin(page);	// begin writing to this page
 
 		//string font_program = input_path + "ARIALUNI.TTF";//ARIALUNI.TTF   AdobeSongStd-Light.otf
-		string font_program = input_path + "AdobeSongStd-Light.otf";//ARIALUNI.TTF   AdobeSongStd-Light.otf
+		string font_program = input_path + "ARIALUNI.TTF";//ARIALUNI.TTF   AdobeSongStd-Light.otf
 
 		// RAII block for ifstream
 		{

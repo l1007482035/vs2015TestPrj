@@ -29,5 +29,62 @@
 #include <iostream>
 
 
+class  CCriticalSection2
+{
+public:
+	class Owner
+	{
+	public:
+
+		explicit Owner(
+			CCriticalSection2 &crit) : m_crit(crit)
+		{
+			crit.Enter();
+		}
+
+		~Owner()
+		{
+			m_crit.Leave();
+		}
+
+	private:
+
+		CCriticalSection2 &m_crit;
+
+		// No copies do not implement
+		Owner(const Owner &rhs);
+		Owner &operator=(const Owner &rhs);
+	};
+
+	CCriticalSection2()
+	{
+		::InitializeCriticalSection(&m_crit);
+	}
+	~CCriticalSection2()
+	{
+		::DeleteCriticalSection(&m_crit);
+	}
+	void Enter()
+	{
+		::EnterCriticalSection(&m_crit);
+	}
+	void Leave()
+	{
+		::LeaveCriticalSection(&m_crit);
+	}
+	BOOL TryEntry()
+	{
+		return TryEnterCriticalSection(&m_crit);
+	}
+	CRITICAL_SECTION m_crit;
+
+};
+
+void WriteFileLog(char* szFormat, ...);
+std::string MultiByteToUTF8(const char* puszSource);
+std::string UTF8ToMultiByte(const char* puszSource);
+std::string UnicodeToMultiByte(const wchar_t* pwszSource);
+std::wstring MultiByteToUnicode(const char* pszSource);
+
 
 // TODO:  在此处引用程序需要的其他头文件
