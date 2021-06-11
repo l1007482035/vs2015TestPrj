@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
 	PDFNet::Initialize();
 
 	// Relative path to the folder containing test files.
-	string input_path =  "../../TestFiles/";
-	string output_path = "../../TestFiles/Output/";
+	string input_path =  "./";
+	string output_path = "./";
 
 	// Sample 1 - Split a PDF document into multiple pages
 	try

@@ -220,8 +220,8 @@ private:
 ////////// End of the OpenSSLSignatureHandler custom handler code. ////////////////////
 
 
-string input_path = "../../TestFiles/";
-string output_path = "../../TestFiles/Output/";
+string input_path = "./";
+string output_path = "./";
 
 bool VerifySimple(const UString& in_docpath, const UString& in_public_key_file_path)
 {
@@ -538,14 +538,12 @@ void ClearSignature(const UString& in_docpath,
 
 void PrintSignaturesInfo(const UString& in_docpath)
 {
-	cout << "================================================================================" << endl;
 	cout << "Reading and printing digital signature information" << endl;
 
 	PDFDoc doc(in_docpath);
 	if (!doc.HasSignatures())
 	{
 		cout << "Doc has no signatures." << endl;
-		cout << "================================================================================" << endl;
 		return;
 	}
 	else
@@ -556,19 +554,20 @@ void PrintSignaturesInfo(const UString& in_docpath)
 	
 	for (FieldIterator fitr = doc.GetFieldIterator(); fitr.HasNext(); fitr.Next())
 	{
-		fitr.Current().IsLockedByDigitalSignature() ? cout << "==========" << endl << "Field locked by a digital signature" << endl :
-			cout << "==========" << endl << "Field not locked by a digital signature" << endl;
+// 		fitr.Current().IsLockedByDigitalSignature() ? cout << endl << "Field locked by a digital signature" << endl :
+// 			cout  << endl << "Field not locked by a digital signature" << endl;
 
 		cout << "Field name: " << fitr.Current().GetName() << endl;
-		cout << "==========" << endl;
+
+		printf("======GetPartialName=%s\n", fitr.Current().GetPartialName().ConvertToAscii().c_str());
 	}
 
-	cout << "====================" << endl << "Now iterating over digital signatures only." << endl << "====================" << endl;
+	cout <<"Now iterating over digital signatures only." << endl;
 
 	DigitalSignatureFieldIterator digsig_fitr = doc.GetDigitalSignatureFieldIterator();
 	for (; digsig_fitr.HasNext(); digsig_fitr.Next())
 	{
-		cout << "==========" << endl;
+
 		cout << "Field name of digital signature: " << Field(digsig_fitr.Current().GetSDFObj()).GetName() << endl;
 
 		DigitalSignatureField digsigfield(digsig_fitr.Current());
@@ -588,10 +587,19 @@ void PrintSignaturesInfo(const UString& in_docpath)
 			std::vector<unsigned char> cert = digsigfield.GetCert(i);
 			cout << "Cert #" << i << " size: " << cert.size() << endl;
 		}
-
+		
 		DigitalSignatureField::SubFilterType subfilter = digsigfield.GetSubFilter();
 
 		cout << "Subfilter type: " << (int)subfilter << endl;
+		{//test
+			string signame = digsigfield.GetSignatureName().ConvertToAscii();
+			string sLoc = digsigfield.GetLocation().ConvertToAscii();
+			string sContact = digsigfield.GetContactInfo().ConvertToAscii();
+			string sRela = digsigfield.GetReason().ConvertToAscii();
+
+			printf("===================signame=%s,sLoc=%s,sContact=%s,sRela=%s\n"
+				, signame.c_str(),sLoc.c_str(), sContact.c_str(), sRela.c_str());
+		}
 
 		if (subfilter != DigitalSignatureField::e_ETSI_RFC3161)
 		{
@@ -711,7 +719,7 @@ bool TimestampAndEnableLTV(const UString& in_docpath,
 
 	return true;
 }
-int main(void)
+int main(int nargc,char **argv)
 {
 	// Initialize PDFNetC
 	PDFNet::Initialize();
@@ -725,6 +733,7 @@ int main(void)
 
 	int ret = 0;
 
+#if 0
 	//////////////////// TEST 0: 
 	/* Create an approval signature field that we can sign after certifying.
 	(Must be done before calling CertifyOnNextSave/SignOnNextSave/WithCustomHandler.) */
@@ -779,17 +788,22 @@ int main(void)
 		cerr << "Unknown exception." << endl;
 		ret = 1;
 	}
+#endif
+	printf("==================================================================\n");
 
 	//////////////////// TEST 2: sign a PDF with a certification and an unsigned signature field in it.
 	try
 	{
-		SignPDF(input_path + "tiger_withApprovalField_certified.pdf",
-			"PDFTronApprovalSig",
-			input_path + "pdftron.pfx",
-			"password",
-			input_path + "signature.jpg",
-			output_path + "tiger_withApprovalField_certified_approved_output.pdf");
-		PrintSignaturesInfo(output_path + "tiger_withApprovalField_certified_approved_output.pdf");
+// 		SignPDF(input_path + "tiger_withApprovalField_certified.pdf",
+// 			"PDFTronApprovalSig",
+// 			input_path + "pdftron.pfx",
+// 			"password",
+// 			input_path + "signature.jpg",
+// 			output_path + "tiger_withApprovalField_certified_approved_output.pdf");
+		//PrintSignaturesInfo(output_path + "tiger_withApprovalField_certified_approved_output.pdf");
+		input_path = "./";
+
+		PrintSignaturesInfo(input_path+argv[1]);
 	}
 	catch (Common::Exception& e)
 	{
@@ -806,6 +820,8 @@ int main(void)
 		cerr << "Unknown exception." << endl;
 		ret = 1;
 	}
+
+#if 0
 
 	//////////////////// TEST 3: Clear a certification from a document that is certified and has an approval signature.
 	try
@@ -830,7 +846,9 @@ int main(void)
 		cerr << "Unknown exception." << endl;
 		ret = 1;
 	}
+#endif
 
+#if 0
 	//////////////////// TEST 4: Verify a document's digital signatures.
 	try
 	{
@@ -906,6 +924,7 @@ int main(void)
 	{
 		cout << "Tests FAILED!!!" << endl << "==========" << endl;
 	}
+#endif
 
 	PDFNet::Terminate();
 

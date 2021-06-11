@@ -29,34 +29,41 @@ using namespace PDF;
  * If you would like to rasterize page at high resolutions (e.g. more than 600 DPI), you 
  * should use PDFRasterizer or PDFNet vector output instead of PDFDraw. 
  */
-int main()
+int main(int arc,char **argv)
 {
 	PDFNet::Initialize();
 	try
 	{
 		// Relative path to the folder containing test files.
-		string input_path =  "../../TestFiles/";
-		PDFDoc doc((input_path +  "tiger.pdf").c_str());
+		string input_path =  "./";
+		PDFDoc doc((input_path +  argv[1]).c_str());
 		doc.InitSecurityHandler();
+
+
 
 		// Set our PrinterMode options
 		PrinterMode printerMode;
 		printerMode.SetCollation(true);
 		printerMode.SetCopyCount(1);
 		printerMode.SetDPI(600); // regardless of ordering, an explicit DPI setting overrides the OutputQuality setting
-		printerMode.SetDuplexing(PrinterMode::e_Duplex_Auto);
+		printerMode.SetDuplexing(PrinterMode::e_Duplex_LongSide);
+		printerMode.SetOrientation(PrinterMode::e_Orientation_Landscape);
+		printerMode.SetAutoRotate(true);
+		printerMode.SetAutoCenter(true);
+		
 		
 		// If the XPS print path is being used, then the printer spooler file will
 		// ignore the grayscale option and be in full color
 		printerMode.SetOutputColor(PrinterMode::e_OutputColor_Grayscale);
 		printerMode.SetOutputQuality(PrinterMode::e_OutputQuality_Medium);
-		// printerMode.SetNUp(2,1);
+		printerMode.SetNUp(2,2);
 		// printerMode.SetScaleType(PrinterMode::e_ScaleType_FitToOutputPage);
 
 		// Print the PDF document to the default printer, using "tiger.pdf" as the document
 		// name, send the file to the printer not to an output file, print all pages, set the printerMode
 		// and don't provide a cancel flag.
-		Print::StartPrintJob(doc, UString(""), doc.GetFileName(), UString(""), NULL, &printerMode, NULL );
+		//Print::StartPrintJob(doc, UString(""), doc.GetFileName(), UString(""), NULL, &printerMode, NULL );
+		Print::StartPrintJob(doc, UString("Pantum M7100DW Series PCL6"), doc.GetFileName(), UString(""), NULL, &printerMode, NULL);
 	}
 	catch(Common::Exception& e)
 	{

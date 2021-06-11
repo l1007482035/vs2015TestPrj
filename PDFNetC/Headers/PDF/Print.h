@@ -353,7 +353,7 @@ public:
 	 * @param pageOrder order of document pages across and down output page.
 	 * Default is e_PageOrder_LeftToRightThenTopToBottom.
 	 */
-	void SetNUp(N              Up nup, NUpPageOrder pageOrder = e_PageOrder_LeftToRightThenTopToBottom);
+	void SetNUp(NUp nup, NUpPageOrder pageOrder = e_PageOrder_LeftToRightThenTopToBottom);
 
 	/** 
 	 * Set the number of document pages to place on the output pages

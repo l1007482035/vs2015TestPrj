@@ -24,6 +24,11 @@
 #include <fstream>
 #include "PdfTronHelper.h"
 
+#include <gdiplus.h>
+#pragma comment(lib, "gdiplus.lib")
+
+//using namespace Gdiplus;
+
 using namespace std;
 using namespace pdftron;
 using namespace SDF;
@@ -48,7 +53,7 @@ static map<Unicode, string> fontmap;
 
 
 wstring ConvertToUnicodeStr(string sStrOri);
-void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visited);
+void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visited, BOOL bIsBlank);
 std::vector<std::string> split(std::string s, std::string delimiter);
 void LoadGlyphlist();
 string GetGlyphname(Unicode sUniWithU);
@@ -108,6 +113,10 @@ bool IsPdfA(PDFACompliance& pdf_a, UString filename)
 int main(int arc,char** argv)
 {
 	setlocale(LC_ALL, "chs");
+	ULONG_PTR m_gdiplusToken;
+	Gdiplus::GdiplusStartupInput  m_gdiplusStartupInput;
+	Gdiplus::GdiplusStartup(&m_gdiplusToken, &m_gdiplusStartupInput, NULL);
+
 
     int nRetCode = 0;
 	LoadGlyphlist();
@@ -125,28 +134,102 @@ int main(int arc,char** argv)
         }
         else
         {
-
-#if 1
-			CPdfTronHelper::InitLib();
-			CPdfTronHelper helper;
-			
-			//if (helper.Open("E:\\MyProject\\vs2015TestPrj\\PDFNetC\\Samples\\Release\\fff.pdf"))
-			if (helper.Open(argv[1]))
+#if 0
+			//测试pdf字体
 			{
-				printf("======open suc\n");
-				//string sOutPdf = "E:\\MyProject\\vs2015TestPrj\\PDFNetC\\Samples\\Release\\ori_edit.pdf";
-				string sOutPdf = argv[2];
-				BOOL bRet = helper.Pdf2EmbeddedFontPdf(sOutPdf);
-				printf("========bRet=%d\n", bRet);
-			}
-			CPdfTronHelper::ReleaseLib();
-			return 0;
 
+				CPdfTronHelper::InitLib();
+				CPdfTronHelper helper;
+
+				//if (helper.Open("E:\\MyProject\\vs2015TestPrj\\PDFNetC\\Samples\\Release\\fff.pdf"))
+				if (helper.Open(argv[1]))
+				{
+					printf("======open suc\n");
+					//string sOutPdf = "E:\\MyProject\\vs2015TestPrj\\PDFNetC\\Samples\\Release\\ori_edit.pdf";
+					string sOutPdf = argv[2];
+					BOOL bRet = helper.Pdf2EmbeddedFontPdf(sOutPdf);
+					printf("========bRet=%d\n", bRet);
+				}
+				CPdfTronHelper::ReleaseLib();
+				return 0;
+			}
+#endif
+#if 1
+			//测试检测空白pdf
+			{
+				int ret = 0;
+				PDFNet::Initialize();
+				string input_path = "./";
+				string output_path = "./";
+
+				string input_filename = argv[1];
+				string output_filename = argv[2];
+
+				ElementWriter writer;	// ElementWriter is used to write Elements to the page	
+				ElementReader reader;
+				XObjSet visited;
+
+				Page page;
+
+				doc = PDFDoc(input_path + input_filename);
+				doc.InitSecurityHandler();
+
+				PDFACompliance::Conformance dd = PDFACompliance::GetDeclaredConformance(doc);
+
+				if (dd != PDFACompliance::e_NoConformance)
+				{
+					printf("input_filename[%s] is pdfa", input_filename.c_str());
+					PDFNet::Terminate();
+					return 0;
+				}
+
+				int nIdx = 0;
+				for (PageIterator itr = doc.GetPageIterator(); itr.HasNext(); itr.Next())
+				{
+					
+					page = itr.Current();
+					visited.insert(page.GetSDFObj().GetObjNum());
+					reader.Begin(page);
+					//page.GetIndex()
+					//writer.Begin(page);	// begin writing to this page
+
+					writer.Begin(page, ElementWriter::e_replacement, false, true, page.GetResourceDict());
+					BOOL bIsBlank = TRUE;
+					ProcessElements(reader, writer, visited, bIsBlank);
+					printf("============page[%d],bIsBlank=%d\n", ++nIdx, bIsBlank);
+					writer.End();
+					reader.End();
+				}
+
+				SDFDoc& cos_doc = doc.GetSDFDoc();
+				int num_objs = cos_doc.XRefSize();
+				printf("==============num_objs=%d\n", num_objs);
+				for (int i = 1; i < num_objs; ++i)
+				{
+					Obj obj0 = cos_doc.GetObj(i);
+					if (obj0 != NULL && !obj0.IsFree() && (obj0.IsDict() || obj0.IsStream()))
+					{
+						//ProcessDict(obj0);
+
+						DictIterator itr = obj0.Find("Type");
+						if (!itr.HasNext() ||
+							!itr.Value().IsName() ||
+							strcmp(itr.Value().GetName(), "Font")) continue;
+
+						//printf("==========1\n");
+						Font fontold = Font(obj0);
+						printf("==========2,fontname=%s,isEmbedded=%d,type=%d\n", fontold.GetName(), fontold.IsEmbedded(), fontold.GetType());
+	
+					}
+				}
+
+			}
 #endif
 
-            // TODO: 在此处为应用程序的行为编写代码。
-			int ret = 0;
-			PDFNet::Initialize();
+
+
+#if 0
+
 
 			//PDFNet::AddFontSubst(PDFNet::e_GB1, "E:/MyProject/vs2015TestPrj/PDFNetC/Samples/Release/AdobeHeitiStd-Regular.otf");
 
@@ -154,10 +237,7 @@ int main(int arc,char** argv)
 			{
 
 				// Relative path to the folder containing test files.
-				string input_path = "./";
-				string output_path = "./";
-// 				string input_filename = "ori.pdf";
-// 				string output_filename = "ori_edit.pdf";
+
 				ElementWriter writer;	// ElementWriter is used to write Elements to the page	
 				string input_filename = argv[1];
 				string output_filename = argv[2];
@@ -176,6 +256,21 @@ int main(int arc,char** argv)
 					printf("input_filename[%s] is pdfa", input_filename.c_str());
 					PDFNet::Terminate();
 					return 0;
+				}
+
+				int nIdx = 0;
+				for (PageIterator itr = doc.GetPageIterator(); itr.HasNext(); itr.Next())
+				{
+					printf("============page[%d]\n", ++nIdx);
+					page = itr.Current();
+					visited.insert(page.GetSDFObj().GetObjNum());
+					reader.Begin(page);
+					//writer.Begin(page);	// begin writing to this page
+
+					writer.Begin(page, ElementWriter::e_replacement, false, true, page.GetResourceDict());
+					ProcessElements(reader, writer, visited);
+					writer.End();
+					reader.End();
 				}
 
 
@@ -317,6 +412,7 @@ int main(int arc,char** argv)
 			}
 
 			PDFNet::Terminate();
+#endif
 
         }
     }
@@ -327,20 +423,122 @@ int main(int arc,char** argv)
         nRetCode = 1;
     }
 
+	Gdiplus::GdiplusShutdown(m_gdiplusToken);
+
     return nRetCode;
 }
 
-void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visited)
+int GetEncoderClsid2(const WCHAR* format, CLSID* pClsid)
+{
+	UINT  num = 0;          // number of image encoders
+	UINT  size = 0;         // size of the image encoder array in bytes
+
+	 Gdiplus::ImageCodecInfo* pImageCodecInfo = NULL;
+
+	 Gdiplus::GetImageEncodersSize(&num, &size);
+	if (size == 0)
+		return -1;  // Failure
+
+	pImageCodecInfo = (Gdiplus::ImageCodecInfo*)(malloc(size));
+	if (pImageCodecInfo == NULL)
+		return -1;  // Failure
+
+	Gdiplus::GetImageEncoders(num, size, pImageCodecInfo);
+
+	for (UINT j = 0; j < num; ++j)
+	{
+		if (wcscmp(pImageCodecInfo[j].MimeType, format) == 0)
+		{
+			*pClsid = pImageCodecInfo[j].Clsid;
+			free(pImageCodecInfo);
+			return j;  // Success
+		}
+	}
+
+	free(pImageCodecInfo);
+	return -1;  // Failure
+}
+
+int nIdx = 1;
+
+#include <sstream>
+#include <cmath>
+
+void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visited,BOOL bIsBlank)
 {
 	for (Element element = reader.Next(); element; element = reader.Next()) 	// Read page contents
 	{
 		int nType = element.GetType();
+
 		printf("===========nType=%d\n", nType);
 		//Gdiplus::Bitmap* pBit = element.GetBitmap();
 		//printf("===========pBit=%x\n", pBit);
 		
 		switch (nType)
 		{
+		case  Element::e_path:
+			bIsBlank = FALSE;
+			break;
+		case Element::e_image:
+		case  Element::e_inline_image:
+		{
+			Gdiplus::Bitmap* pBit = element.GetBitmap();
+		
+
+			Gdiplus::BitmapData btmpd;
+			pBit->LockBits(new Gdiplus::Rect(0, 0, pBit->GetWidth(), pBit->GetHeight()), Gdiplus::ImageLockModeRead | Gdiplus::ImageLockModeWrite, pBit->GetPixelFormat(), &btmpd);
+			printf("============pBit=%x\n",pBit);
+			int PixelSize = 3;
+			int nTotal = pBit->GetHeight()*pBit->GetWidth();
+			printf("============nTotal=%d\n", nTotal);
+			int nGrayCout = 0;
+			for (int i = 0; i < pBit->GetHeight(); i++)
+			{
+				for (int j = 0; j < pBit->GetWidth(); j++)
+				{
+					byte* row = (byte*)btmpd.Scan0 + PixelSize * j + (i * btmpd.Stride);
+
+					//printf("================total=%d\n", row[0] + row[1] + row[2]);
+					if (row[0] + row[1] + row[2] > 660)//382
+					{
+						row[0] = row[1] = row[2] = 255;
+						//printf("========================1,255\n");
+						//continue;
+					}
+					else
+					{
+						nGrayCout++;
+						//printf("========================1,0\n");
+					
+						break;
+						row[0] = row[1] = row[2] = 0;
+					}
+				
+				}
+			}
+
+			double fff = nTotal*1.63*pow(10,-5);
+
+			printf("=============fff=%f\n",fff);
+
+			printf("=============nGrayCout=%d\n", nGrayCout);
+
+			if (nGrayCout > (nTotal/10))
+			{
+				bIsBlank = FALSE;
+			}
+			
+// 			CLSID pngsid;
+// 			GetEncoderClsid2(L"image/png", &pngsid);
+// 
+// 			wstring wsPath;
+// 			wstringstream ss;
+// 			ss << L"E:\\MyProject\\vs2015TestPrj\\PDFNetC\\Samples\\Release\\" << nIdx++ << L".png";
+// 			wsPath = ss.str();
+// 
+// 			pBit->Save(wsPath.c_str(),&pngsid);
+			break;
+		}
 		case Element::e_text: 				// Process text strings...
 		{
 #if 1
@@ -355,7 +553,11 @@ void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visi
 			int nFontSize = gs.GetFontSize();
 			int nFontType = fontOld.GetType();
 			//printf("===========pFontName=%s,isEmbedded=%d,nFontType=%d\n", pFontName, isEmbedded, nFontType);
-			//wprintf(L"====sRet=%s\n", sRet.c_str());
+			wprintf(L"====sRet=%s\n", sRet.c_str());
+			if (!sRet.empty())
+			{
+				bIsBlank = FALSE;
+			}
 
 			if (!isEmbedded)
 			{
@@ -399,6 +601,7 @@ void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visi
 
 		case Element::e_form:				// Process form XObjects
 		{
+			bIsBlank = FALSE;
 			writer.WriteElement(element); // write Form XObject reference to current stream
 
 			Obj form_obj = element.GetXObject();
@@ -417,7 +620,7 @@ void ProcessElements(ElementReader& reader, ElementWriter& writer, XObjSet& visi
 				reader.ClearChangeList();
 				new_writer.SetDefaultGState(reader);
 
-				ProcessElements(reader, new_writer, visited);
+				ProcessElements(reader, new_writer, visited,bIsBlank);
 				new_writer.End();
 				reader.End();
 			}
