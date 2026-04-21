@@ -1,0 +1,9 @@
+register_printer函数中  uint32_t		interface;	/* Interface index */
+interface跟windows有变量冲突，修改成nInterface
+
+windows下开启日志
+_cups_debug_printf 函数中修改
+_cups_debug_set(getenv("CUPS_DEBUG_LOG"), getenv("CUPS_DEBUG_LEVEL"),
+                   getenv("CUPS_DEBUG_FILTER"), 0);
+改成_cups_debug_set("CUPS_DEBUG_LOG.log", "CUPS_DEBUG_LEVEL", NULL, 0);
+

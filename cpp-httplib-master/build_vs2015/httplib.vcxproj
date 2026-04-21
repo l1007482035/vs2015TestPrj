@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4001801B-2DA3-3999-984F-631101750D6B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <Platform>Win32</Platform>
+    <ProjectName>httplib</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">httplib.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">httplib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">httplib.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">httplib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">httplib.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">httplib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">httplib.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">httplib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug";httplib_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\";httplib_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015
+if %errorlevel% neq 0 goto :cmEnd
+E:
+if %errorlevel% neq 0 goto :cmEnd
+"E:\Program Files\CMake\bin\cmake.exe" -E __create_def E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/Debug/exports.def E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/Debug//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;crypt32.lib;cryptui.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/Debug/httplib.lib</ImportLibrary>
+      <ModuleDefinitionFile>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/Debug/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/Debug/httplib.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release";httplib_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";httplib_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015
+if %errorlevel% neq 0 goto :cmEnd
+E:
+if %errorlevel% neq 0 goto :cmEnd
+"E:\Program Files\CMake\bin\cmake.exe" -E __create_def E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/Release/exports.def E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/Release//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;crypt32.lib;cryptui.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/Release/httplib.lib</ImportLibrary>
+      <ModuleDefinitionFile>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/Release/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/Release/httplib.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel";httplib_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";httplib_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015
+if %errorlevel% neq 0 goto :cmEnd
+E:
+if %errorlevel% neq 0 goto :cmEnd
+"E:\Program Files\CMake\bin\cmake.exe" -E __create_def E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/MinSizeRel/exports.def E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/MinSizeRel//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;crypt32.lib;cryptui.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/MinSizeRel/httplib.lib</ImportLibrary>
+      <ModuleDefinitionFile>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/MinSizeRel/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/MinSizeRel/httplib.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo";httplib_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";httplib_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreLinkEvent>
+      <Message>Auto build dll exports</Message>
+      <Command>setlocal
+cd E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015
+if %errorlevel% neq 0 goto :cmEnd
+E:
+if %errorlevel% neq 0 goto :cmEnd
+"E:\Program Files\CMake\bin\cmake.exe" -E __create_def E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/RelWithDebInfo/exports.def E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/RelWithDebInfo//objects.txt
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;crypt32.lib;cryptui.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/RelWithDebInfo/httplib.lib</ImportLibrary>
+      <ModuleDefinitionFile>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/httplib.dir/RelWithDebInfo/exports.def</ModuleDefinitionFile>
+      <ProgramDataBaseFile>E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/RelWithDebInfo/httplib.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\MyProject\vs2015TestPrj\cpp-httplib-master\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule E:/MyProject/vs2015TestPrj/cpp-httplib-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"E:\Program Files\CMake\bin\cmake.exe" -SE:/MyProject/vs2015TestPrj/cpp-httplib-master -BE:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015 --check-stamp-file E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeCXXCompiler.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeRCCompiler.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeSystem.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\cmake\FindBrotli.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\httplib.h;E:\MyProject\vs2015TestPrj\cpp-httplib-master\httplibConfig.cmake.in;E:\MyProject\vs2015TestPrj\cpp-httplib-master\split.py;E:\Program Files\CMake\share\cmake-3.23\Modules\BasicConfigVersion-SameMinorVersion.cmake.in;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCXXInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakePackageConfigHelpers.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFileCXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindOpenSSL.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPkgConfig.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPython\Support.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPython3.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindThreads.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindZLIB.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\GNUInstallDirs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\SelectLibraryConfigurations.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule E:/MyProject/vs2015TestPrj/cpp-httplib-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"E:\Program Files\CMake\bin\cmake.exe" -SE:/MyProject/vs2015TestPrj/cpp-httplib-master -BE:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015 --check-stamp-file E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeCXXCompiler.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeRCCompiler.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeSystem.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\cmake\FindBrotli.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\httplib.h;E:\MyProject\vs2015TestPrj\cpp-httplib-master\httplibConfig.cmake.in;E:\MyProject\vs2015TestPrj\cpp-httplib-master\split.py;E:\Program Files\CMake\share\cmake-3.23\Modules\BasicConfigVersion-SameMinorVersion.cmake.in;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCXXInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakePackageConfigHelpers.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFileCXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindOpenSSL.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPkgConfig.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPython\Support.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPython3.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindThreads.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindZLIB.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\GNUInstallDirs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\SelectLibraryConfigurations.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule E:/MyProject/vs2015TestPrj/cpp-httplib-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"E:\Program Files\CMake\bin\cmake.exe" -SE:/MyProject/vs2015TestPrj/cpp-httplib-master -BE:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015 --check-stamp-file E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeCXXCompiler.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeRCCompiler.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeSystem.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\cmake\FindBrotli.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\httplib.h;E:\MyProject\vs2015TestPrj\cpp-httplib-master\httplibConfig.cmake.in;E:\MyProject\vs2015TestPrj\cpp-httplib-master\split.py;E:\Program Files\CMake\share\cmake-3.23\Modules\BasicConfigVersion-SameMinorVersion.cmake.in;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCXXInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakePackageConfigHelpers.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFileCXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindOpenSSL.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPkgConfig.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPython\Support.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPython3.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindThreads.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindZLIB.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\GNUInstallDirs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\SelectLibraryConfigurations.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule E:/MyProject/vs2015TestPrj/cpp-httplib-master/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"E:\Program Files\CMake\bin\cmake.exe" -SE:/MyProject/vs2015TestPrj/cpp-httplib-master -BE:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015 --check-stamp-file E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeCXXCompiler.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeRCCompiler.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\3.23.0-rc2\CMakeSystem.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\cmake\FindBrotli.cmake;E:\MyProject\vs2015TestPrj\cpp-httplib-master\httplib.h;E:\MyProject\vs2015TestPrj\cpp-httplib-master\httplibConfig.cmake.in;E:\MyProject\vs2015TestPrj\cpp-httplib-master\split.py;E:\Program Files\CMake\share\cmake-3.23\Modules\BasicConfigVersion-SameMinorVersion.cmake.in;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCXXInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakePackageConfigHelpers.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckIncludeFileCXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindOpenSSL.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPkgConfig.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPython\Support.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindPython3.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindThreads.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\FindZLIB.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\GNUInstallDirs.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\SelectLibraryConfigurations.cmake;E:\Program Files\CMake\share\cmake-3.23\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out\httplib.cc" />
+    <ClInclude Include="E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\out\httplib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\ZERO_CHECK.vcxproj">
+      <Project>{C5891B02-7761-3FB8-AC57-D3DC506A94EB}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

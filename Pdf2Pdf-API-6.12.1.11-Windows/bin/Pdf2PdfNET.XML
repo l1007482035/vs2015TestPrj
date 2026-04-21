@@ -1,0 +1,1213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pdf2PdfNET</name>
+    </assembly>
+    <members>
+        <member name="T:Pdftools.Pdf2Pdf.Pdf2Pdf">
+             <summary>
+             Base class for all pdf to pdf conversion functionality in this library
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.#ctor">
+            <summary>simple constructor</summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.#ctor(System.IntPtr)">
+            <summary>internal constructor</summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.Finalize">
+            <summary>simple finalizer</summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.Dispose">
+            <summary>
+            Destroy the internal representation of the object.
+            After disposing, the object should not be used anymore.
+            </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.Terminate">
+             <summary>
+             This function frees all global resources.
+            
+             This must be called before exiting the main program. Afterwards, the calling process may not use any other conversion method.
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetLicenseKey(System.String)">
+             <summary>
+             Set the license key
+            
+             </summary>
+            
+             <param name="licenseKey">
+             The license key
+             </param>
+            
+             <returns>True if the license is valid</returns>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.LicenseIsValid">
+             <summary>
+             Check if the license is valid.
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.GetLicenseIsValid">
+             <summary>
+             </summary>
+            
+             <returns></returns>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ProductVersion">
+             <summary>
+             The version of the product.
+            
+             The version of the product in the format &apos;A.B.C.D&apos;.
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.AddSignature(Pdftools.Pdf2Pdf.Signature)">
+             <summary>
+             Add a digital signature to the document.
+            
+             The signature is defined using a PdfSignature object. Must be called prior to Convert.
+             Do not dispose of the PdfSignature object until the associated document has been converted or closed.
+             Note: At this point it is not verified whether the certificate is valid or not. If an invalid certificate is provided the Convert function will fail later on.
+            
+             </summary>
+            
+             <param name="signature">
+             Digital signature to be added.
+             The properties of the signature must be set before it is added.
+            
+             </param>
+            
+             <returns>True: Signature could be successfully added to the document. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.Convert(System.String,System.String,System.String,System.String)">
+             <summary>
+             This method converts the input document (PDF) and saves the output document (PDF/A) to a file.
+            
+             Possible problem causes are:
+             *	Device-specific color spaces for which an output intent does not exist
+             *	Missing font programs for non-embedded fonts
+             *	Missing metadata
+            
+             </summary>
+            
+             <param name="inFileName">
+             Source file name.
+             The file name and optionally the file path, drive or server string according to the operating systems file name specification rules of the input file.
+            
+             </param>
+             <param name="password">
+             The user or the owner password of the encrypted input PDF document.
+             If this parameter is left out, null or an empty string the default (no password) is used.
+            
+             </param>
+             <param name="outFileName">
+             The file name and optionally the file path, drive or server string according to the operating systems file name specification rules of the output file.
+            
+             </param>
+             <param name="logFileName">
+             Path for the logfile.
+             The file name and optionally the file path, drive or server string according to the operating systems file name specification rules of the output file.
+            
+             </param>
+            
+             <returns>True: The file could successfully be processed. False: The file could not be converted.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.ConvertStream(System.IO.Stream,System.String,System.IO.Stream,System.IO.Stream)">
+             <summary>
+             This method converts the input document (PDF) and saves the output document (PDF/A) to a stream.
+            
+             Possible problem causes are:
+             *	Device-specific color spaces for which an output intent does not exist
+             *	Missing font programs for non-embedded fonts
+             *	Missing metadata
+            
+             </summary>
+            
+             <param name="inStream">
+             The stream to read the document from.
+            
+             </param>
+             <param name="password">
+             The user or the owner password of the encrypted input PDF document.
+             If this parameter is left out, null or an empty string the default (no password) is used.
+            
+             </param>
+             <param name="outStream">
+             The stream to write the file to.
+            
+             </param>
+             <param name="logStream">
+             The stream to write the log file to.
+            
+             </param>
+            
+             <returns>True: The file could successfully be processed. False: The file could not be converted.</returns>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ErrorCode">
+             <summary>
+             Receive the latest error code.
+            
+             See Pdftools.Pdf.PDFErrorCode
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ErrorMessage">
+             <summary>
+             The message describing the last error that occurred while processing.
+            
+             The property is NULL if no message is available.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.EmbedAllFonts">
+             <summary>
+             Embed all fonts even if not required to achieve PDF/A conformance.
+            
+             By default, fonts are not embedded unless required to achive PDF/A conformance.
+             For example, fonts of OCR text (invisible text not used for rendering) must not be embedded.
+             Setting this property to True forces all fonts to be embedded.
+             This produces larger PDF/A output files and is intended only as a workaround for bugs in subsequent systems.
+             
+             Default: False.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.SubsetFonts">
+             <summary>
+             Subset or embed full fonts.
+            
+             Setting this property to False is strongly discouraged.
+             
+             Default: True.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.EmbedT1asCFF">
+             <summary>
+             Set option to embed Type1 fonts as CFF.
+            
+             Convert Type1 (PostScript) fonts to Compact Font Format before embedding.
+             This reduces the file size. This affects the embedding of fonts only,
+             existing Type1 fonts of the input document will not be converted.
+             Default: False.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.RemoveSignatures">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ImageQuality">
+             <summary>
+             Image quality due to lossy compression (1..100)
+            
+             Set or get the image quality index for images that use a prohibited lossy compression type and must
+             be recompressed. Supported values are 1 to 100. A higher value means better visual quality at the cost
+             of a larger file size. Recommended values range from 70 to 90.
+             Default: 75.
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.ConvertMem(System.Byte[],System.String,System.Byte[]@,System.Byte[]@)">
+             <summary>
+             Opens a PDF document from memory, converts it to PDF/A and writes the output document to a byte array.
+             Returns true if the function was executed successfully, i.e. could read the input file and write an output file. The correctness of the resulting output file is reflected by the property ErrorCode.
+            
+             </summary>
+            
+             <param name="pIn">
+             A byte array containing the input PDF document.
+            
+             </param>
+             <param name="password">
+             The user or the owner password of the encrypted input PDF document.
+             If this parameter is left out, null or an empty string the default (no password) is used.
+            
+             </param>
+             <param name="outFile">
+             A byte array to which the output PDF/A document is written.
+            
+             </param>
+             <param name="logFile">
+             A byte array to which the log is written.
+            
+             </param>
+            
+             <returns>True: The conversion was successful, otherwise False:</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetMetadata(System.String)">
+             <summary>
+             Set the document&apos;s XMP metadata. The XMP metadata is inserted as is, which means it is not parsed and validated. If no XMP metadata is provided, the 3-Heights™ PDF to PDF/A Converter API generates it automatically.
+            
+             </summary>
+            
+             <param name="srcFileName">
+             File to read metadata from.
+             The file name and optionally the file path, drive or server string according to the operating systems file name specification rules of the file containing the XMP metadata.
+            
+             </param>
+            
+             <returns>True on successfully setting the metadata, false otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetMetadataStream(System.IO.Stream)">
+             <summary>
+             </summary>
+            
+             <param name="stream">
+             Stream to read metadata from.
+             </param>
+            
+             <returns>True on successfully setting the metadata, false otherwise</returns>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.AnalyzeOnly">
+             <summary>
+             When set to true, the method Convert() only analyzes the input file, it does not create
+             an output file. The results of the analysis are written to the corresponding log file.
+             If Convert() returns True, the file is compliant.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ConvertAlways">
+             <summary>
+             Setting the property ConvertAlways to true forces the conversion even if the input file already conforms to the requested standard.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.PostAnalyze">
+             <summary>
+             Analyze the created PDF output file and verify if it meets the specified compliance
+             level. The result of this analysis is written to the log file.
+             The post analysis is only executed if the conversion was successful. The property
+             PostAnalysis is ignored if the property AnalyzeOnly is true.
+             The post analysis can detect errors in the created output file that could not be
+             predicted based on the analysis of the input file nor could they be detected during the
+             conversion, because the conversion also depends on the input parameters (such as
+             ICC profiles).
+             The post-analysis is equal to the analysis using the 3-Heights™ PDF Validator and
+             validating against PDF/A.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ReportDetails">
+             <summary>
+             Write a detailed list of errors and warnings from the analysis of the input file as well as the optional post-analysis of the output file to the log file.
+             
+             This option lists all conformance violations per page. Each violation is listed with a page number (page 0 = document level), error number, a description and a counter of how many times the error occurs. The option provides more detailed information than ReportSummary. All errors are listed in the header file bseerror.h. Here are a few examples of possible errors:
+             *	0, 0x80410604, &quot;The key Metadata is required but missing.&quot;, 1
+             *	0, 0x80410604, &quot;The key MarkInfo is required but missing.&quot;, 1
+             *	1, 0x00418704, &quot;The font Arial-BoldMT must be embedded.&quot;, 1
+             *	1, 0x83410612, &quot;The document does not conform to the requested standard.&quot;, 1
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ReportSummary">
+             <summary>
+             Write a summary of errors and warnings from the analysis of the input file as well as the optional post-analysis of the output file to the log file. If any of the following violations is detected at least once, it is reported (once). This report provides less detailed information than the detailed list per page provided by ReportDetails.
+             
+             1.	The file format (header, trailer, objects, xref, streams) is corrupted.
+             2.	The document doesn&apos;t conform to the PDF reference  (missing required entries, wrong value types, etc.).
+             3.	The file is encrypted and the password was not provided.
+             4.	The document contains device-specific color spaces.
+             5.	The document contains illegal rendering hints (unknown intents, interpolation, transfer and halftone functions).
+             6.	The document contains alternate information (images).
+             7.	The document contains embedded PostScript code.
+             8.	The document contains references to external content (reference XObjects, file attachments, OPI).
+             9.	The document contains fonts without embedded font programs or encoding information (CMAPs).
+             10.	The document contains fonts without appropriate character to Unicode mapping information (ToUnicode maps).
+             11.	The document contains transparency.
+             12.	The document contains unknown annotation types.
+             13.	The document contains multimedia annotations (sound, movies).
+             14.	The document contains hidden, invisible, non-viewable or non-printable annotations.
+             15.	The document contains annotations or form fields with ambiguous or without appropriate appearances.
+             16.	The document contains actions types other than for navigation (launch, JavaScript, ResetForm, etc.).
+             17.	The document&apos;s meta data is either missing or inconsistent or corrupt.
+             18.	The document doesn&apos;t provide appropriate logical structure information.
+             19.	The document contains optional content (layers).
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ColorSpaceProfile">
+             <summary>
+             This property sets or gets the path to the ICC profile for the color space of images. When no profile is defined DeviceRGB is used as default.
+             This method must be called prior to Convert().
+             Setting ICC profiles makes the converter substitute device color spaces with ICC based color spaces. At most three ICC profiles can be set, as substitutes for DeviceRGB, DeviceCMYK, and DeviceGray respectively. To set several ICC profiles, set this property several times. The matching device color space to be substituted is selected automatically. Note that it is not necessary to set ICC profiles for a successful conversion.
+             When getting this property, only one ICC profile file name can be queried: If the output intent is set to an RGB profile (a CMYK profile) then the file name of any set CMYK profile (RGB profile respectively) results. Otherwise anyset CMYK or RGB profile results with CMYK taking precedence.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.OutputIntentProfile">
+             <summary>
+             This property sets or gets the path to the ICC profile for the output intent. An output intent profile is required for PDF/A compliance if an uncalibrated color space is used. If the document uses the DeviceRGB color space, an sRGB output intent shall be embedded. If the DeviceCMYK color space is used, a CMYK output intent shall be embedded. A PDF/A document shall not use multiple output intents.
+             
+             This method must be called prior to Convert().
+             If an invalid path is provided, Convert() fails and writes a corresponding message to the log file.
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.AddFontDirectory(System.String)">
+             <summary>
+             Fonts must be embedded in order to create a valid PDF/A. If the input file contains a font which is not embedded, the font directory is searched for a font with the same name. If such a font is found, the font is embedded.
+             This method can be used to add (multiple) font directories to the search path for fonts.
+            
+             </summary>
+            
+             <param name="directory">
+             The path to the font directory that is to be added to the search path.
+            
+             </param>
+            
+             <returns>True: The path was added successfully. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetInfoEntry(System.String,System.String)">
+             <summary>
+             Add a key-value pair to the documents info object. Values of predefined keys are also stored in the XMP metadata package.
+             Popular entries specified in the PDF Reference 1.7 and accepted by most PDF viewers are &quot;Title&quot;, &quot;Author&quot;, &quot;Subject&quot;, &quot;Creator&quot; (sometimes referred to as Application) and &quot;Producer&quot; (sometimes referred to as PDFCreator).
+            
+             </summary>
+            
+             <param name="key">
+             The entry&apos;s key.
+            
+             </param>
+             <param name="value">
+             The entry&apos;s value.
+            
+             </param>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.GetInfoEntry(System.String)">
+             <summary>
+             Retrieve a key-value pair from the documents info object. Values of predefined keys are also stored in the XMP metadata package.
+             Popular entries specified in the PDF Reference 1.7 and accepted by most PDF viewers are &quot;Title&quot;, &quot;Author&quot;, &quot;Subject&quot;, &quot;Creator&quot; (sometimes referred to as Application) and &quot;Producer&quot; (sometimes referred to as PDFCreator).
+            
+             </summary>
+            
+             <param name="key">
+             The value of the key.
+            
+             </param>
+            
+             <returns>The entry&apos;s value.</returns>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.FlattenSignatures">
+             <summary>
+             Set option to flatten signature appearances.
+            
+             Remove all signed signature fields and add their appearances to the page&apos;s content. Note that the signatures themselves (the cryptographic parts) are removed and hence the bit ePDFConversionErrorDocSigned of the conversion error is set regardless of the value of the FlattenSignatures property.
+             Processing the PDF with 3-Heights™ PDF to PDF/A Converter API breaks existing signatures and their cryptographic parts need to be removed. In general, the visual appearances of signatures are regarded as worthless without the cryptographic part and are therefore removed by default as well. The visual appearances can be preserved by setting this property FlattenSignatures to True.
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetOCREngine(System.String)">
+             <summary>
+             Set the OCR engine that is used when OCR information shall be added during the conversion. If the engine&apos;s name is set to an empty string, OCR is not applied. A suitable OCR plugin is searched and loaded if the name matches.
+            
+             </summary>
+            
+             <param name="engine">
+             The name of the OCR Engine.
+             For every available OCR engine, there is a corresponding OCR interface DLL. The OCR interface DLLs are distributed with the 3-Heights™ PDF to PDF/A Converter API and are required to communicate with the OCR engine. The names of all available OCR engines can be retrieved using the properties GetOCRPluginCount and GetOCRPluginName.
+            
+             </param>
+            
+             <returns>True: The OCR plugin was found. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetOCRLanguages(System.String)">
+             <summary>
+             Define a list of OCR languages that are passed to the engine.
+             Setting languages helps the OCR engine to minimize errors by means of using dictionaries of the defined languages. This method must be called after SetOCREngine.
+             If SetOCRParams is used, SetOCRLanguages must be called after SetOCRParams.
+            
+             </summary>
+            
+             <param name="languages">
+             A string of one or multiple, comma-separated languages. The supported names depend on the OCR engine. The OCR engine will only use dictionaries of the set languages.
+            
+             </param>
+            
+             <returns>True: The language(s) were successfully set. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetOCRParams(System.String)">
+             <summary>
+             Set a predefined or custom profile (i.e. configuration setting). By means of this method, OCR engine specific settings can be applied in the form of key-value pairs. These pairs depend on the OCR engine and are described in the corresponding manual.
+            
+             </summary>
+            
+             <param name="parameters">
+             A list of recognition parameters.
+            
+             </param>
+            
+             <returns>True: The method was successful. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.GetOCRPluginCount">
+             <summary>
+             Returns the number of OCR engine plug-ins. OCR engines are accessed through the corresponding OCR interface DLLs.
+             The OCR interface DLL is provided by the 3-Heights™ PDF to PDF/A Converter API.
+             The OCR engine is provided as a separate product: 3-Heights™ OCR Enterprise Add-On.
+             In order to make use of the OCR engine, the OCR interface DLL and the OCR engine must be installed. The property GetOCRPluginCount returns the number of available OCR interface DLLs. It does not verify the corresponding OCR engines are installed and can be initialized. The OCR engine is loaded with the method SetOCREngine.
+            
+             </summary>
+            
+             <returns>The number of OCR engine plug-ins.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.GetOCRPluginName(System.Int32)">
+             <summary>
+             Returns the name of the i-th OCR engine plug-in. The number of OCR plug-ins is retrieved using i= GetOCRPluginCount.
+            
+             </summary>
+            
+             <param name="plugin">
+             The plug-in id.
+            
+             </param>
+            
+             <returns>The name of the i-th OCR engine plug-in. Null if it does not exist.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.BeginSession(System.String)">
+             <summary>
+             Begin a signature session. The methods BeginSession and EndSession support bulk digital signing by keeping the session to the security device (HSM, Token or Cryptographic Provider) open.
+             For backwards compatibility the use of these methods is optional. If used, the Provider property may not be set. If omitted an individual session to the provider indicated by the property Provider is used for each signature operation.
+            
+             </summary>
+            
+             <param name="provider">
+             The provider string, see property Provider.
+            
+             </param>
+            
+             <returns>True: The session could be created.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.EndSession">
+             <summary>
+             End a signature session. The methods BeginSession and EndSession support bulk digital signing by keeping the session to the security device (HSM, Token or Cryptographic Provider) open. See BeginSession.
+            
+             </summary>
+            
+             <returns>True: The session could be destroyed.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetSessionPropertyString(System.String,System.String)">
+             <summary>
+             Configure the cryptographic session. The properties are provider-specific.
+             Properties have to be set before starting the session and are deleted when terminating the session.
+            
+             </summary>
+            
+             <param name="name">
+             The name of the property.
+            
+             </param>
+             <param name="value">
+             The value of the property.
+            
+             </param>
+            
+             <returns></returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetSessionPropertyBytes(System.String,System.Byte[])">
+             <summary>
+             Configure the cryptographic session. The properties are provider-specific.
+             Properties have to be set before starting the session and are deleted when terminating the session.
+            
+             </summary>
+            
+             <param name="name">
+             The name of the property.
+            
+             </param>
+             <param name="value">
+             The value of the property as byte array.
+            
+             </param>
+            
+             <returns></returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.TestSession">
+             <summary>
+             Test whether the session is still alive.
+             If True: Subsequent calls to Convert and ConvertMem are likely to succeed.
+             If False: Subsequent calls to Convert and ConvertMem are unlikely to succeed. Error codes are the same as in Convert where applicable.
+            
+             </summary>
+            
+             <returns></returns>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.NoCache">
+             <summary>
+             Disable Cache for CRL and OCSP responses
+            
+             Using the cache is safe, since the responses are cached as long as they are valid only. The option affects both signature creation and validation.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.Compliance">
+             <summary>
+             This property sets or gets the compliance level of the output PDF.
+             Supported values for the enumeration TPDFCompliance are:
+             *	ePDFA1a	PDF/A-1a
+             *	ePDFA1b	PDF/A-1b
+             *	ePDFA1a	PDF/A-2a
+             *	ePDFA1a	PDF/A-2b
+             *	ePDFA1a	PDF/A-2u
+             *	ePDFA1a	PDF/A-3a
+             *	ePDFA1a	PDF/A-3b
+             *	ePDFA1a	PDF/A-3u
+             Other listed entries (e.g. ePDF10, ePDF11... ePDF17	PDF, ePDFUnk unknown)
+             are for other products and are irrelevant for the PDF to PDF/A converter.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.AllowDowngrade">
+             <summary>
+             Specify whether to allow automatic downgrades of the conformance level, e.g. from PDF/A-2a to PDF/A-2u.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.AllowUpgrade">
+             <summary>
+             Specify whether to allow automatic upgrades from PDF/A-1 to PDF/A-2.
+            
+             If the target standard is PDF/A-1 and a file contains elements that cannot be converted to PDF/A-1, the target standard is upgraded to PDF/A-2.
+             This avoids significant visual differences in the output file.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ConversionErrors">
+             <summary>
+             Get errors that occurred during conversion.
+            
+             This property should be queried after Convert or ConvertMem returned false and the property ErrorCode is set to PDF_E_CONVERSION.
+             See Pdftools.Pdf.PDFConversionError for a complete list of possible values.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ConversionErrorMask">
+             <summary>
+             Defines not allowed operations and conditions that cause a conversion error.
+            
+             Define which conversion operations shall result in a conversion error, i.e. set the return value of Convert or ConvertMem to false and the property ErrorCode after the conversion to PDF_E_CONVERSION. In the case of a conversion error, use the property ConversionErrors to retrieve the actual errors of the conversion.
+             See Pdftools.Pdf.PDFConversionError for a complete list of possible values. In order to accept all conversion errors, set ConversionErrorMask to ePDFConversionErrorNone.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.OCRReembedImages">
+             <summary>
+             Specifies whether the OCR engine should reembed the deskewed images.
+            
+             The OCR engine de-skews and de-noises the input image before recognizing the characters. This option controls whether the 3-Heights™ PDF to PDF/A Converter API should use the de-skewed image or keep the original image.
+             Default value is &apos;true&apos;, the de-skewed and de-noised image from the OCR engine is embedded. This might change the appearance of the page. This setting is recommended for scanned documents.
+             If this property is set to false, the original image is embedded. This setting is recommended for born-digital documents.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.OCRDeskewImage">
+             <summary>
+             Specifies whether the original image and text are de-skewed according to the recognized skew angle (if OCRReembedImages is set to True only).
+            
+             If true, the image (and text) are rotated in the PDF, such that lines of text are made horizontal. This might change the appearance of the page. This setting is recommended for scanned documents.
+             If false, the skew of the image (and text) is not changed. This setting is recommended for born-digital documents.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.OCRResolutionDPI">
+             <summary>
+             The maximum DPI for OCR recognition
+            
+             Resample images to target resolution before they are sent to the OCR engine. The default is 300 dpi, which is the preferred resolution for most OCR engines.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.OCRThresholdDPI">
+             <summary>
+             The threshold DPI to trigger OCR downsampling
+            
+             Only images with a higher resolution than the threshold are re-sampled before OCR. The default is 400 dpi. Set threshold to -1 to deactivate downsampling.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.OCRBitonalRecognition">
+             <summary>
+             Specifies whether the images should be converted to bitonal before OCR recognition
+            
+             For OCR engines optimized for bitonal images, this option leads to faster processing and better results.
+             Enabling this feature automatically re-embeds the original images in the output document. The setting of the property OCRReembedImages is therefore ignored.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.OCRMode">
+             <summary>
+             Specify behavior of the converter for files with existing OCR text.
+            
+             Available OCR modes are the following:
+             1: Only perform OCR for images without existing OCR text (default).
+             2: If OCR engine is active, remove old OCR text and perform OCR for all images. Hence, existing OCR text is not removed if OCR engine is not active.
+             3: Always remove old OCR text and, if OCR engine is active, perform OCR for all images. This can be used to strip existing, without adding new OCR text.
+             4: Only perform OCR if the input file contains no text.
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.ExportText(System.String)">
+             <summary>
+             Export the recognized OCR text to a file.
+            
+             </summary>
+            
+             <param name="fileName">
+             Output file name.
+             </param>
+            
+             <returns>True if the file defined by fileName is writable.</returns>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.OCREmbedBarcodes">
+             <summary>
+             Specify whether recognized barcodes are embedded in the XMP metadata.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.OCRRotatePage">
+             <summary>
+             Rotate the PDF page according to the recognized orientation.
+            
+             Default: False.
+             If the page contains more than one image, the effects are undefined!
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.Linearize">
+             <summary>
+             Specify whether the PDF should be linearized for fast web access.
+            
+             Linearization is the process of preparing a PDF file in a way that permits random page access by a web browser. While the whole non-linearized PDF file must be downloaded before the first page can be displayed, this is not the case for a linearized file.
+             Default value is &apos;false&apos;.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.TryConvertEmbPDF">
+             <summary>
+             Specify whether to try to convert embedded PDF documents (PDF/A-3 only).
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.SetToUnicodeFile(System.String)">
+             <summary>
+             Update the fonts&apos; unicodes as specified by file.
+            
+             The file must contain the mapping of character codes to Unicodes for specific fonts.
+            
+             </summary>
+            
+             <param name="srcFileName">
+             File to read the updates from.
+             </param>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.AddEmbeddedFile(System.String,System.String)">
+             <summary>
+             This method prepares the file for embedding. This is the same as AddAssociatedFile() with all arguments set to the default values.
+            
+             </summary>
+            
+             <param name="fileName">
+             The name of the file to be added
+             </param>
+             <param name="name">
+             The name used for the embedded file (default: FileName without the path)
+             </param>
+            
+             <returns>True: The file was embedded successfully. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.AddAssociatedFile(System.String,System.String,System.Int32,System.String,System.String,System.String,Pdftools.Pdf.PDFDate)">
+             <summary>
+             This method prepares the file for embedding.
+            
+             Add a file to the document&apos;s embedded files in Convert. For PDF/A-3, the embedded file is associated with an object of the document, i.e. it is an associated file.
+             This method must be called before Convert. The file is embedded as-is. Embedding files is not allowed for PDF/A-1 and restricted to PDF/A compliant files for PDF/A-2.
+            
+             </summary>
+            
+             <param name="fileName">
+             The path (or URL) to the file to be added
+             </param>
+             <param name="name">
+             The name used for the embedded file (default: FileName without the path)
+             This name is presented to the user when viewing the list of embedded files.
+            
+             </param>
+             <param name="associate">
+             The object to associated the file with (-1 for none, 0 for document, 1 - nPages for page), (default: 0 for PDF/A-3 and -1 otherwise)
+             </param>
+             <param name="aFRelationship">
+             The relationship of the file to the object associated, PDF/A-3 only, (default: &quot;Unspecified&quot;)
+             Ignored if Associate is -1. Allowed values are &quot;Source&quot;, &quot;Data&quot;, &quot;Alternative&quot;, &quot;Supplement&quot; and &quot;Unspecified&quot;.
+            
+             </param>
+             <param name="mimeType">
+             The mime type of the embedded file (default: &quot;application/octet-stream&quot;)
+             Common values other than the default are &quot;application/pdf&quot;, &quot;application/xml&quot; or &quot;application/msword&quot;.
+            
+             </param>
+             <param name="description">
+             The description of the embedded file (default: &quot;&quot;)
+             This is presented to the user when viewing the list of embedded files.
+            
+             </param>
+             <param name="modDate">
+             The modify date (default: modify date of the file on the file system or currenttime, if not available).
+             </param>
+            
+             <returns>True: The file was embedded successfully. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.AddAssociatedFileMem(System.Byte[],System.String,System.Int32,System.String,System.String,System.String,Pdftools.Pdf.PDFDate)">
+             <summary>
+             This method prepares the file for embedding.
+            
+             Add a file to the document&apos;s embedded files in Convert. For PDF/A-3, the embedded file is associated with an object of the document, i.e. it is an associated file.
+             This method must be called before Convert. The file is embedded as-is. Embedding files is not allowed for PDF/A-1 and restricted to PDF/A compliant files for PDF/A-2.
+            
+             </summary>
+            
+             <param name="file">
+             A byte array of the file to be added
+             </param>
+             <param name="name">
+             The name used for the embedded file (required)
+             This name is presented to the user when viewing the list of embedded files.
+            
+             </param>
+             <param name="associate">
+             The object to associated the file with (-1 for none, 0 for document, 1 - nPages for page), (default: 0 for PDF/A-3 and -1 otherwise)
+             </param>
+             <param name="aFRelationship">
+             The relationship of the file to the object associated, PDF/A-3 only, (default: &quot;Unspecified&quot;)
+             Ignored if Associate is -1. Allowed values are &quot;Source&quot;, &quot;Data&quot;, &quot;Alternative&quot;, &quot;Supplement&quot; and &quot;Unspecified&quot;.
+            
+             </param>
+             <param name="mimeType">
+             The mime type of the embedded file (default: &quot;application/octet-stream&quot;)
+             Common values other than the default are &quot;application/pdf&quot;, &quot;application/xml&quot; or &quot;application/msword&quot;.
+            
+             </param>
+             <param name="description">
+             The description of the embedded file (default: &quot;&quot;)
+             This is presented to the user when viewing the list of embedded files.
+            
+             </param>
+             <param name="modDate">
+             The modify date (default: current time).
+             </param>
+            
+             <returns>True: The file was embedded successfully. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.AddZUGFeRDXml(System.String)">
+             <summary>
+             This method prepares the Factur-X or ZUGFeRD XML invoice file for embedding.
+            
+             This requires the compliance to be set to PDF/A-3.
+             If the specified Factur-X or ZUGFeRD XML invoice file cannot be added during conversion,
+             the conversion will fail with error PDF_E_INVOICEXML.
+            
+             </summary>
+            
+             <param name="fileName">
+             The name of the file to be added
+             </param>
+            
+             <returns>True: The file was found. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.AddZUGFeRDXmlMem(System.Byte[])">
+             <summary>
+             This method prepares the Factur-X or ZUGFeRD XML invoice file for embedding.
+            
+             This requires the compliance to be set to PDF/A-3.
+             If the specified Factur-X or ZUGFeRD XML invoice file cannot be added during conversion
+             the conversion will fail with error PDF_E_INVOICEXML.
+            
+             </summary>
+            
+             <param name="file">
+             A byte array of the file to be added
+             </param>
+            
+             <returns>True: The file was found. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.AddInvoiceXml(Pdftools.Pdf.PDFInvoiceType,System.String,System.String)">
+             <summary>
+             This method prepares the invoice XML file (Factur-X or ZUGFeRD) for embedding.
+            
+             This requires the compliance to be set to PDF/A-3.
+             If the specified invoice file cannot be added during conversion
+             the conversion will fail with error PDF_E_INVOICEXML.
+            
+             </summary>
+            
+             <param name="type">
+             The type of invoice
+             For the generic values ePDFInvoiceZugferd and ePDFInvoiceFacturX,
+             the profile is determined automatically.
+             If that&apos;s not possible, a profile can be chosen explicitly
+             using the more specific enum values.
+            
+             </param>
+             <param name="fileName">
+             The name of the file to be added
+             </param>
+             <param name="afRelationship">
+             Optional AFRelationship value.
+             The AFRelationship determines the relation of the invoice file to the PDF.
+             Possible values are: &quot;Data&quot;, &quot;Source&quot;, &quot;Alternative&quot;, &quot;Supplement&quot; or &quot;Unspecified&quot;.
+             Note that some invoice standards restrict the set of allowed values for certain profiles.
+            
+             </param>
+            
+             <returns>True: The file was found. False otherwise.</returns>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Pdf2Pdf.AddInvoiceXmlMem(Pdftools.Pdf.PDFInvoiceType,System.Byte[],System.String)">
+             <summary>
+             This method prepares the invoice XML file (Factur-X or ZUGFeRD) for embedding.
+            
+             This requires the compliance to be set to PDF/A-3.
+             If the specified invoice file cannot be added during conversion
+             the conversion will fail with error PDF_E_INVOICEXML.
+            
+             </summary>
+            
+             <param name="type">
+             The type of invoice
+             For the generic values ePDFInvoiceZugferd and ePDFInvoiceFacturX,
+             the profile is determined automatically.
+             If that&apos;s not possible, a profile can be chosen explicitly
+             using the more specific enum values.
+            
+             </param>
+             <param name="file">
+             A byte array of the file to be added
+             </param>
+             <param name="afRelationship">
+             Optional AFRelationship value.
+             The AFRelationship determines the relation of the invoice file to the PDF.
+             Possible values are: &quot;Data&quot;, &quot;Source&quot;, &quot;Alternative&quot;, &quot;Supplement&quot; or &quot;Unspecified&quot;.
+             Note that some invoice standards restrict the set of allowed values for certain profiles.
+            
+             </param>
+            
+             <returns>True: The file was found. False otherwise.</returns>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Pdf2Pdf.ForceEmbeddingOfCMaps">
+             <summary>
+             Specify whether to force the embedding of predefined CMaps.
+            
+             </summary>
+        </member>
+        <member name="T:Pdftools.Pdf2Pdf.Signature">
+             <summary>
+             Digital Sinature.
+            
+             This interface allows creating a signature and setting its position and appearance.
+             The visual part of the signature consists of two (multi-line) texts.
+             The string of both texts are generated automatically based on the signature properties if not set manually.
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Signature.#ctor">
+            <summary>simple constructor</summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Signature.#ctor(System.IntPtr)">
+            <summary>internal constructor</summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Signature.Finalize">
+            <summary>simple finalizer</summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Signature.Dispose">
+            <summary>
+            Destroy the internal representation of the object.
+            After disposing, the object should not be used anymore.
+            </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.PageNo">
+             <summary>
+             The page number where the signature is to be added to the document.
+            
+             If an invalid page number is set, it is added to the last page. Default: -1 (last page).
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.FillColor">
+             <summary>
+             RGB value of the color of the signature&apos;s background.
+            
+             In order to not set a color, i.e. keep the rectangle transparent, set the FillColor to –1.
+             This is particularly useful in combination with adding an image to the signature.
+             Default: 16761024 (red = 192, green = 192, blue = 255)
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.StrokeColor">
+             <summary>
+             RGB value of the color of the signature&apos;s border line.
+            
+             In order to not set a color, i.e. keep it transparent, set the StrokeColor to –1.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.FontSize1">
+             <summary>
+             The font size of the Text1.
+            
+             Default: 16
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.FontSize2">
+             <summary>
+             The font size of the Text2.
+            
+             Default: 8
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.LineWidth">
+             <summary>
+             Thickness of the line surrounding the visual signature.
+            
+             Default: 2
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.Rect">
+             <summary>
+             Position and size of the digital signature annotation.
+            
+             Set or get the position and size of the digital signature annotation.
+             The default is an invisible signature.
+             
+             The position is defined by the four values for the lower-left (x1, y1) and upper-right (x2, y2) corner of the rectangle.
+             The units are PDF points (1 point = 1/72 inch, A4 = 595 x 842 points, Letter = 612 x 792 points) measured from the lower left corner of the page.
+             If either the width or height is zero or negative, an invisible signature is created, i.e. no visible appearance is created for the signature.
+             
+             To create a signature in the lower left corner set the rectangle to [10, 10, 210, 60].
+             
+             Default: [0, 0, 0, 0]
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.ImageFileName">
+             <summary>
+             Path to an image file that is to be added to the signature.
+            
+             The image is centered and scaled down proportionally to fit into the given rectangle. If the path is NULL, or the image does not exist, the appearance&apos;s background is a filled rectangle using the colors FillColor and StrokeColor. Note that for the output file to be PDF/A, the image&apos;s color space must match the document&apos;s output intent.
+             If you want the appearance to contain the image only and no text, set the property Text2 to a space &quot; &quot;.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.Name">
+             <summary>
+             Name of the certificate. The certificate must be available in the store.
+            
+             In order to sign a PDF document, a valid, existing certificate name must be provided.
+             The &quot;Name&quot; corresponds to the common name (CN) of the subject.
+             In the Windows&apos; certificate store this corresponds to &quot;Issued to&quot;.
+             When using a Windows OS, the certificate must be available in the Windows certificate store.
+             This property can be used to select the signer certificate for signing.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.Issuer">
+             <summary>
+             Issuer of the certificate. The certificate must be available in the store.
+            
+             The &quot;Issuer&quot; corresponds to the common name (CN) of the issuer. In the Windows&apos; certificate store this corresponds to &quot;Issued by&quot;.
+             This property can be used to select the signer certificate for signing.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.SerialNumber">
+             <summary>
+             Serial number of the certificate. The certificate must be available in the store.
+            
+             This property is a hex string as displayed by the &quot;Serial number&quot; field in the Microsoft Management Console (MMC), e.g. &quot;49 cf 7d d1 6c a9&quot;.
+             This property can be used to select the signer certificate for signing.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.EmbedRevocationInfo">
+             <summary>
+             If true (and the certificate contains an OCSP server URL) then the OCSP responses or CRLs are embedded in the signature.
+            
+             Embed revocation information such as online certificate status response (OCSP - RFC 2560) and certificate revocation lists (CRL - RFC 3280).
+             Revocation information of a certificate is either an OCSP response or a CRL, which is provided by a validation service at the time of signing and acts as proof that at the time of signing the certificate is valid. This is useful because even when the certificates expires or is revoked at a later time, the signature in the signed document remains valid.
+             Embedding revocation information is optional but suggested when applying advanced or qualified electronic signatures. If the embedding is enabled then the information of the signer certificate and the issuer certificates other than the root certificate is embedded as well. This implies that both OCSP responses and CRLs can be present in the same message.
+             The downsides of embedding revocation information are the increase of the file size (normally byaround 20k) and that it requires a connection to a validation service, which delays the process of signing (normally by around 2 seconds). For mass signing it is suggested to use the caching mechanism.
+             Embedding revocation information requires an online connection to the CA that issues them. The firewall must be configured accordingly. In case a web proxy is used, it must be ensured the following MIME types are supported when using OCSP (not required for CRL):
+             application/ocsp-request
+             application/ocsp-response
+             If EmbedRevocationInfo is set to true, but the embedding failed, e.g. because the OCSP server is not reachable, the return value of Convert() is false, and the ErrorCode after Convert is SIG_CREA_E_OCSP.
+             Default: True.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.Provider">
+             <summary>
+             The cryptographic provider used to create and verify signatures.
+            
+             When using the Microsoft Cryptographic Provider, the value of this property is to be set to a string with the following syntax: &quot;[ProviderType:]Provider[;PIN]&quot;, e.g. &quot;Microsoft Base Cryptographic Provider v1.0;123456&quot;
+             If the name of the provider is omitted, the default provider is used.
+             When using the PKCS#11 Provider, the value of this property is to be set to a string with the following syntax: &quot;PathToDll;SloId;Pin&quot;
+             When using any of the service providers, such as the Swisscom All-in signing service, the value of this property is essentially the url of the service endpoint: &quot;http[s]://server.servicedomain.com:8080/url&quot;
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.Store">
+             <summary>
+             The name of the certificate store, e.g. MY, ROOT, CA (default: MY).
+            
+             For the Microsoft Cryptographic Provider this defines the certificate store from where the signing certificate should be taken. This depends on the OS. Supported values are: MY, CA and ROOT.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.StoreLocation">
+             <summary>
+             The location of the certificate store (0: local system, 1: current user, default: 1)
+            
+             For the Microsoft Cryptographic Provider this defines the location of the certificate store from where the signing certificate should be taken.
+             Supported are:
+             0 Local Machine
+             1 Current User (default)
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.TimeStampURL">
+             <summary>
+             The URL of the trusted Time-stamp authority (TSA) from which a Time-stamp shall be acquired, e.g. http://tsa.domain.com:8080/tsp
+            
+             This setting is suggested to be used when applying a Qualified Electronic Signature.
+             Applying a Time-stamp requires an online connection to a time server; the firewall must be configured accordingly.
+             In case a web proxy is used, it must be ensured the following MIME types are supported:
+             application/timestamp-query
+             application/timestamp-reply
+             If an invalid Time-stamp server address is provided or no connection can be made to the time server, the return code of Convert is false, and the property ErrorCode is set to SIG_CREA_E_TSP after calling Convert.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.TimeStampCredentials">
+             <summary>
+             The credentials of a time stamp server, e.g. username:password
+            
+             If a Time-stamp server requires authentication, use this property to provide the credentials.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.Reason">
+             <summary>
+             The descriptive text explaining why the digital signature was added. Not required in order to create a valid signature.
+            
+             If this property is set to an empty string, no entry is created.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.ContactInfo">
+             <summary>
+             Information provided by the signer to enable a recipient to contact the signer to verify the signature, e.g. a phone number.
+            
+             This is not required in order to create a valid signature.
+             If this property is set to an empty string, no entry is created.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.Location">
+             <summary>
+             Physical location where the signature was added, e.g. &apos;Zurich, Switzerland&apos;.
+            
+             If this property is set to an empty string, no entry is created.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.FontName1">
+             <summary>
+             Path to the font name used in upper text, i.e. the text that is set by the property Text1.
+            
+             Setting this property is optional.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.FontName2">
+             <summary>
+             Path to the font name used in lower text, i.e. the text that is set by the property Text2.
+            
+             Setting this property is optional.
+            
+             </summary>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Signature.SetFont1Mem(System.Byte[])">
+             <summary>
+             The font used in upper text, i.e. the text that is set by the property Text1.
+            
+             Setting this property is optional.
+            
+             </summary>
+            
+             <param name="font">
+             The font as byte array.
+             </param>
+        </member>
+        <member name="M:Pdftools.Pdf2Pdf.Signature.SetFont2Mem(System.Byte[])">
+             <summary>
+             The font used in lower text, i.e. the text that is set by the property Text2.
+            
+             Setting this property is optional.
+            
+             </summary>
+            
+             <param name="font">
+             The font as byte array.
+             </param>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.Text1">
+             <summary>
+             Upper text line of the visible signature. If blank, signature name is added to the upper text line of the visual signature.
+            
+             In order to position text use the following syntax: &lt;tab&gt;&lt;x&gt;,&lt;y&gt;&lt;delimiter&gt;&lt;text&gt; where tab is a tabulator, x and y are integers, delimiter means a single character such as a space and text is any text string not containing a tab.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.Text2">
+             <summary>
+             Lower text line of the visible signature.
+            
+             The text can be multi-lined by using linefeed (&apos;0\n&apos;, 0xA).
+             If blank, a text three-line text is constructed that consists of:
+             * Statement who applied to signature
+             * Reason
+             * Date
+             If you want the appearance to not contain any text, set this property to a space &quot; &quot;.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.SubFilter">
+             <summary>
+             Get or set the encoding of the signature, such as &apos;adbe.pkcs7.detached&apos;, &apos;ETSI.CAdES.detached&apos;, or &apos;ETSI.RFC3161&apos;.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.SignerFingerprint">
+             <summary>
+             The sha1 fingerprint of the signer certificate.
+            
+             This property can be used to select the signer certificate for signing.
+             After validating a signature, this property contains the validated signature&apos;s fingerprint.
+            
+             </summary>
+        </member>
+        <member name="P:Pdftools.Pdf2Pdf.Signature.SignerFingerprintStr">
+             <summary>
+             The hex string representation of the signer certificate&apos;s sha1 fingerprint.
+            
+             This property can be used to select the signer certificate for signing.
+             All characters outside the ranges 0-9, a-f and A-F are ignored. In the Microsoft Management Console, the &quot;Thumbprint&quot; value can be used without conversion, if the &quot;Thumbprint algorithm&quot; is &quot;sha1&quot;.
+             E.g. b5 e4 5c 98 5a 7e 05 ff f4 c6 a3 45 13 48 0b c6 9d e4 5d f5.
+            
+             </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QYiLouTongJi</class>
+ <widget class="QWidget" name="QYiLouTongJi">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1062</width>
+    <height>610</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>前20期展示</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTableWidget" name="tableWidget">
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>期号</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 2</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 3</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 4</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>2 3</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>2 4</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>2 5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>3 4</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>3 5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>4 5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 2 3</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 2 4</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 2 5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 3 4</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 3 5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>1 4 5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>2 3 4</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>2 3 5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>2 4 5</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>3 4 5</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

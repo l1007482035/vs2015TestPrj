@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{45E5DB3F-89A7-4C8A-9FD8-EBF299D762BF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>AirPrintInjectDll2</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AIRPRINTINJECTDLL2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;AIRPRINTINJECTDLL2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AIRPRINTINJECTDLL2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\AirPrintInjectDll2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;AIRPRINTINJECTDLL2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\MyProject\vs2015TestPrj\AirPrintInjectDll2\cups;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="cups\testfile.txt" />
+    <Text Include="cups\utf8demo.txt" />
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cups\adminutil.h" />
+    <ClInclude Include="cups\array-private.h" />
+    <ClInclude Include="cups\array.h" />
+    <ClInclude Include="cups\backend.h" />
+    <ClInclude Include="cups\config.h" />
+    <ClInclude Include="cups\cups-private.h" />
+    <ClInclude Include="cups\cups.h" />
+    <ClInclude Include="cups\debug-internal.h" />
+    <ClInclude Include="cups\debug-private.h" />
+    <ClInclude Include="cups\dir.h" />
+    <ClInclude Include="cups\dns_sd.h" />
+    <ClInclude Include="cups\file-private.h" />
+    <ClInclude Include="cups\file.h" />
+    <ClInclude Include="cups\getifaddrs-internal.h" />
+    <ClInclude Include="cups\http-private.h" />
+    <ClInclude Include="cups\http.h" />
+    <ClInclude Include="cups\ipp-private.h" />
+    <ClInclude Include="cups\ipp.h" />
+    <ClInclude Include="cups\language-private.h" />
+    <ClInclude Include="cups\language.h" />
+    <ClInclude Include="cups\log.h" />
+    <ClInclude Include="cups\md5-internal.h" />
+    <ClInclude Include="cups\ppd-private.h" />
+    <ClInclude Include="cups\ppd.h" />
+    <ClInclude Include="cups\pwg-private.h" />
+    <ClInclude Include="cups\pwg.h" />
+    <ClInclude Include="cups\raster-private.h" />
+    <ClInclude Include="cups\raster.h" />
+    <ClInclude Include="cups\sidechannel.h" />
+    <ClInclude Include="cups\snmp-private.h" />
+    <ClInclude Include="cups\string-private.h" />
+    <ClInclude Include="cups\thread-private.h" />
+    <ClInclude Include="cups\tls-darwin.h" />
+    <ClInclude Include="cups\transcode.h" />
+    <ClInclude Include="cups\versioning.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AirPrintInjectDll2.cpp" />
+    <ClCompile Include="cups\adminutil.c" />
+    <ClCompile Include="cups\array.c" />
+    <ClCompile Include="cups\auth.c" />
+    <ClCompile Include="cups\backchannel.c" />
+    <ClCompile Include="cups\backend.c" />
+    <ClCompile Include="cups\debug.c" />
+    <ClCompile Include="cups\dest-job.c" />
+    <ClCompile Include="cups\dest-localization.c" />
+    <ClCompile Include="cups\dest-options.c" />
+    <ClCompile Include="cups\dest.c" />
+    <ClCompile Include="cups\dir.c" />
+    <ClCompile Include="cups\dns_sd.c" />
+    <ClCompile Include="cups\encode.c" />
+    <ClCompile Include="cups\file.c" />
+    <ClCompile Include="cups\getdevices.c" />
+    <ClCompile Include="cups\getifaddrs.c" />
+    <ClCompile Include="cups\getputfile.c" />
+    <ClCompile Include="cups\globals.c" />
+    <ClCompile Include="cups\hash.c" />
+    <ClCompile Include="cups\http-addr.c" />
+    <ClCompile Include="cups\http-addrlist.c" />
+    <ClCompile Include="cups\http-support.c" />
+    <ClCompile Include="cups\http.c" />
+    <ClCompile Include="cups\ipp-file.c" />
+    <ClCompile Include="cups\ipp-support.c" />
+    <ClCompile Include="cups\ipp-vars.c" />
+    <ClCompile Include="cups\ipp.c" />
+    <ClCompile Include="cups\langprintf.c" />
+    <ClCompile Include="cups\language.c" />
+    <ClCompile Include="cups\log.c" />
+    <ClCompile Include="cups\md5.c" />
+    <ClCompile Include="cups\md5passwd.c" />
+    <ClCompile Include="cups\notify.c" />
+    <ClCompile Include="cups\options.c" />
+    <ClCompile Include="cups\ppd-attr.c" />
+    <ClCompile Include="cups\ppd-cache.c" />
+    <ClCompile Include="cups\ppd-conflicts.c" />
+    <ClCompile Include="cups\ppd-custom.c" />
+    <ClCompile Include="cups\ppd-emit.c" />
+    <ClCompile Include="cups\ppd-localize.c" />
+    <ClCompile Include="cups\ppd-mark.c" />
+    <ClCompile Include="cups\ppd-page.c" />
+    <ClCompile Include="cups\ppd-util.c" />
+    <ClCompile Include="cups\ppd.c" />
+    <ClCompile Include="cups\pwg-media.c" />
+    <ClCompile Include="cups\raster-error.c" />
+    <ClCompile Include="cups\raster-interpret.c" />
+    <ClCompile Include="cups\raster-interstub.c" />
+    <ClCompile Include="cups\raster-stream.c" />
+    <ClCompile Include="cups\raster-stubs.c" />
+    <ClCompile Include="cups\rasterbench.c" />
+    <ClCompile Include="cups\request.c" />
+    <ClCompile Include="cups\sidechannel.c" />
+    <ClCompile Include="cups\snmp.c" />
+    <ClCompile Include="cups\snprintf.c" />
+    <ClCompile Include="cups\string.c" />
+    <ClCompile Include="cups\tempfile.c" />
+    <ClCompile Include="cups\testadmin.c" />
+    <ClCompile Include="cups\testarray.c" />
+    <ClCompile Include="cups\testcache.c" />
+    <ClCompile Include="cups\testclient.c" />
+    <ClCompile Include="cups\testconflicts.c" />
+    <ClCompile Include="cups\testcreds.c" />
+    <ClCompile Include="cups\testcups.c" />
+    <ClCompile Include="cups\testdest.c" />
+    <ClCompile Include="cups\testfile.c" />
+    <ClCompile Include="cups\testgetdests.c" />
+    <ClCompile Include="cups\testhttp.c" />
+    <ClCompile Include="cups\testi18n.c" />
+    <ClCompile Include="cups\testipp.c" />
+    <ClCompile Include="cups\testlang.c" />
+    <ClCompile Include="cups\testoptions.c" />
+    <ClCompile Include="cups\testppd.c" />
+    <ClCompile Include="cups\testpwg.c" />
+    <ClCompile Include="cups\testraster.c" />
+    <ClCompile Include="cups\testsnmp.c" />
+    <ClCompile Include="cups\testthreads.c" />
+    <ClCompile Include="cups\thread.c" />
+    <ClCompile Include="cups\tls-darwin.c" />
+    <ClCompile Include="cups\tls-gnutls.c" />
+    <ClCompile Include="cups\tls-sspi.c" />
+    <ClCompile Include="cups\tls.c" />
+    <ClCompile Include="cups\tlscheck.c" />
+    <ClCompile Include="cups\transcode.c" />
+    <ClCompile Include="cups\usersys.c" />
+    <ClCompile Include="cups\util.c" />
+    <ClCompile Include="dllmain.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cups\api-admin.header" />
+    <None Include="cups\api-admin.shtml" />
+    <None Include="cups\api-filter.header" />
+    <None Include="cups\api-filter.shtml" />
+    <None Include="cups\api-ppd.header" />
+    <None Include="cups\api-ppd.shtml" />
+    <None Include="cups\api-raster.header" />
+    <None Include="cups\api-raster.shtml" />
+    <None Include="cups\cupspm.md" />
+    <None Include="cups\cupspm.opacity" />
+    <None Include="cups\Dependencies" />
+    <None Include="cups\Makefile" />
+    <None Include="cups\test.ppd" />
+    <None Include="cups\test2.ppd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="cups\cupspm-icon.png" />
+    <Image Include="cups\cupspm.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

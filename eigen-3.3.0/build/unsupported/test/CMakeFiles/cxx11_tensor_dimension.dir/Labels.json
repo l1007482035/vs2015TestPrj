@@ -1,0 +1,16 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "E:/MyProject/vs2015TestPrj/eigen-3.3.0/unsupported/test/cxx11_tensor_dimension.cpp"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"BuildUnsupported"
+		],
+		"name" : "cxx11_tensor_dimension"
+	}
+}

@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcproj", "{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288} = {B3294CAF-3620-30BE-B23B-BCA2A76E4288}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "INSTALL", "INSTALL.vcproj", "{D05EBE8A-862A-31CC-8F51-B0B1C7488D91}"
+	ProjectSection(ProjectDependencies) = postProject
+		{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B} = {97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288} = {B3294CAF-3620-30BE-B23B-BCA2A76E4288}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vcproj", "{B3294CAF-3620-30BE-B23B-BCA2A76E4288}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		MinSizeRel|Win32 = MinSizeRel|Win32
+		RelWithDebInfo|Win32 = RelWithDebInfo|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}.Debug|Win32.Build.0 = Debug|Win32
+		{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}.Release|Win32.ActiveCfg = Release|Win32
+		{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}.Release|Win32.Build.0 = Release|Win32
+		{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{97EB438F-BBB0-3EB8-9B20-4CEFA3A30D0B}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
+		{D05EBE8A-862A-31CC-8F51-B0B1C7488D91}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D05EBE8A-862A-31CC-8F51-B0B1C7488D91}.Release|Win32.ActiveCfg = Release|Win32
+		{D05EBE8A-862A-31CC-8F51-B0B1C7488D91}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{D05EBE8A-862A-31CC-8F51-B0B1C7488D91}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288}.Debug|Win32.Build.0 = Debug|Win32
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288}.Release|Win32.ActiveCfg = Release|Win32
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288}.Release|Win32.Build.0 = Release|Win32
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{B3294CAF-3620-30BE-B23B-BCA2A76E4288}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C98FB2A2-0441-3126-ABC4-98E9DDB55B3A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

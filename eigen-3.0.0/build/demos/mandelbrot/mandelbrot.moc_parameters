@@ -1,0 +1,8 @@
+-IE:/MyProject/vs2015TestPrj/eigen-3.0.0
+-IE:/MyProject/vs2015TestPrj/eigen-3.0.0/build
+-IE:/Qt/4.7.4/include
+-DEIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS
+-DWIN32
+-o
+E:/MyProject/vs2015TestPrj/eigen-3.0.0/build/demos/mandelbrot/mandelbrot.moc
+E:/MyProject/vs2015TestPrj/eigen-3.0.0/demos/mandelbrot/mandelbrot.h

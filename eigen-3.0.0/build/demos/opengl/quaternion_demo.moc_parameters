@@ -1,0 +1,17 @@
+-IE:/MyProject/vs2015TestPrj/eigen-3.0.0
+-IE:/MyProject/vs2015TestPrj/eigen-3.0.0/build
+-IE:/Qt/4.7.4/include
+-IE:/Qt/4.7.4/include/QtOpenGL
+-IE:/Qt/4.7.4/include/QtGui
+-IE:/Qt/4.7.4/include/QtCore
+-IE:/Qt/4.7.4/include
+-DEIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS
+-DQT_DLL
+-D$<$<NOT:$<CONFIG:Debug>>:QT_NO_DEBUG>
+-DQT_OPENGL_LIB
+-DQT_GUI_LIB
+-DQT_CORE_LIB
+-DWIN32
+-o
+E:/MyProject/vs2015TestPrj/eigen-3.0.0/build/demos/opengl/quaternion_demo.moc
+E:/MyProject/vs2015TestPrj/eigen-3.0.0/demos/opengl/quaternion_demo.h

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\MyProject\vs2015TestPrj\cpp-httplib-master\build_vs2015\CMakeFiles\a805b5012c6c15101ffbd36c0a6a65e7\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{4D8BE656-3F02-3D02-A6E0-6B566E5CE907}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

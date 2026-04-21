@@ -1,0 +1,40 @@
+# CMake generation dependency list for this directory.
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/CMakeLists.txt
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/3.23.0-rc2/CMakeCXXCompiler.cmake
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/3.23.0-rc2/CMakeRCCompiler.cmake
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/3.23.0-rc2/CMakeSystem.cmake
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/cmake/FindBrotli.cmake
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/httplib.h
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/httplibConfig.cmake.in
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/split.py
+E:/Program Files/CMake/share/cmake-3.23/Modules/BasicConfigVersion-SameMinorVersion.cmake.in
+E:/Program Files/CMake/share/cmake-3.23/Modules/CMakeCXXInformation.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CMakeGenericSystem.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CMakePackageConfigHelpers.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CMakeRCInformation.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CheckCXXSourceCompiles.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CheckIncludeFileCXX.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/CheckLibraryExists.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/Compiler/MSVC-CXX.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/FindOpenSSL.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/FindPackageMessage.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/FindPkgConfig.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/FindPython/Support.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/FindPython3.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/FindThreads.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/FindZLIB.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/GNUInstallDirs.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/Internal/CheckSourceCompiles.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/Platform/Windows-MSVC-CXX.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/Platform/Windows-MSVC.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/Platform/Windows.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/Platform/WindowsPaths.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/SelectLibraryConfigurations.cmake
+E:/Program Files/CMake/share/cmake-3.23/Modules/WriteBasicConfigVersionFile.cmake

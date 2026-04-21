@@ -1,0 +1,4 @@
+E:/MyProject/vs2015TestPrj/armadillo-10.1.0.tar/armadillo-10.1.0/build/CMakeFiles/armadillo.dir
+E:/MyProject/vs2015TestPrj/armadillo-10.1.0.tar/armadillo-10.1.0/build/CMakeFiles/INSTALL.dir
+E:/MyProject/vs2015TestPrj/armadillo-10.1.0.tar/armadillo-10.1.0/build/CMakeFiles/ALL_BUILD.dir
+E:/MyProject/vs2015TestPrj/armadillo-10.1.0.tar/armadillo-10.1.0/build/CMakeFiles/ZERO_CHECK.dir

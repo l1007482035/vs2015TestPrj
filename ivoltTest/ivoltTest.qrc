@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="ivoltTest">
+    <file>Resources/1111.png</file>
+  </qresource>
+</RCC>

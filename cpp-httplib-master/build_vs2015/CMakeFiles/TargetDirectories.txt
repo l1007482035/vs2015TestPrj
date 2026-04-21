@@ -1,0 +1,4 @@
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/httplib.dir
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/INSTALL.dir
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/ALL_BUILD.dir
+E:/MyProject/vs2015TestPrj/cpp-httplib-master/build_vs2015/CMakeFiles/ZERO_CHECK.dir

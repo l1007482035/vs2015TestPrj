@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+    <Text Include="cups\testfile.txt" />
+    <Text Include="cups\utf8demo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\adminutil.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\array.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\array-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\backend.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\cups.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\cups-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\debug-internal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\debug-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\dir.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\file.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\file-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\getifaddrs-internal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\http.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\http-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\ipp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\ipp-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\language.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\language-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\md5-internal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\ppd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\ppd-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\pwg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\pwg-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\raster.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\raster-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\sidechannel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\snmp-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\string-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\thread-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\tls-darwin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\transcode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\versioning.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups\dns_sd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AirPrintInjectDll2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\adminutil.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\array.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\auth.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\backchannel.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\backend.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\debug.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\dest.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\dest-job.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\dest-localization.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\dest-options.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\dir.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\encode.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\file.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\getdevices.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\getifaddrs.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\getputfile.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\globals.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\hash.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\http.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\http-addr.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\http-addrlist.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\http-support.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ipp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ipp-file.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ipp-support.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ipp-vars.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\langprintf.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\language.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\log.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\md5.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\md5passwd.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\notify.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\options.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd-attr.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd-cache.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd-conflicts.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd-custom.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd-emit.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd-localize.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd-mark.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd-page.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\ppd-util.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\pwg-media.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\rasterbench.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\raster-error.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\raster-interpret.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\raster-interstub.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\raster-stream.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\raster-stubs.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\request.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\sidechannel.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\snmp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\snprintf.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\string.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\tempfile.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testadmin.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testarray.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testcache.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testclient.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testconflicts.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testcreds.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testcups.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testdest.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testfile.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testgetdests.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testhttp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testi18n.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testipp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testlang.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testoptions.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testppd.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testpwg.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testraster.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testsnmp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\testthreads.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\thread.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\tls.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\tlscheck.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\tls-darwin.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\tls-gnutls.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\tls-sspi.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\transcode.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\usersys.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\util.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cups\dns_sd.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cups\api-admin.header" />
+    <None Include="cups\api-admin.shtml" />
+    <None Include="cups\api-filter.header" />
+    <None Include="cups\api-filter.shtml" />
+    <None Include="cups\api-ppd.header" />
+    <None Include="cups\api-ppd.shtml" />
+    <None Include="cups\api-raster.header" />
+    <None Include="cups\api-raster.shtml" />
+    <None Include="cups\cupspm.md" />
+    <None Include="cups\cupspm.opacity" />
+    <None Include="cups\Dependencies" />
+    <None Include="cups\Makefile" />
+    <None Include="cups\test.ppd" />
+    <None Include="cups\test2.ppd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="cups\cupspm.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="cups\cupspm-icon.png">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

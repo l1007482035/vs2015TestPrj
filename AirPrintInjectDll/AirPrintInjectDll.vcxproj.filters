@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+    <Text Include="testfile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HookApi.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="adminutil.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="array.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="array-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="backend.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cups-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="debug-internal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="debug-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dir.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="file.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="file-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="getifaddrs-internal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ipp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ipp-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="language.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="language-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="md5-internal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ppd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ppd-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pwg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pwg-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="raster.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="raster-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sidechannel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="snmp-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="string-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="thread-private.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tls-darwin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="transcode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="versioning.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AirPrintInjectDll.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HookApi.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="adminutil.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="array.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="auth.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="backchannel.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="backend.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="debug.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dest.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dest-job.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dest-localization.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dest-options.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dir.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="encode.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="file.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="getdevices.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="getifaddrs.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="getputfile.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="globals.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="hash.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http-addr.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http-addrlist.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http-support.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ipp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ipp-file.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ipp-support.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ipp-vars.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="langprintf.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="language.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="md5passwd.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="notify.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="options.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd-attr.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd-cache.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd-conflicts.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd-custom.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd-emit.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd-localize.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd-mark.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd-page.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ppd-util.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pwg-media.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rasterbench.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="raster-error.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="raster-interpret.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="raster-interstub.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="raster-stream.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="raster-stubs.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="request.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sidechannel.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="snmp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="snprintf.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="string.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tempfile.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testadmin.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testarray.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testcache.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testclient.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testconflicts.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testcreds.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testcups.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testdest.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testfile.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testgetdests.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testhttp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testi18n.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testipp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testlang.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testoptions.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testppd.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testpwg.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testraster.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testsnmp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testthreads.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="thread.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tls.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tlscheck.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tls-darwin.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tls-gnutls.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tls-sspi.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="transcode.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="usersys.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="util.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

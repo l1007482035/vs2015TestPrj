@@ -1,0 +1,7 @@
+-IE:/MyProject/vs2015TestPrj/eigen-3.3.0
+-IE:/MyProject/vs2015TestPrj/eigen-3.3.0/build
+-IE:/Qt/4.7.4/include
+-DWIN32
+-o
+E:/MyProject/vs2015TestPrj/eigen-3.3.0/build/demos/mandelbrot/mandelbrot.moc
+E:/MyProject/vs2015TestPrj/eigen-3.3.0/demos/mandelbrot/mandelbrot.h
