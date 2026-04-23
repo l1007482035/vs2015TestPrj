@@ -147,7 +147,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testcff", "testcff\testcff.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cffdll", "cffdll\cffdll.vcxproj", "{0BCE814A-94D7-415A-BBFA-C4A3A12F28ED}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ifeoloader", "ifeoloader\ifeoloader.vcxproj", "{D8651B1B-4054-4A9E-9A2B-3BE38A23DD61}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ifeoDebugger", "ifeoloader\ifeoloader.vcxproj", "{D8651B1B-4054-4A9E-9A2B-3BE38A23DD61}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FundTool", "FundTool\FundTool.vcxproj", "{D3C03B57-5002-4376-9064-43C49C909F6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -682,6 +684,12 @@ Global
 		{D8651B1B-4054-4A9E-9A2B-3BE38A23DD61}.Release|Win32.Build.0 = Release|Win32
 		{D8651B1B-4054-4A9E-9A2B-3BE38A23DD61}.Release|x64.ActiveCfg = Release|x64
 		{D8651B1B-4054-4A9E-9A2B-3BE38A23DD61}.Release|x64.Build.0 = Release|x64
+		{D3C03B57-5002-4376-9064-43C49C909F6A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D3C03B57-5002-4376-9064-43C49C909F6A}.Debug|Win32.Build.0 = Debug|Win32
+		{D3C03B57-5002-4376-9064-43C49C909F6A}.Debug|x64.ActiveCfg = Debug|Win32
+		{D3C03B57-5002-4376-9064-43C49C909F6A}.Release|Win32.ActiveCfg = Release|Win32
+		{D3C03B57-5002-4376-9064-43C49C909F6A}.Release|Win32.Build.0 = Release|Win32
+		{D3C03B57-5002-4376-9064-43C49C909F6A}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

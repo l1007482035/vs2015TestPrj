@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "httpclient.h"  
 #include "curl/curl.h"  
+
   
 CHttpClient::CHttpClient(void)
 {  
@@ -47,42 +48,9 @@ static size_t OnWriteData(void* buffer, size_t size, size_t nmemb, void* lpVoid)
     char* pData = (char*)buffer;  
     str->append(pData, size * nmemb);  
     return nmemb;  
-}  
-  
-int CHttpClient::Post(const std::string & strUrl, const std::string & strPost, std::string & strResponse)  
-{  
-    CURLcode res;  
-	CURL* curl = curl_easy_init();  
-	if(NULL == curl)  
-    {  
-        return CURLE_FAILED_INIT;  
-    }
+} 
 
-	struct curl_slist* headers = NULL;
-	headers = curl_slist_append(headers, "Content-Type:application/json;charset=UTF-8");
-	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-
-    if(m_bDebug)  
-    {  
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);  
-        curl_easy_setopt(curl, CURLOPT_DEBUGFUNCTION, OnDebug);  
-    }  
-    curl_easy_setopt(curl, CURLOPT_URL, strUrl.c_str());  
-    curl_easy_setopt(curl, CURLOPT_POST, 1);  
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, strPost.c_str());  
-    curl_easy_setopt(curl, CURLOPT_READFUNCTION, NULL);  
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, OnWriteData);  
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&strResponse);  
-    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);  
-    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3);  
-    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 3);  
-    res = curl_easy_perform(curl);  
-	curl_slist_free_all(headers);
-    curl_easy_cleanup(curl);  
-    return res;  
-}  
-
-int CHttpClient::Post(const std::string & strUrl, const std::string & strHeader, const std::string & strPost, std::string & strResponse)
+int CHttpClient::Post(const std::string & strUrl, std::list<std::string>* pHeaders, const std::string & strPost, std::string & strResponse)
 {
 	CURLcode res;
 	CURL* curl = curl_easy_init();
@@ -93,8 +61,15 @@ int CHttpClient::Post(const std::string & strUrl, const std::string & strHeader,
 
 	struct curl_slist* headers = NULL;
 	headers = curl_slist_append(headers, "Content-Type:application/json;charset=UTF-8");
-	headers = curl_slist_append(headers, strHeader.c_str());
-	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+	if (pHeaders && pHeaders->size() > 0)
+	{
+		for (auto it: *pHeaders)
+		{
+			headers = curl_slist_append(headers, it.c_str());
+		}
+		
+	}
+	//curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
 	if (m_bDebug)
 	{
@@ -109,84 +84,14 @@ int CHttpClient::Post(const std::string & strUrl, const std::string & strHeader,
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&strResponse);
 	curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
 	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 30);
-	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30);
+	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5);
 	res = curl_easy_perform(curl);
 	curl_slist_free_all(headers);
 	curl_easy_cleanup(curl);
 	return res;
 }
 
-int CHttpClient::Get(const std::string & strUrl, std::string & strResponse)  
-{  
-    CURLcode res;  
-	CURL* curl = curl_easy_init();  
-    if(NULL == curl)  
-    {  
-        return CURLE_FAILED_INIT;  
-    }  
-    if(m_bDebug)  
-    {  
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);  
-        curl_easy_setopt(curl, CURLOPT_DEBUGFUNCTION, OnDebug);  
-    }  
-	curl_easy_setopt(curl, CURLOPT_URL, strUrl.c_str());  
-	curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "cookies.txt"); 
-    curl_easy_setopt(curl, CURLOPT_READFUNCTION, NULL);  
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, OnWriteData);  
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&strResponse);  
-    /** 
-    * 当多个线程都使用超时处理的时候，同时主线程中有sleep或是wait等操作。 
-    * 如果不设置这个选项，libcurl将会发信号打断这个wait从而导致程序退出。 
-    */  
-    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);  
-    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3);
-    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 3);  
-	curl_easy_setopt(curl, CURLOPT_COOKIEJAR, "cookies.txt"); 
-    res = curl_easy_perform(curl);
-	curl_easy_cleanup(curl);  
-    return res;  
-}  
-  
-int CHttpClient::Posts(const std::string & strUrl, const std::string & strPost, std::string & strResponse, const char * pCaPath)  
-{  
-    CURLcode res;
-	CURL* curl = curl_easy_init();  
-    if(NULL == curl)  
-    {  
-        return CURLE_FAILED_INIT;  
-    }  
-    if(m_bDebug)  
-    {  
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);  
-        curl_easy_setopt(curl, CURLOPT_DEBUGFUNCTION, OnDebug);  
-    }  
-    curl_easy_setopt(curl, CURLOPT_URL, strUrl.c_str());  
-    curl_easy_setopt(curl, CURLOPT_POST, 1);  
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, strPost.c_str());  
-    curl_easy_setopt(curl, CURLOPT_READFUNCTION, NULL);  
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, OnWriteData);  
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&strResponse);  
-    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);  
-    if(NULL == pCaPath)  
-    {  
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false);  
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, false);  
-    }  
-    else  
-    {  
-        //缺省情况就是PEM，所以无需设置，另外支持DER  
-        //curl_easy_setopt(curl,CURLOPT_SSLCERTTYPE,"PEM");  
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, true);  
-        curl_easy_setopt(curl, CURLOPT_CAINFO, pCaPath);  
-    }  
-    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3);  
-    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 3);  
-    res = curl_easy_perform(curl);  
-	curl_easy_cleanup(curl);  
-    return res;  
-}  
-
-int CHttpClient::Posts(const std::string & strUrl, const std::string & strHeader, const std::string & strPost, std::string & strResponse, const char * pCaPath)
+int CHttpClient::Get(const std::string & strUrl, std::list<std::string>* pHeaders, std::string & strResponse)
 {
 	CURLcode res;
 	CURL* curl = curl_easy_init();
@@ -197,9 +102,59 @@ int CHttpClient::Posts(const std::string & strUrl, const std::string & strHeader
 
 	struct curl_slist* headers = NULL;
 	headers = curl_slist_append(headers, "Content-Type:application/json;charset=UTF-8");
-	if (!strHeader.empty())
+	if (pHeaders && pHeaders->size() > 0)
 	{
-		headers = curl_slist_append(headers, strHeader.c_str());
+		for (auto it : *pHeaders)
+		{
+			headers = curl_slist_append(headers, it.c_str());
+		}
+
+	}
+	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+	if (m_bDebug)
+	{
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+		curl_easy_setopt(curl, CURLOPT_DEBUGFUNCTION, OnDebug);
+	}
+	curl_easy_setopt(curl, CURLOPT_URL, strUrl.c_str());
+	curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "cookies.txt");
+	curl_easy_setopt(curl, CURLOPT_READFUNCTION, NULL);
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, OnWriteData);
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&strResponse);
+	/**
+	* 当多个线程都使用超时处理的时候，同时主线程中有sleep或是wait等操作。
+	* 如果不设置这个选项，libcurl将会发信号打断这个wait从而导致程序退出。
+	*/
+	curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
+	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3);
+	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 3);
+	curl_easy_setopt(curl, CURLOPT_COOKIEJAR, "cookies.txt");
+	res = curl_easy_perform(curl);
+	curl_easy_cleanup(curl);
+	return res;
+
+}
+
+
+int CHttpClient::Posts(const std::string & strUrl, std::list<std::string>* pHeaders, const std::string & strPost, std::string & strResponse, const char * pCaPath)
+{
+	CURLcode res;
+	CURL* curl = curl_easy_init();
+	if (NULL == curl)
+	{
+		return CURLE_FAILED_INIT;
+	}
+
+	struct curl_slist* headers = NULL;
+	headers = curl_slist_append(headers, "Content-Type:application/json;charset=UTF-8");
+	if (pHeaders && pHeaders->size() > 0)
+	{
+		for (auto it : *pHeaders)
+		{
+			headers = curl_slist_append(headers, it.c_str());
+		}
+
 	}
 	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
@@ -235,7 +190,7 @@ int CHttpClient::Posts(const std::string & strUrl, const std::string & strHeader
 	return res;
 }
 
-int CHttpClient::Gets(const std::string & strUrl, std::string & strResponse, const char * pCaPath)  
+int CHttpClient::Gets(const std::string & strUrl, std::list<std::string>* pHeaders, std::string & strResponse, const char * pCaPath)
 {  
     CURLcode res;  
 	CURL* curl = curl_easy_init();  
@@ -243,6 +198,17 @@ int CHttpClient::Gets(const std::string & strUrl, std::string & strResponse, con
     {  
         return CURLE_FAILED_INIT;  
     }  
+	struct curl_slist* headers = NULL;
+	headers = curl_slist_append(headers, "Content-Type:application/json;charset=UTF-8");
+	if (pHeaders && pHeaders->size() > 0)
+	{
+		for (auto it : *pHeaders)
+		{
+			headers = curl_slist_append(headers, it.c_str());
+		}
+
+	}
+	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     if(m_bDebug)  
     {  
         curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);  
