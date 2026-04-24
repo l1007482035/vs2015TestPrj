@@ -229,6 +229,37 @@ bool FundTool::QueryFundName(QString qsFundCode, QString* pFundName)
 	return false;	
 }
 
+void FundTool::AddAvgCol(int nRowIndex, int nColIndex, QString qsCurJingzhi, QString qsAvgValue)
+{
+	QTableWidgetItem *pItem = new QTableWidgetItem(qsAvgValue);
+	pItem->setTextAlignment(Qt::AlignCenter);
+	tableWidget->setItem(nRowIndex, nColIndex, pItem);
+	if (qsCurJingzhi.toDouble() > qsAvgValue.toDouble())
+	{
+		pItem->setTextColor(Qt::green);
+	}
+	else
+	{
+		pItem->setTextColor(Qt::red);
+	}
+}
+
+void FundTool::SetAvgCol(int nRowIndex, int nColIndex, QString qsCurJingzhi, QString qsAvgValue)
+{
+	QTableWidgetItem *pItem = tableWidget->item(nRowIndex, nColIndex);
+	pItem->setTextAlignment(Qt::AlignCenter);
+	tableWidget->setItem(nRowIndex, nColIndex, pItem);
+	if (qsCurJingzhi.toDouble() > qsAvgValue.toDouble())
+	{
+		pItem->setTextColor(Qt::green);
+	}
+	else
+	{
+		pItem->setTextColor(Qt::red);
+	}
+	pItem->setText(qsAvgValue);
+}
+
 void FundTool::AddOneRow(QString qsFundName, QString qsFundCode, QString qsCurJingZhi
 	, QString qsAvg30, QString qsAvg60, QString qsAvg90, QString qsAvgyear)
 {
@@ -249,21 +280,12 @@ void FundTool::AddOneRow(QString qsFundName, QString qsFundCode, QString qsCurJi
 	tableWidget->setItem(nRowCount, 2, pItem2);
 
 
-	QTableWidgetItem *pItem3 = new QTableWidgetItem(qsAvg30);
-	pItem3->setTextAlignment(Qt::AlignCenter);
-	tableWidget->setItem(nRowCount, 3, pItem3);
 
-	QTableWidgetItem *pItem4 = new QTableWidgetItem(qsAvg60);
-	pItem4->setTextAlignment(Qt::AlignCenter);
-	tableWidget->setItem(nRowCount, 4, pItem4);
 
-	QTableWidgetItem *pItem5 = new QTableWidgetItem(qsAvg90);
-	pItem5->setTextAlignment(Qt::AlignCenter);
-	tableWidget->setItem(nRowCount, 5, pItem5);
-
-	QTableWidgetItem *pItem6 = new QTableWidgetItem(qsAvgyear);
-	pItem6->setTextAlignment(Qt::AlignCenter);
-	tableWidget->setItem(nRowCount, 6, pItem6);
+	AddAvgCol(nRowCount, 3,qsCurJingZhi,qsAvg30);
+	AddAvgCol(nRowCount, 4, qsCurJingZhi, qsAvg60);
+	AddAvgCol(nRowCount, 5, qsCurJingZhi, qsAvg90);
+	AddAvgCol(nRowCount, 6, qsCurJingZhi, qsAvgyear);
 
 	// ===== 第三列：两个按钮 =====
 	QWidget* widget = new QWidget();
@@ -616,10 +638,12 @@ void FundTool::on_cell_querypushbutton_clicked()
 	}
 	tableWidget->item(nRow, 0)->setText(qsFundName);
 	tableWidget->item(nRow, 2)->setText(QString::number(fCurJingzhi));
-	tableWidget->item(nRow, 3)->setText(QString::number(fAvgJingZhi30));
-	tableWidget->item(nRow, 4)->setText(QString::number(fAvgJingZhi60));
-	tableWidget->item(nRow, 5)->setText(QString::number(fAvgJingZhi90));
-	tableWidget->item(nRow, 6)->setText(QString::number(fAvgJingZhiYear));
+
+	SetAvgCol(nRow, 3, QString::number(fCurJingzhi), QString::number(fAvgJingZhi30));
+	SetAvgCol(nRow, 4, QString::number(fCurJingzhi), QString::number(fAvgJingZhi60));
+	SetAvgCol(nRow, 5, QString::number(fCurJingzhi), QString::number(fAvgJingZhi90));
+	SetAvgCol(nRow, 6, QString::number(fCurJingzhi), QString::number(fAvgJingZhiYear));
+	
 
 }
 

@@ -19,6 +19,8 @@ protected:
 	bool CalFundValue(QString qsFundCode, QString qsBeginDate,QString qsEndDate,int nPageIndex, double& fTotalJingzhi,int& nDataCount,int& nTotalCount);
 	bool QueryFundName(QString qsFundCode, QString* pFundName);
 
+	void AddAvgCol(int nRowIndex,int nColIndex,QString qsCurJingzhi,QString qsAvgValue);
+	void SetAvgCol(int nRowIndex, int nColIndex, QString qsCurJingzhi, QString qsAvgValue);
 	void AddOneRow(QString qsFundName, QString qsFundCode, QString qsCurJingZhi
 		,QString qsAvg30, QString qsAvg60, QString qsAvg90, QString qsAvgyear);
 
