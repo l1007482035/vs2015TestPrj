@@ -76,12 +76,14 @@ void TestQt::on_pushButton_2_clicked()
 {
 	QApplication::setOverrideCursor(Qt::WaitCursor);
 	QFuture<int> future = QtConcurrent::run(this, &TestQt::longTimeFunc, 10, QString("abc"));
+#if 1
 	while (!future.isFinished())
 	{
 		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 	QApplication::restoreOverrideCursor();
 	int nRet = future.result();
+#endif
 
 }
 

@@ -51,6 +51,8 @@
 #include "../Public/Global.h"
 #include "../Public/CmmLibPortEx.h"
 #include "../Public/CurlWrapPort.h"
+#include "../Public/JsonPort.h"
 
 extern CIniFile theIniFile;
+extern CFileLog theLog;
 
