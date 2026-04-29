@@ -12,17 +12,18 @@ public:
 	void showEvent(QShowEvent *event);
 
 protected:
+	bool QueryFundQushi(QString qsFundCode, QString* pQushi);
 	bool QueryDiyJingzhi(QString qsFundCode,QString qsBeginDate, QString qsEndDate, double* pfAvgJingZhi);
 	//获取最近一天的净值
 	bool GetRecentDayJingzhi(QString qsFundCode,double* pfCurrentJingzhi);
-	//计算基金的相关值
-	bool CalFundValue(QString qsFundCode, QString qsBeginDate,QString qsEndDate,int nPageIndex, double& fTotalJingzhi,int& nDataCount,int& nTotalCount);
+	//获取基金单位净值数组
+	bool GetFundJingzhiAry(QString qsFundCode, QString qsBeginDate, QString qsEndDate, int nPageIndex, std::vector<double>& oAry, int& nTotalCount);
 	bool QueryFundName(QString qsFundCode, QString* pFundName);
 
 	void AddAvgCol(int nRowIndex,int nColIndex,QString qsCurJingzhi,QString qsAvgValue);
 	void SetAvgCol(int nRowIndex, int nColIndex, QString qsCurJingzhi, QString qsAvgValue);
-	void AddOneRow(QString qsFundName, QString qsFundCode, QString qsCurJingZhi
-		,QString qsAvg30, QString qsAvg60, QString qsAvg90, QString qsAvgyear);
+	void AddOneRow(QString qsFundName, QString qsFundCode, QString qsCurJingZhi,QString qsQushi
+		,QString qsAvg7,QString qsAvg30, QString qsAvg60, QString qsAvg90, QString qsAvgyear);
 
 private slots:
 	void on_pushButton_query_clicked();
@@ -32,5 +33,6 @@ private slots:
 	void on_cell_deletepushbutton_clicked();
 	void on_pushButton_queryall_clicked();
 	void on_pushButton_lightquery_clicked();
+	void on_edit_returnPressed();
 
 };

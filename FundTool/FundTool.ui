@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>955</width>
+    <width>1125</width>
     <height>774</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QGroupBox" name="groupBox_2">
        <property name="styleSheet">
@@ -30,49 +30,35 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLabel" name="label_4">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="3" column="2">
+           <widget class="QLabel" name="label_5">
             <property name="styleSheet">
              <string notr="true"/>
             </property>
             <property name="text">
-             <string>基金名称：</string>
+             <string>基金代码：</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_fundname">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
+          <item row="2" column="2">
+           <widget class="QLabel" name="label">
             <property name="styleSheet">
              <string notr="true"/>
             </property>
-            <property name="readOnly">
-             <bool>true</bool>
+            <property name="text">
+             <string>当前净值：</string>
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="2" column="3">
+           <widget class="QLineEdit" name="lineEdit_curjingzhi"/>
+          </item>
+          <item row="3" column="3">
+           <widget class="QLineEdit" name="lineEdit_fundcode"/>
+          </item>
           <item row="0" column="3">
            <widget class="QLineEdit" name="lineEdit_90avg">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_yearavg">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -91,13 +77,6 @@
             </property>
             <property name="text">
              <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>60天均净值：</string>
             </property>
            </widget>
           </item>
@@ -121,30 +100,20 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="2">
-           <widget class="QLabel" name="label_5">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_9">
             <property name="text">
-             <string>基金代码：</string>
+             <string>60天均净值：</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>当前净值：</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>今年以来均净值：</string>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEdit_yearavg">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -155,11 +124,58 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_curjingzhi"/>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>今年以来均净值：</string>
+            </property>
+           </widget>
           </item>
-          <item row="2" column="3">
-           <widget class="QLineEdit" name="lineEdit_fundcode"/>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEdit_fundname">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>基金名称：</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="lineEdit_7avg"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>7天均净值：</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="lineEdit_qushi"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>趋势：</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -334,7 +350,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="styleSheet">
-      <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+      <string notr="true">font: 11pt &quot;微软雅黑&quot;;</string>
      </property>
      <property name="title">
       <string>自选平均净值</string>
@@ -361,10 +377,15 @@
       <item>
        <widget class="QTableWidget" name="tableWidget">
         <property name="styleSheet">
-         <string notr="true">font: 9pt &quot;微软雅黑&quot;;
-selection-background-color: rgb(0, 0, 255);
-QTableWidget::item:selected { background-color: rgb(0,120,215); color: white; }</string>
+         <string notr="true">QTableWidget::item:selected { background-color: rgb(0,120,215); color: white; }
+QTableWidget{font: 11pt &quot;微软雅黑&quot;;}</string>
         </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
         <column>
          <property name="text">
           <string>基金名</string>
@@ -378,6 +399,16 @@ QTableWidget::item:selected { background-color: rgb(0,120,215); color: white; }<
         <column>
          <property name="text">
           <string>当前</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>趋势</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>7天平均</string>
          </property>
         </column>
         <column>
@@ -398,6 +429,16 @@ QTableWidget::item:selected { background-color: rgb(0,120,215); color: white; }<
         <column>
          <property name="text">
           <string>今年以来平均</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>输入跌幅%</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>跌后净值</string>
          </property>
         </column>
         <column>
