@@ -10,6 +10,7 @@ class FundTool : public QWidget,public Ui::FundToolClass
 public:
 	FundTool(QWidget *parent = Q_NULLPTR);
 	void showEvent(QShowEvent *event);
+	void mousePressEvent(QMouseEvent *event);
 
 protected:
 	bool QueryFundQushi(QString qsFundCode, QString* pQushi);

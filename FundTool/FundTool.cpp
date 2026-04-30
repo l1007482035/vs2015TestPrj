@@ -61,6 +61,22 @@ void FundTool::showEvent(QShowEvent *event)
 {
 }
 
+void FundTool::mousePressEvent(QMouseEvent *event)
+{
+	// 判断是否点击了左键（可选）
+	if (event->button() == Qt::LeftButton)
+	{
+		// 判断点击位置是否不在表格范围内
+		if (tableWidget->geometry().contains(event->pos()))
+		{
+			tableWidget->clearSelection();
+		}
+	}
+
+	// 调用父类的处理，保证其他功能正常
+	QWidget::mousePressEvent(event);
+}
+
 bool FundTool::QueryFundQushi(QString qsFundCode, QString* pQushi)
 {
 	//先算第一页
@@ -932,7 +948,7 @@ void FundTool::on_edit_returnPressed()
 	QModelIndex idx = tableWidget->indexAt(senderObj->parentWidget()->pos());
 	int nRow = idx.row();
 	int nCol = idx.column();
-	if (nCol == 8)
+	if (nCol == 9)
 	{
 		fCurJingZhi = tableWidget->item(nRow, 2)->text().toDouble();
 		fRetValue = (100.0 - fDieFu) / 100.0*fCurJingZhi;
